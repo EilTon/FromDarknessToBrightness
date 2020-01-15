@@ -73,4 +73,8 @@ public class ChangeNameClass : MonoBehaviour
 	#region Helper
 
 	#endregion
+
+	#region Coroutine
+
+	#endregion
 }

@@ -5,24 +5,33 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	#region Declarations public
-	public float _speed;
+	public float _jumpImpulse;
 	public float _jumpForce;
-	public float _gravityScale;
-	public float _limitAttach;
+	public float _speedMax;
+	public float _speedDelay;
+	public float _speedMin;
+	public float _jumpTimeDelay;
+	public LayerMask _layer;
 	public GameObject _player2;
-	public float _delayDetach = 0.5f;
-	public float _delaySwitch = 0.5f;
+	public float _delayDetach;
+	public float _delaySwitch;
+	public float _limitAttach;
 	#endregion
 
 	#region Declarations private
-	private CharacterController _characterController;
-	private CharacterController _player1CharacterController;
-	private CharacterController _player2CharacterController;
+	private bool _isGrounded;
+	private Rigidbody2D _rigidbodyPlayer1;
+	private Rigidbody2D _rigidbodyPlayer2;
+	private Rigidbody2D _rigidbodyPlayer;
+	private float _distToGround;
+	private float _jumpTime;
 	private Vector3 _movement;
-	private float _storeDelayDetach;
-	private float _storeDelaySwitch;
 	private bool _switch = false;
 	private bool _detach = false;
+	private float _storeDelayDetach;
+	private float _storeDelaySwitch;
+	private float _accelerationPerSecond;
+	private float _speed;
 	#endregion
 
 	#region Declarations Event Args
@@ -48,33 +57,36 @@ public class PlayerController : MonoBehaviour
 	private void Start()
 	{
 		#region Initialize
-		_characterController = GetComponent<CharacterController>();
-		_player1CharacterController = GetComponent<CharacterController>();
-		_player2CharacterController = _player2.GetComponent<CharacterController>();
-		_storeDelayDetach = _delayDetach;
-		_storeDelaySwitch = _delaySwitch;
+		_rigidbodyPlayer1 = GetComponent<Rigidbody2D>();
+		_rigidbodyPlayer2 = _player2.GetComponent<Rigidbody2D>();
+		_rigidbodyPlayer = _rigidbodyPlayer1;
+		_distToGround = GetComponent<Collider2D>().bounds.extents.y;
+		_accelerationPerSecond = _speedMax/_speedDelay;
+		StartCoroutine(Jumping());
 		#endregion
 	}
 
 	private void Update()
 	{
 		#region Movement
-		MovePlayer();
+		_isGrounded = CheckIfGrounded();
+		Move();
 		#endregion
 
 		#region Actions
-		SwitchPlayer();
 		DetachAttach();
+		SwitchPlayer();
 		#endregion
 
 		#region Timer
-		if (_delayDetach <= _storeDelayDetach)
-		{
-			_delayDetach += Time.deltaTime;
-		}
 		if (_delaySwitch <= _storeDelaySwitch)
 		{
 			_delaySwitch += Time.deltaTime;
+		}
+
+		if (_delayDetach <= _storeDelayDetach)
+		{
+			_delayDetach += Time.deltaTime;
 		}
 		#endregion
 	}
@@ -82,58 +94,77 @@ public class PlayerController : MonoBehaviour
 	private void FixedUpdate()
 	{
 		#region Movement
-
+		MovePlayer();
 		#endregion
 
 		#region Actions
-		DetachAttach();
+		
 		#endregion
 
 		#region Timer
-
+		
 		#endregion
 	}
 	#endregion
 
 	#region Helper
+	void Move()
+	{
+		float horizontal = Input.GetAxis("Horizontal");
+		if (horizontal > 0)
+		{
+			_speed +=  _accelerationPerSecond * _speedMin * Time.deltaTime;
+		}
+		else if (horizontal<0)
+		{
+			_speed -=  _accelerationPerSecond * _speedMin * Time.deltaTime;
+		}
+		else
+		{
+			_speed = 0;
+		}
+
+		if (_speed > _speedMax)
+		{
+			_speed = _speedMax;
+		}
+		else if (_speed < -_speedMax)
+		{
+			_speed = -_speedMax;
+		}
+
+		Debug.Log(_speed);
+		_movement = new Vector3(_speed, _rigidbodyPlayer.velocity.y);
+	}
+
 	void MovePlayer()
 	{
-		float yStore = _movement.y;
-		float moveHorizontal = Input.GetAxisRaw("Horizontal");
-		_movement = transform.right * moveHorizontal;
-		_movement = _movement.normalized * _speed;
-		_movement.y = yStore;
-		if (_characterController.isGrounded)
-		{
-			_movement.y = 0f;
-			if (Input.GetButton("Jump"))
-			{
-				_movement.y = _jumpForce;
-			}
-		}
-		_movement.y = _movement.y + (Physics.gravity.y * _gravityScale * Time.deltaTime);
-		_characterController.Move(_movement * Time.deltaTime);
+		_rigidbodyPlayer.AddForce(_movement);
 	}
+
+	bool CheckIfGrounded()
+	{
+		return Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1.01f), new Vector2(0, -_distToGround + 0.5f), -_distToGround - 1f, _layer);
+	}
+
 	void DetachAttach()
 	{
-		if (Input.GetKey(KeyCode.A) && (_player2.transform.position.x >= transform.position.x - _limitAttach && _player2.transform.position.x <= transform.position.x + _limitAttach) && _characterController.isGrounded && _delayDetach >= _storeDelayDetach)
+		if(Input.GetButtonDown("DetachAttach") && (_rigidbodyPlayer2.transform.position.x >= _rigidbodyPlayer.transform.position.x - _limitAttach && _rigidbodyPlayer2.transform.position.x <= _rigidbodyPlayer.transform.position.x + _limitAttach))
 		{
-
-			
-			_delayDetach = 0;
 			if (_detach == false && _switch == false)
 			{
-				_player2.transform.parent = null;
-				_characterController = _player2CharacterController;
+				_rigidbodyPlayer2.transform.parent = null;
+				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Dynamic;
+				//_rigidbodyPlayer = _rigidbodyPlayer2;
 				_detach = !_detach;
 
 			}
 
-			else if (_detach == true && _switch == true)
+			else if (_detach == true && _switch == false)
 			{
-				_player2.transform.position = new Vector2(transform.position.x - 0.5f, transform.position.y);
-				_player2.transform.SetParent(transform);
-				_characterController = _player1CharacterController;
+				_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x - 1f, transform.position.y + 0.75f);
+				_rigidbodyPlayer2.transform.SetParent(transform);
+				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
 				_detach = !_detach;
 				_switch = false;
 			}
@@ -143,22 +174,43 @@ public class PlayerController : MonoBehaviour
 	void SwitchPlayer()
 	{
 
-		if (Input.GetKey(KeyCode.E) && _detach == true && _characterController.isGrounded && _delaySwitch >= _storeDelaySwitch)
+		if (Input.GetButton("Switch") && _delaySwitch >= _storeDelaySwitch && _detach == true)
 		{
 			_delaySwitch = 0;
 			if (_switch == false)
 			{
-				_characterController = _player1CharacterController;
+				_rigidbodyPlayer = _rigidbodyPlayer1;
 				_switch = !_switch;
 			}
-
-			else if(_switch == true)
+			else if (_switch == true)
 			{
-				_characterController = _player2CharacterController;
+				_rigidbodyPlayer = _rigidbodyPlayer2;
 				_switch = !_switch;
 			}
 		}
-		
 	}
+
+	#endregion
+
+	#region Coroutine
+	IEnumerator Jumping()
+	{
+		while (true)
+		{
+			if (_isGrounded && Input.GetButtonDown("Jump"))
+			{
+				_jumpTime = Time.time;
+				_rigidbodyPlayer.AddForce(Vector2.up * _jumpImpulse, ForceMode2D.Impulse);
+				while (Input.GetButton("Jump") && Time.time < _jumpTime + _jumpTimeDelay)
+				{
+					_rigidbodyPlayer.AddForce(Vector2.up * _jumpForce, ForceMode2D.Force);
+					yield return new WaitForFixedUpdate();
+				}
+
+			}
+			yield return null;
+		}
+	}
+
 	#endregion
 }
