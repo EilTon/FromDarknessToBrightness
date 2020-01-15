@@ -265,6 +265,7 @@ PrefabInstance:
     - {fileID: 3607800885811222556, guid: e81cabfc777655744b38c5ca7af0e495, type: 3}
     - {fileID: 555730568, guid: e81cabfc777655744b38c5ca7af0e495, type: 3}
     - {fileID: 3607800885926020921, guid: e81cabfc777655744b38c5ca7af0e495, type: 3}
+    - {fileID: 555730567, guid: e81cabfc777655744b38c5ca7af0e495, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e81cabfc777655744b38c5ca7af0e495, type: 3}
 --- !u!1 &555730566 stripped
 GameObject:
@@ -334,7 +335,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &555730571
 CapsuleCollider2D:
@@ -352,7 +353,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 1}
   m_Direction: 0
---- !u!114 &555730572
+--- !u!114 &555730573
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -361,18 +362,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 555730566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1810a5985a599c04a8796a62afb2a323, type: 3}
+  m_Script: {fileID: 11500000, guid: 3825d9bec7891e84d8859a6f6deb611b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpTimeDelay: 1
-  _isGrounded: 0
   _jumpImpulse: 20
   _jumpForce: 60
+  _speedMax: 100
+  _speedDelay: 2
+  _jumpTimeDelay: 1
   _layer:
     serializedVersion: 2
     m_Bits: 256
-  _speed: 4000
   _player2: {fileID: 555730567}
+  _delayDetach: 0.1
+  _delaySwitch: 0.1
+  _limitAttach: 0.5
 --- !u!1 &1686086092
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,51 +4,33 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	public struct Collisions
-	{
-		public bool top, bottom, left, right;
-		public bool topBuffer, bottomBuffer, leftBuffer, rightBuffer;
-
-
-		public void Reset()
-		{
-			top = bottom = left = right = false;
-		}
-	}
-
-	public float _timeHeld = 0.0f;
-	public float _timeForFullJump = 2.0f;
-	public float _minJumpForce = 0.5f;
-	public float _maxJumpForce = 2.0f;
-	public float _leftJumpForce = 1.0f;
-
 	#region Declarations public
-	public float _speed;
+	public float _jumpImpulse;
 	public float _jumpForce;
-	public float _limitAttach;
-	public float _jumpTime;
-	public GameObject _player2;
-	//public float _gravityScale;
-	public float _delayDetach = 0.5f;
-	public float _delaySwitch = 0.5f;
+	public float _speedMax;
+	public float _speedDelay;
+	public float _jumpTimeDelay;
 	public LayerMask _layer;
+	public GameObject _player2;
+	public float _delayDetach;
+	public float _delaySwitch;
+	public float _limitAttach;
 	#endregion
 
 	#region Declarations private
-	private Collisions _collisions;
-	private CharacterController _characterController;
-	private CharacterController _player1CharacterController;
-	private CharacterController _player2CharacterController;
+	private bool _isGrounded;
 	private Rigidbody2D _rigidbodyPlayer1;
 	private Rigidbody2D _rigidbodyPlayer2;
 	private Rigidbody2D _rigidbodyPlayer;
+	private float _distToGround;
+	private float _jumpTime;
 	private Vector3 _movement;
-	private float _storeDelayDetach;
-	private float _storeDelaySwitch;
-	private float _storeJumpTime;
 	private bool _switch = false;
 	private bool _detach = false;
-	private float _distToGround;
+	private float _storeDelayDetach;
+	private float _storeDelaySwitch;
+	private float _accelerationPerSecond;
+	private float _speed;
 	#endregion
 
 	#region Declarations Event Args
@@ -77,50 +59,20 @@ public class PlayerController : MonoBehaviour
 		_rigidbodyPlayer1 = GetComponent<Rigidbody2D>();
 		_rigidbodyPlayer2 = _player2.GetComponent<Rigidbody2D>();
 		_rigidbodyPlayer = _rigidbodyPlayer1;
-		//_characterController = GetComponent<CharacterController>();
-		//_player1CharacterController = GetComponent<CharacterController>();
-		//_player2CharacterController = _player2.GetComponent<CharacterController>();
-		_storeDelayDetach = _delayDetach;
-		_storeDelaySwitch = _delaySwitch;
-		_storeJumpTime = _jumpTime;
 		_distToGround = GetComponent<Collider2D>().bounds.extents.y;
+		_accelerationPerSecond = _speedMax/_speedDelay;
+		StartCoroutine(Jumping());
 		#endregion
 	}
 
 	private void Update()
 	{
 		#region Movement
-		MovePlayer();
+		_isGrounded = CheckIfGrounded();
+		Move();
 		#endregion
 
 		#region Actions
-		//SwitchPlayer();
-		//DetachAttach();
-		#endregion
-
-		#region Timer
-		/*if (_delayDetach <= _storeDelayDetach)
-		{
-			_delayDetach += Time.deltaTime;
-		}
-		if (_delaySwitch <= _storeDelaySwitch)
-		{
-			_delaySwitch += Time.deltaTime;
-		}*/
-		#endregion
-	}
-
-	private void FixedUpdate()
-	{
-		
-
-		#region Movement
-		MovePlayer();
-		JumpPlayer();
-		#endregion
-
-		#region Actions
-
 		DetachAttach();
 		SwitchPlayer();
 		#endregion
@@ -128,7 +80,7 @@ public class PlayerController : MonoBehaviour
 		#region Timer
 		if (_delaySwitch <= _storeDelaySwitch)
 		{
-			_delaySwitch += Time.fixedDeltaTime;
+			_delaySwitch += Time.deltaTime;
 		}
 
 		if (_delayDetach <= _storeDelayDetach)
@@ -137,89 +89,57 @@ public class PlayerController : MonoBehaviour
 		}
 		#endregion
 	}
+
+	private void FixedUpdate()
+	{
+		#region Movement
+		MovePlayer();
+		#endregion
+
+		#region Actions
+		
+		#endregion
+
+		#region Timer
+		
+		#endregion
+	}
 	#endregion
 
 	#region Helper
-
-	#region CharacterControllerComponent
-	/*void MovePlayerCharacterController()
+	void Move()
 	{
-		float yStore = _movement.y;
-		float moveHorizontal = Input.GetAxisRaw("Horizontal");
-		_movement = transform.right * moveHorizontal;
-		_movement = _movement.normalized * _speed;
-		_movement.y = yStore;
-		if (_characterController.isGrounded)
+		float horizontal = Input.GetAxis("Horizontal");
+		if(horizontal!=0)
 		{
-			_movement.y = 0f;
-			if (Input.GetButton("Jump"))
-			{
-				_movement.y = _jumpForce;
-			}
+			_speed += horizontal * _accelerationPerSecond * Time.deltaTime;
 		}
-		_movement.y = _movement.y + (Physics.gravity.y * _gravityScale * Time.deltaTime);
-		_characterController.Move(_movement * Time.deltaTime);
+		else
+		{
+			_speed = 0;
+		}
+		if(_speed>_speedMax)
+		{
+			_speed = _speedMax;
+		}
+		Debug.Log(_speed);
+		_movement = new Vector3(_speed, _rigidbodyPlayer.velocity.y);
 	}
-	void DetachAttachCharacterController()
-	{
-		if (Input.GetKey(KeyCode.A) && (_player2.transform.position.x >= transform.position.x - _limitAttach && _player2.transform.position.x <= transform.position.x + _limitAttach) && _characterController.isGrounded && _delayDetach >= _storeDelayDetach)
-		{
-
-			
-			_delayDetach = 0;
-			if (_detach == false && _switch == false)
-			{
-				_player2.transform.parent = null;
-				_characterController = _player2CharacterController;
-				_detach = !_detach;
-
-			}
-
-			else if (_detach == true && _switch == true)
-			{
-				_player2.transform.position = new Vector2(transform.position.x - 0.5f, transform.position.y);
-				_player2.transform.SetParent(transform);
-				_characterController = _player1CharacterController;
-				_detach = !_detach;
-				_switch = false;
-			}
-		}
-	}
-	void SwitchPlayerCharacterController()
-	{
-
-		if (Input.GetKey(KeyCode.E) && _detach == true && _characterController.isGrounded && _delaySwitch >= _storeDelaySwitch)
-		{
-			_delaySwitch = 0;
-			if (_switch == false)
-			{
-				_characterController = _player1CharacterController;
-				_switch = !_switch;
-			}
-
-			else if(_switch == true)
-			{
-				_characterController = _player2CharacterController;
-				_switch = !_switch;
-			}
-		}
-		
-	}*/
-	#endregion
-
-	#region RigibodyComponent
 
 	void MovePlayer()
 	{
-		_movement = new Vector3(Input.GetAxis("Horizontal") * _speed * Time.fixedDeltaTime, _rigidbodyPlayer.velocity.y);
 		_rigidbodyPlayer.AddForce(_movement);
+	}
+
+	bool CheckIfGrounded()
+	{
+		return Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1.01f), new Vector2(0, -_distToGround + 0.5f), -_distToGround - 1f, _layer);
 	}
 
 	void DetachAttach()
 	{
-		if (Input.GetButtonDown("DetachAttach") && (_player2.transform.position.x >= transform.position.x - _limitAttach && _player2.transform.position.x <= transform.position.x + _limitAttach) && _delayDetach >= _storeDelayDetach)
+		if(Input.GetButtonDown("DetachAttach"))
 		{
-			_delayDetach = 0;
 			if (_detach == false && _switch == false)
 			{
 				_rigidbodyPlayer2.transform.parent = null;
@@ -244,7 +164,7 @@ public class PlayerController : MonoBehaviour
 	void SwitchPlayer()
 	{
 
-		if (Input.GetButtonDown("Switch") && _delaySwitch >= _storeDelaySwitch && _detach == true)
+		if (Input.GetButton("Switch") && _delaySwitch >= _storeDelaySwitch && _detach == true)
 		{
 			_delaySwitch = 0;
 			if (_switch == false)
@@ -260,63 +180,27 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void JumpPlayer()
-	{
-		if(IsGrounded())
-		{
-			if (Input.GetButtonDown("Jump"))
-			{
-				_timeHeld = 0f;
-			}
-			if (Input.GetButton("Jump"))
-			{
-				_timeHeld += Time.fixedDeltaTime;
-			}
-			if (Input.GetButtonUp("Jump"))
-			{
-				float verticalJumpForce = ((_maxJumpForce - _minJumpForce) * (_timeHeld / _timeForFullJump)) + _minJumpForce;
-				if (verticalJumpForce > _maxJumpForce)
-				{
-					verticalJumpForce = _maxJumpForce;
-				}
-				Vector2 resolvedJump = new Vector2(-_leftJumpForce, verticalJumpForce);
-				_rigidbodyPlayer.velocity = resolvedJump;
-			}
-		}
-		else
-		{
-			_timeHeld = 0f;
-		}
-		
-
-		//Debug.DrawRay(new Vector2(transform.position.x, transform.position.y-1.01f), new Vector2(0,-_distToGround + 0.5f),Color.red);
-		//Debug.Log(IsGrounded());
-		/*if (Input.GetButton("Jump") && _jumpTime > 0 && IsGrounded())
-		{
-			StartCoroutine(JumpCoroutine());
-			_jumpTime = _storeJumpTime;
-		}*/
-	}
-
-	bool IsGrounded()
-	{
-		return Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y-1.01f), new Vector2(0, -_distToGround + 0.5f), -_distToGround - 1f, _layer);
-	}
-
 	#endregion
 
 	#region Coroutine
-	//IEnumerator JumpCoroutine()
-	//{
-	//	while(_jumpTime>0)
-	//	{
-	//		_jumpTime -= Time.fixedDeltaTime;
-	//		Vector2 jump = new Vector2(_movement.x, 1 * _jumpForce ) * Time.fixedDeltaTime;
-	//		_rigidbodyPlayer.AddForce(jump, ForceMode2D.Impulse);
-	//	}
-	//	yield return null;
-	//}
-	#endregion
-	
+	IEnumerator Jumping()
+	{
+		while (true)
+		{
+			if (_isGrounded && Input.GetButtonDown("Jump"))
+			{
+				_jumpTime = Time.time;
+				_rigidbodyPlayer.AddForce(Vector2.up * _jumpImpulse, ForceMode2D.Impulse);
+				while (Input.GetButton("Jump") && Time.time < _jumpTime + _jumpTimeDelay)
+				{
+					_rigidbodyPlayer.AddForce(Vector2.up * _jumpForce, ForceMode2D.Force);
+					yield return new WaitForFixedUpdate();
+				}
+
+			}
+			yield return null;
+		}
+	}
+
 	#endregion
 }
