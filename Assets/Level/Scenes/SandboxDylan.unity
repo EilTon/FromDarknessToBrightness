@@ -366,17 +366,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpImpulse: 20
-  _jumpForce: 60
-  _speedMax: 100
-  _speedDelay: 4
-  _speedMin: 10
-  _jumpTimeDelay: 1
+  _jumpForce: 50
+  _speedMax: 60
+  _speedDelay: 0
+  _speedMin: 60
+  _jumpTimeDelay: 0.15
   _layer:
     serializedVersion: 2
     m_Bits: 256
   _player2: {fileID: 555730567}
   _delayDetach: 0.1
-  _delaySwitch: 0.1
+  _delaySwitch: 0.004
   _limitAttach: 2
 --- !u!1 &1686086092
 GameObject:
