@@ -368,7 +368,8 @@ MonoBehaviour:
   _jumpImpulse: 20
   _jumpForce: 60
   _speedMax: 100
-  _speedDelay: 2
+  _speedDelay: 4
+  _speedMin: 10
   _jumpTimeDelay: 1
   _layer:
     serializedVersion: 2
@@ -376,7 +377,7 @@ MonoBehaviour:
   _player2: {fileID: 555730567}
   _delayDetach: 0.1
   _delaySwitch: 0.1
-  _limitAttach: 0.5
+  _limitAttach: 2
 --- !u!1 &1686086092
 GameObject:
   m_ObjectHideFlags: 0

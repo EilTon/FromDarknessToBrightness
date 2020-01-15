@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 	public float _jumpForce;
 	public float _speedMax;
 	public float _speedDelay;
+	public float _speedMin;
 	public float _jumpTimeDelay;
 	public LayerMask _layer;
 	public GameObject _player2;
@@ -110,18 +111,28 @@ public class PlayerController : MonoBehaviour
 	void Move()
 	{
 		float horizontal = Input.GetAxis("Horizontal");
-		if(horizontal!=0)
+		if (horizontal > 0)
 		{
-			_speed += horizontal * _accelerationPerSecond * Time.deltaTime;
+			_speed +=  _accelerationPerSecond * _speedMin * Time.deltaTime;
+		}
+		else if (horizontal<0)
+		{
+			_speed -=  _accelerationPerSecond * _speedMin * Time.deltaTime;
 		}
 		else
 		{
 			_speed = 0;
 		}
-		if(_speed>_speedMax)
+
+		if (_speed > _speedMax)
 		{
 			_speed = _speedMax;
 		}
+		else if (_speed < -_speedMax)
+		{
+			_speed = -_speedMax;
+		}
+
 		Debug.Log(_speed);
 		_movement = new Vector3(_speed, _rigidbodyPlayer.velocity.y);
 	}
@@ -138,23 +149,22 @@ public class PlayerController : MonoBehaviour
 
 	void DetachAttach()
 	{
-		if(Input.GetButtonDown("DetachAttach"))
+		if(Input.GetButtonDown("DetachAttach") && (_rigidbodyPlayer2.transform.position.x >= _rigidbodyPlayer.transform.position.x - _limitAttach && _rigidbodyPlayer2.transform.position.x <= _rigidbodyPlayer.transform.position.x + _limitAttach))
 		{
 			if (_detach == false && _switch == false)
 			{
 				_rigidbodyPlayer2.transform.parent = null;
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Dynamic;
-				_rigidbodyPlayer = _rigidbodyPlayer2;
+				//_rigidbodyPlayer = _rigidbodyPlayer2;
 				_detach = !_detach;
 
 			}
 
-			else if (_detach == true && _switch == true)
+			else if (_detach == true && _switch == false)
 			{
 				_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x - 1f, transform.position.y + 0.75f);
 				_rigidbodyPlayer2.transform.SetParent(transform);
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
-				_rigidbodyPlayer = _rigidbodyPlayer1;
 				_detach = !_detach;
 				_switch = false;
 			}
