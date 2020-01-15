@@ -16,16 +16,22 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public float _timeHeld = 0.0f;
+	public float _timeForFullJump = 2.0f;
+	public float _minJumpForce = 0.5f;
+	public float _maxJumpForce = 2.0f;
+	public float _leftJumpForce = 1.0f;
+
 	#region Declarations public
 	public float _speed;
 	public float _jumpForce;
 	public float _limitAttach;
-	public float _limitMaxJump;
-	public float _limitMinJump;
+	public float _jumpTime;
 	public GameObject _player2;
 	//public float _gravityScale;
 	public float _delayDetach = 0.5f;
 	public float _delaySwitch = 0.5f;
+	public LayerMask _layer;
 	#endregion
 
 	#region Declarations private
@@ -39,9 +45,10 @@ public class PlayerController : MonoBehaviour
 	private Vector3 _movement;
 	private float _storeDelayDetach;
 	private float _storeDelaySwitch;
+	private float _storeJumpTime;
 	private bool _switch = false;
 	private bool _detach = false;
-	private bool _isJumping = false;
+	private float _distToGround;
 	#endregion
 
 	#region Declarations Event Args
@@ -75,6 +82,8 @@ public class PlayerController : MonoBehaviour
 		//_player2CharacterController = _player2.GetComponent<CharacterController>();
 		_storeDelayDetach = _delayDetach;
 		_storeDelaySwitch = _delaySwitch;
+		_storeJumpTime = _jumpTime;
+		_distToGround = GetComponent<Collider2D>().bounds.extents.y;
 		#endregion
 	}
 
@@ -103,6 +112,8 @@ public class PlayerController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		
+
 		#region Movement
 		MovePlayer();
 		JumpPlayer();
@@ -251,27 +262,61 @@ public class PlayerController : MonoBehaviour
 
 	void JumpPlayer()
 	{
-		if (Input.GetButton("Jump"))
+		if(IsGrounded())
 		{
-			float LimitMax = _limitMaxJump * _jumpForce;
-			float LimitMin = _limitMinJump * _jumpForce;
-			Vector2 jump = Vector2.up * _jumpForce;
-			if (_rigidbodyPlayer.transform.position.y < LimitMin)
+			if (Input.GetButtonDown("Jump"))
 			{
-				_rigidbodyPlayer.AddForce(new Vector2(0,LimitMin * _jumpForce), ForceMode2D.Impulse);
+				_timeHeld = 0f;
 			}
-			else if(_rigidbodyPlayer.transform.position.y > LimitMin && _rigidbodyPlayer.transform.position.y <LimitMax)
+			if (Input.GetButton("Jump"))
 			{
-
+				_timeHeld += Time.fixedDeltaTime;
 			}
-			else if (_rigidbodyPlayer.transform.position.y >= LimitMax)
+			if (Input.GetButtonUp("Jump"))
 			{
-				_rigidbodyPlayer.AddForce(new Vector2());
+				float verticalJumpForce = ((_maxJumpForce - _minJumpForce) * (_timeHeld / _timeForFullJump)) + _minJumpForce;
+				if (verticalJumpForce > _maxJumpForce)
+				{
+					verticalJumpForce = _maxJumpForce;
+				}
+				Vector2 resolvedJump = new Vector2(-_leftJumpForce, verticalJumpForce);
+				_rigidbodyPlayer.velocity = resolvedJump;
 			}
 		}
+		else
+		{
+			_timeHeld = 0f;
+		}
+		
+
+		//Debug.DrawRay(new Vector2(transform.position.x, transform.position.y-1.01f), new Vector2(0,-_distToGround + 0.5f),Color.red);
+		//Debug.Log(IsGrounded());
+		/*if (Input.GetButton("Jump") && _jumpTime > 0 && IsGrounded())
+		{
+			StartCoroutine(JumpCoroutine());
+			_jumpTime = _storeJumpTime;
+		}*/
+	}
+
+	bool IsGrounded()
+	{
+		return Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y-1.01f), new Vector2(0, -_distToGround + 0.5f), -_distToGround - 1f, _layer);
 	}
 
 	#endregion
 
+	#region Coroutine
+	//IEnumerator JumpCoroutine()
+	//{
+	//	while(_jumpTime>0)
+	//	{
+	//		_jumpTime -= Time.fixedDeltaTime;
+	//		Vector2 jump = new Vector2(_movement.x, 1 * _jumpForce ) * Time.fixedDeltaTime;
+	//		_rigidbodyPlayer.AddForce(jump, ForceMode2D.Impulse);
+	//	}
+	//	yield return null;
+	//}
+	#endregion
+	
 	#endregion
 }
