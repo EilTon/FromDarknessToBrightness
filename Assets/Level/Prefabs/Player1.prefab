@@ -97,7 +97,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -132,18 +132,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3825d9bec7891e84d8859a6f6deb611b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpImpulsePlayer1: 20
+  _speedPlayer1: 50
+  _jumpImpulsePlayer1: 25
   _jumpForcePlayer1: 60
-  _speedMaxPlayer1: 100
-  _speedDelayPlayer1: 2
-  _speedMinPlayer1: 10
   _jumpTimeDelayPlayer1: 1
+  _speedPlayer2: 20
   _jumpImpulsePlayer2: 10
   _jumpForcePlayer2: 40
-  _speedMaxPlayer2: 50
-  _speedDelayPlayer2: 0.5
-  _speedMinPlayer2: 1
   _jumpTimeDelayPlayer2: 1
+  _airControlForcePlayer1: 20000
+  _airControlForcePlayer2: 10000
   _layer:
     serializedVersion: 2
     m_Bits: 256

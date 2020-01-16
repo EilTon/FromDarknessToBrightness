@@ -5,18 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	#region Declarations public
+	public float _speedPlayer1;
 	public float _jumpImpulsePlayer1;
 	public float _jumpForcePlayer1;
-	public float _speedMaxPlayer1;
-	public float _speedDelayPlayer1;
-	public float _speedMinPlayer1;
 	public float _jumpTimeDelayPlayer1;
+	public float _speedPlayer2;
 	public float _jumpImpulsePlayer2;
 	public float _jumpForcePlayer2;
-	public float _speedMaxPlayer2;
-	public float _speedDelayPlayer2;
-	public float _speedMinPlayer2;
 	public float _jumpTimeDelayPlayer2;
+	public float _airControlForcePlayer1;
+	public float _airControlForcePlayer2;
 	public LayerMask _layer;
 	public GameObject _player2;
 	public float _delayDetach;
@@ -36,15 +34,12 @@ public class PlayerController : MonoBehaviour
 	private bool _detach = false;
 	private float _storeDelayDetach;
 	private float _storeDelaySwitch;
-	private float _accelerationPerSecond;
 	private float _speed;
 	private float _jumpImpulse;
 	private float _jumpForce;
-	private float _speedMax;
-	private float _speedDelay;
-	private float _speedMin;
 	private float _jumpTimeDelay;
 	private float _horizontal;
+	private float _airControlForce;
 	#endregion
 
 	#region Declarations Event Args
@@ -75,15 +70,12 @@ public class PlayerController : MonoBehaviour
 		_rigidbodyPlayer2 = _player2.GetComponent<Rigidbody2D>();
 		_rigidbodyPlayer = _rigidbodyPlayer1;
 		_distToGround = GetComponent<Collider2D>().bounds.extents.y;
-		_accelerationPerSecond = _speedMax / _speedDelay;
 		StartCoroutine(Jumping());
 		#endregion
 	}
 
 	private void Update()
-	{
-		float joystick;
-		
+	{	
 		#region Movement
 		_isGrounded = CheckIfGrounded();
 		Move();
@@ -127,37 +119,26 @@ public class PlayerController : MonoBehaviour
 	#region Helper
 	void Move()
 	{
-		Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 1.01f), new Vector2(0, -_distToGround * 20 + 0.01f));
-
 		_horizontal = Input.GetAxis("Horizontal");
-
-		if( Mathf.Abs(_horizontal) > 0.1f)_rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(_horizontal) +1)*90);
-
+		if( Mathf.Abs(_horizontal) > 0.1f)_rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) +1)*90);
 	}
-
-	public float _airControlForce;
 
 	void MovePlayer()
 	{
 		if(_isGrounded)
 		{
-			_rigidbodyPlayer.velocity = (Vector3.right*_horizontal*_speedMax)+Vector3.up*_rigidbodyPlayer.velocity.y;
+			_rigidbodyPlayer.velocity = (Vector3.right*_horizontal*_speed)+Vector3.up*_rigidbodyPlayer.velocity.y;
 		}
 		else
 		{
 			_rigidbodyPlayer.AddForce(Vector3.right * _horizontal * _airControlForce * Time.fixedDeltaTime);
-			_rigidbodyPlayer.velocity = new Vector2(Mathf.Clamp(_rigidbodyPlayer.velocity.x, -_speedMax, _speedMax), _rigidbodyPlayer.velocity.y);
+			_rigidbodyPlayer.velocity = new Vector2(Mathf.Clamp(_rigidbodyPlayer.velocity.x, -_speed, _speed), _rigidbodyPlayer.velocity.y);
 		}
 	}
 
 	bool CheckIfGrounded()
 	{
 		return Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1.01f), new Vector2(0, -_distToGround + 0.01f), -_distToGround - 1f, _layer);
-	}
-
-	bool CheckIfJumping()
-	{
-		return !Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1.01f), Vector2.down , 1, _layer);
 	}
 
 	void DetachAttach()
@@ -173,8 +154,7 @@ public class PlayerController : MonoBehaviour
 
 			else if (_detach == true && _switch == false)
 			{
-				_rigidbodyPlayer2.transform.position = transform.position+ transform.right + transform.up*0.75f;
-
+				_rigidbodyPlayer2.transform.position = transform.position+ -transform.right + transform.up*0.75f;
 				_rigidbodyPlayer2.transform.SetParent(transform);
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
 				_detach = !_detach;
@@ -210,18 +190,16 @@ public class PlayerController : MonoBehaviour
 			_jumpImpulse = _jumpImpulsePlayer1;
 			_jumpForce = _jumpForcePlayer1;
 			_jumpTimeDelay = _jumpTimeDelayPlayer1;
-			_speedMax = _speedMaxPlayer1;
-			_speedMin = _speedMinPlayer1;
-			_speedDelay = _speedDelayPlayer1;
+			_speed = _speedPlayer1;
+			_airControlForce = _airControlForcePlayer1;
 		}
 		else
 		{
 			_jumpImpulse = _jumpImpulsePlayer2;
 			_jumpForce = _jumpForcePlayer2;
 			_jumpTimeDelay = _jumpTimeDelayPlayer2;
-			_speedMax = _speedMaxPlayer2;
-			_speedMin = _speedMinPlayer2;
-			_speedDelay = _speedDelayPlayer2;
+			_speed = _speedPlayer2;
+			_airControlForce = _airControlForcePlayer2;
 		}
 	}
 
