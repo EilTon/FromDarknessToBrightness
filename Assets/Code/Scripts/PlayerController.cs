@@ -22,11 +22,13 @@ public class PlayerController : MonoBehaviour
 	public float _delayDetach;
 	public float _delaySwitch;
 	public float _limitAttach;
+	public float _drag;
 	#endregion
 
 	#region Declarations private
+	private bool _isJumping = false;
 	private bool _isGrounded;
-	private bool _leftOrRight=false;
+	private bool _leftOrRight = false;
 	private Rigidbody2D _rigidbodyPlayer1;
 	private Rigidbody2D _rigidbodyPlayer2;
 	private Rigidbody2D _rigidbodyPlayer;
@@ -83,8 +85,11 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
+		Debug.Log("Jump; " + _isJumping + "Ground" + _isGrounded);
+		
 		#region Movement
 		_isGrounded = CheckIfGrounded();
+		_isJumping = CheckIfJumping();
 		Move();
 		#endregion
 
@@ -126,11 +131,12 @@ public class PlayerController : MonoBehaviour
 	#region Helper
 	void Move()
 	{
+		Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 1.01f), new Vector2(0, -_distToGround * 20 + 0.01f));
 		_horizontal = Input.GetAxis("Horizontal");
 		if (_horizontal > 0)
 		{
 			_speed += _accelerationPerSecond * _speedMin * Time.deltaTime;
-			_rigidbodyPlayer.transform.eulerAngles = new Vector2(0,0);
+			_rigidbodyPlayer.transform.eulerAngles = new Vector2(0, 0);
 			_leftOrRight = true;
 		}
 		else if (_horizontal < 0)
@@ -152,6 +158,7 @@ public class PlayerController : MonoBehaviour
 		{
 			_speed = -_speedMax;
 		}
+		
 		_movement = new Vector3(_speed, _rigidbodyPlayer.velocity.y);
 	}
 
@@ -162,7 +169,12 @@ public class PlayerController : MonoBehaviour
 
 	bool CheckIfGrounded()
 	{
-		return Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1.01f), new Vector2(0, -_distToGround + 0.5f), -_distToGround - 1f, _layer);
+		return Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1.01f), new Vector2(0, -_distToGround + 0.01f), -_distToGround - 1f, _layer);
+	}
+
+	bool CheckIfJumping()
+	{
+		return !Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 1.01f), Vector2.down , 1, _layer);
 	}
 
 	void DetachAttach()
@@ -178,7 +190,7 @@ public class PlayerController : MonoBehaviour
 
 			else if (_detach == true && _switch == false)
 			{
-				if(_leftOrRight==true)
+				if (_leftOrRight == true)
 				{
 					_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x - 1f, transform.position.y + 0.75f);
 				}
@@ -186,7 +198,7 @@ public class PlayerController : MonoBehaviour
 				{
 					_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x + 1f, transform.position.y + 0.75f);
 				}
-				
+
 				_rigidbodyPlayer2.transform.SetParent(transform);
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
 				_detach = !_detach;
@@ -254,7 +266,17 @@ public class PlayerController : MonoBehaviour
 					_rigidbodyPlayer.AddForce(Vector2.up * _jumpForce, ForceMode2D.Force);
 					yield return new WaitForFixedUpdate();
 				}
-
+			}
+			if (_isJumping == false && _isGrounded == false)
+			{
+				if(_leftOrRight == false)
+				{
+					_rigidbodyPlayer.velocity = new Vector2(_rigidbodyPlayer.velocity.x * _drag, _rigidbodyPlayer.velocity.y);
+				}
+				else
+				{
+					_rigidbodyPlayer.velocity = new Vector2(-_rigidbodyPlayer.velocity.x * _drag, _rigidbodyPlayer.velocity.y);
+				}
 			}
 			yield return null;
 		}
