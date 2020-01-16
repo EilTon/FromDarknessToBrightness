@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
 	#region Declarations private
 	private bool _isGrounded;
+	private bool _leftOrRight=false;
 	private Rigidbody2D _rigidbodyPlayer1;
 	private Rigidbody2D _rigidbodyPlayer2;
 	private Rigidbody2D _rigidbodyPlayer;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
 	private float _speedDelay;
 	private float _speedMin;
 	private float _jumpTimeDelay;
+	private float _horizontal;
 	#endregion
 
 	#region Declarations Event Args
@@ -124,16 +126,18 @@ public class PlayerController : MonoBehaviour
 	#region Helper
 	void Move()
 	{
-		float horizontal = Input.GetAxis("Horizontal");
-		if (horizontal > 0)
+		_horizontal = Input.GetAxis("Horizontal");
+		if (_horizontal > 0)
 		{
 			_speed += _accelerationPerSecond * _speedMin * Time.deltaTime;
 			_rigidbodyPlayer.transform.eulerAngles = new Vector2(0,0);
+			_leftOrRight = true;
 		}
-		else if (horizontal < 0)
+		else if (_horizontal < 0)
 		{
 			_speed -= _accelerationPerSecond * _speedMin * Time.deltaTime;
 			_rigidbodyPlayer.transform.eulerAngles = new Vector2(0, 180);
+			_leftOrRight = false;
 		}
 		else
 		{
@@ -170,12 +174,19 @@ public class PlayerController : MonoBehaviour
 				_rigidbodyPlayer2.transform.parent = null;
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Dynamic;
 				_detach = !_detach;
-
 			}
 
 			else if (_detach == true && _switch == false)
 			{
-				_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x - 1f, transform.position.y + 0.75f);
+				if(_leftOrRight==true)
+				{
+					_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x - 1f, transform.position.y + 0.75f);
+				}
+				else if (_leftOrRight == false)
+				{
+					_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x + 1f, transform.position.y + 0.75f);
+				}
+				
 				_rigidbodyPlayer2.transform.SetParent(transform);
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
 				_detach = !_detach;
