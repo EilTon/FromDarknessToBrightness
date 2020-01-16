@@ -5,12 +5,18 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	#region Declarations public
-	public float _jumpImpulse;
-	public float _jumpForce;
-	public float _speedMax;
-	public float _speedDelay;
-	public float _speedMin;
-	public float _jumpTimeDelay;
+	public float _jumpImpulsePlayer1;
+	public float _jumpForcePlayer1;
+	public float _speedMaxPlayer1;
+	public float _speedDelayPlayer1;
+	public float _speedMinPlayer1;
+	public float _jumpTimeDelayPlayer1;
+	public float _jumpImpulsePlayer2;
+	public float _jumpForcePlayer2;
+	public float _speedMaxPlayer2;
+	public float _speedDelayPlayer2;
+	public float _speedMinPlayer2;
+	public float _jumpTimeDelayPlayer2;
 	public LayerMask _layer;
 	public GameObject _player2;
 	public float _delayDetach;
@@ -32,6 +38,12 @@ public class PlayerController : MonoBehaviour
 	private float _storeDelaySwitch;
 	private float _accelerationPerSecond;
 	private float _speed;
+	private float _jumpImpulse;
+	private float _jumpForce;
+	private float _speedMax;
+	private float _speedDelay;
+	private float _speedMin;
+	private float _jumpTimeDelay;
 	#endregion
 
 	#region Declarations Event Args
@@ -57,6 +69,7 @@ public class PlayerController : MonoBehaviour
 	private void Start()
 	{
 		#region Initialize
+		SetPlayer();
 		_rigidbodyPlayer1 = GetComponent<Rigidbody2D>();
 		_rigidbodyPlayer2 = _player2.GetComponent<Rigidbody2D>();
 		_rigidbodyPlayer = _rigidbodyPlayer1;
@@ -89,6 +102,7 @@ public class PlayerController : MonoBehaviour
 			_delayDetach += Time.deltaTime;
 		}
 		#endregion
+		Debug.Log("Switch: "+_switch+"Detach: "+_detach);
 	}
 
 	private void FixedUpdate()
@@ -132,8 +146,6 @@ public class PlayerController : MonoBehaviour
 		{
 			_speed = -_speedMax;
 		}
-
-		Debug.Log(_speed);
 		_movement = new Vector3(_speed, _rigidbodyPlayer.velocity.y);
 	}
 
@@ -155,7 +167,6 @@ public class PlayerController : MonoBehaviour
 			{
 				_rigidbodyPlayer2.transform.parent = null;
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Dynamic;
-				//_rigidbodyPlayer = _rigidbodyPlayer2;
 				_detach = !_detach;
 
 			}
@@ -166,7 +177,6 @@ public class PlayerController : MonoBehaviour
 				_rigidbodyPlayer2.transform.SetParent(transform);
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
 				_detach = !_detach;
-				_switch = false;
 			}
 		}
 	}
@@ -174,19 +184,43 @@ public class PlayerController : MonoBehaviour
 	void SwitchPlayer()
 	{
 
-		if (Input.GetButton("Switch") && _delaySwitch >= _storeDelaySwitch && _detach == true)
+		if (Input.GetButtonDown("Switch") && _delaySwitch >= _storeDelaySwitch && _detach == true)
 		{
 			_delaySwitch = 0;
 			if (_switch == false)
 			{
-				_rigidbodyPlayer = _rigidbodyPlayer1;
+				_rigidbodyPlayer = _rigidbodyPlayer2;
 				_switch = !_switch;
+				SetPlayer();
 			}
 			else if (_switch == true)
 			{
-				_rigidbodyPlayer = _rigidbodyPlayer2;
+				_rigidbodyPlayer = _rigidbodyPlayer1;
 				_switch = !_switch;
+				SetPlayer();
 			}
+		}
+	}
+
+	void SetPlayer()
+	{
+		if(_switch == false)
+		{
+			_jumpImpulse = _jumpImpulsePlayer1;
+			_jumpForce = _jumpForcePlayer1;
+			_jumpTimeDelay = _jumpTimeDelayPlayer1;
+			_speedMax = _speedMaxPlayer1;
+			_speedMin = _speedMinPlayer1;
+			_speedDelay = _speedDelayPlayer1;
+		}
+		else
+		{
+			_jumpImpulse = _jumpImpulsePlayer2;
+			_jumpForce = _jumpForcePlayer2;
+			_jumpTimeDelay = _jumpTimeDelayPlayer2;
+			_speedMax = _speedMaxPlayer2;
+			_speedMin = _speedMinPlayer2;
+			_speedDelay = _speedDelayPlayer2;
 		}
 	}
 
