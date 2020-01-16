@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
 		_rigidbodyPlayer2 = _player2.GetComponent<Rigidbody2D>();
 		_rigidbodyPlayer = _rigidbodyPlayer1;
 		_distToGround = GetComponent<Collider2D>().bounds.extents.y;
-		_accelerationPerSecond = _speedMax/_speedDelay;
+		_accelerationPerSecond = _speedMax / _speedDelay;
 		StartCoroutine(Jumping());
 		#endregion
 	}
@@ -102,7 +102,6 @@ public class PlayerController : MonoBehaviour
 			_delayDetach += Time.deltaTime;
 		}
 		#endregion
-		Debug.Log("Switch: "+_switch+"Detach: "+_detach);
 	}
 
 	private void FixedUpdate()
@@ -112,13 +111,14 @@ public class PlayerController : MonoBehaviour
 		#endregion
 
 		#region Actions
-		
+
 		#endregion
 
 		#region Timer
-		
+
 		#endregion
 	}
+
 	#endregion
 
 	#region Helper
@@ -127,11 +127,13 @@ public class PlayerController : MonoBehaviour
 		float horizontal = Input.GetAxis("Horizontal");
 		if (horizontal > 0)
 		{
-			_speed +=  _accelerationPerSecond * _speedMin * Time.deltaTime;
+			_speed += _accelerationPerSecond * _speedMin * Time.deltaTime;
+			_rigidbodyPlayer.transform.eulerAngles = new Vector2(0,0);
 		}
-		else if (horizontal<0)
+		else if (horizontal < 0)
 		{
-			_speed -=  _accelerationPerSecond * _speedMin * Time.deltaTime;
+			_speed -= _accelerationPerSecond * _speedMin * Time.deltaTime;
+			_rigidbodyPlayer.transform.eulerAngles = new Vector2(0, 180);
 		}
 		else
 		{
@@ -161,7 +163,7 @@ public class PlayerController : MonoBehaviour
 
 	void DetachAttach()
 	{
-		if(Input.GetButtonDown("DetachAttach") && (_rigidbodyPlayer2.transform.position.x >= _rigidbodyPlayer.transform.position.x - _limitAttach && _rigidbodyPlayer2.transform.position.x <= _rigidbodyPlayer.transform.position.x + _limitAttach))
+		if (Input.GetButtonDown("DetachAttach") && (_rigidbodyPlayer2.transform.position.x >= _rigidbodyPlayer.transform.position.x - _limitAttach && _rigidbodyPlayer2.transform.position.x <= _rigidbodyPlayer.transform.position.x + _limitAttach))
 		{
 			if (_detach == false && _switch == false)
 			{
@@ -204,7 +206,7 @@ public class PlayerController : MonoBehaviour
 
 	void SetPlayer()
 	{
-		if(_switch == false)
+		if (_switch == false)
 		{
 			_jumpImpulse = _jumpImpulsePlayer1;
 			_jumpForce = _jumpForcePlayer1;
@@ -227,6 +229,7 @@ public class PlayerController : MonoBehaviour
 	#endregion
 
 	#region Coroutine
+
 	IEnumerator Jumping()
 	{
 		while (true)
