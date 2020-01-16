@@ -22,13 +22,10 @@ public class PlayerController : MonoBehaviour
 	public float _delayDetach;
 	public float _delaySwitch;
 	public float _limitAttach;
-	public float _drag;
 	#endregion
 
 	#region Declarations private
-	private bool _isJumping = false;
 	private bool _isGrounded;
-	private bool _leftOrRight = false;
 	private Rigidbody2D _rigidbodyPlayer1;
 	private Rigidbody2D _rigidbodyPlayer2;
 	private Rigidbody2D _rigidbodyPlayer;
@@ -85,11 +82,10 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
-		Debug.Log("Jump; " + _isJumping + "Ground" + _isGrounded);
+		float joystick;
 		
 		#region Movement
 		_isGrounded = CheckIfGrounded();
-		_isJumping = CheckIfJumping();
 		Move();
 		#endregion
 
@@ -132,39 +128,26 @@ public class PlayerController : MonoBehaviour
 	void Move()
 	{
 		Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 1.01f), new Vector2(0, -_distToGround * 20 + 0.01f));
-		_horizontal = Input.GetAxis("Horizontal");
-		if (_horizontal > 0)
-		{
-			_speed += _accelerationPerSecond * _speedMin * Time.deltaTime;
-			_rigidbodyPlayer.transform.eulerAngles = new Vector2(0, 0);
-			_leftOrRight = true;
-		}
-		else if (_horizontal < 0)
-		{
-			_speed -= _accelerationPerSecond * _speedMin * Time.deltaTime;
-			_rigidbodyPlayer.transform.eulerAngles = new Vector2(0, 180);
-			_leftOrRight = false;
-		}
-		else
-		{
-			_speed = 0;
-		}
 
-		if (_speed > _speedMax)
-		{
-			_speed = _speedMax;
-		}
-		else if (_speed < -_speedMax)
-		{
-			_speed = -_speedMax;
-		}
-		
-		_movement = new Vector3(_speed, _rigidbodyPlayer.velocity.y);
+		_horizontal = Input.GetAxis("Horizontal");
+
+		if( Mathf.Abs(_horizontal) > 0.1f)_rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(_horizontal) +1)*90);
+
 	}
+
+	public float _airControlForce;
 
 	void MovePlayer()
 	{
-		_rigidbodyPlayer.AddForce(_movement);
+		if(_isGrounded)
+		{
+			_rigidbodyPlayer.velocity = (Vector3.right*_horizontal*_speedMax)+Vector3.up*_rigidbodyPlayer.velocity.y;
+		}
+		else
+		{
+			_rigidbodyPlayer.AddForce(Vector3.right * _horizontal * _airControlForce * Time.fixedDeltaTime);
+			_rigidbodyPlayer.velocity = new Vector2(Mathf.Clamp(_rigidbodyPlayer.velocity.x, -_speedMax, _speedMax), _rigidbodyPlayer.velocity.y);
+		}
 	}
 
 	bool CheckIfGrounded()
@@ -190,14 +173,7 @@ public class PlayerController : MonoBehaviour
 
 			else if (_detach == true && _switch == false)
 			{
-				if (_leftOrRight == true)
-				{
-					_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x - 1f, transform.position.y + 0.75f);
-				}
-				else if (_leftOrRight == false)
-				{
-					_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x + 1f, transform.position.y + 0.75f);
-				}
+				_rigidbodyPlayer2.transform.position = transform.position+ transform.right + transform.up*0.75f;
 
 				_rigidbodyPlayer2.transform.SetParent(transform);
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
@@ -265,17 +241,6 @@ public class PlayerController : MonoBehaviour
 				{
 					_rigidbodyPlayer.AddForce(Vector2.up * _jumpForce, ForceMode2D.Force);
 					yield return new WaitForFixedUpdate();
-				}
-			}
-			if (_isJumping == false && _isGrounded == false)
-			{
-				if(_leftOrRight == false)
-				{
-					_rigidbodyPlayer.velocity = new Vector2(_rigidbodyPlayer.velocity.x * _drag, _rigidbodyPlayer.velocity.y);
-				}
-				else
-				{
-					_rigidbodyPlayer.velocity = new Vector2(-_rigidbodyPlayer.velocity.x * _drag, _rigidbodyPlayer.velocity.y);
 				}
 			}
 			yield return null;
