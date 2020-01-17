@@ -7,29 +7,36 @@ public class Player2Controller : MonoBehaviour
 	public GameObject _player1;
 	private TestShield _shiedl;
 	private float _rightX;
-	private float _rightY;
 	private int _cursor = 0;
-    void Start()
-    {
+	private bool _trigger = false;
+	void Start()
+	{
 		_shiedl = _player1.GetComponent<TestShield>();
-    }
+		_cursor = _shiedl._positions.Count;
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-		_rightX = Input.GetAxis("RightJoystickX");
-		_rightY = Input.GetAxis("RightJoystickY");
-		Debug.Log(_cursor);
-		List<Vector2> positions = _shiedl._positions;
-		if (_rightX > 0)
+	// Update is called once per frame
+	void Update()
+	{
+		//if(Input.GetButtonDown("LeftTrigger"))
+		//{
+		//	_trigger = !_trigger;
+		//}
+		if(_trigger)
 		{
-			_cursor--;
-			transform.position = positions[_cursor];
-		}
-		if (_rightX < 0)
-		{
-			_cursor++;
-			transform.position = positions[_cursor];
+			_rightX = Input.GetAxis("RightJoystickX");
+			List<Vector2> positions = _shiedl._positions;
+			positions.Reverse();
+			if (_rightX > 0 && _cursor < positions.Count)
+			{
+				_cursor++;
+				transform.position = positions[_cursor];
+			}
+			if (_rightX < 0 && _cursor > -1)
+			{
+				_cursor--;
+				transform.position = positions[_cursor];
+			}
 		}
 	}
 }
