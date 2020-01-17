@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 	private Vector3 _movement;
 	private bool _switch = false;
 	private bool _detach = false;
+	private bool _trigger = false;
 	private float _storeDelayDetach;
 	private float _storeDelaySwitch;
 	private float _speed;
@@ -73,13 +74,19 @@ public class PlayerController : MonoBehaviour
 		StartCoroutine(Jumping());
 		#endregion
 	}
-
+	bool Trigger = false;
 	private void Update()
-<<<<<<< HEAD
 	{
-=======
-	{	Debug.Log(_airControlForce);
->>>>>>> d8bccb2bbb06c8824985ba371c561a4ae62c20dc
+		float LeftTrigger = Input.GetAxis("LeftTrigger");
+		
+		if (LeftTrigger == 1)
+		{
+			Trigger = true;
+		}
+		else
+		{
+			Trigger = false;
+		}
 		#region Movement
 		_isGrounded = CheckIfGrounded();
 		Move();
@@ -123,8 +130,9 @@ public class PlayerController : MonoBehaviour
 	#region Helper
 	void Move()
 	{
+		
 		_horizontal = Input.GetAxis("Horizontal");
-		if (Mathf.Abs(_horizontal) > 0.1f) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
+		if (Mathf.Abs(_horizontal) > 0.1f && _trigger == false) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
 	}
 
 	void MovePlayer()
