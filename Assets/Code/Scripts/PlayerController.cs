@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private void Update()
-	{	
+	{	Debug.Log(_airControlForce);
 		#region Movement
 		_isGrounded = CheckIfGrounded();
 		Move();
