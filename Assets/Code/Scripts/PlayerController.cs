@@ -75,7 +75,11 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private void Update()
+<<<<<<< HEAD
+	{
+=======
 	{	Debug.Log(_airControlForce);
+>>>>>>> d8bccb2bbb06c8824985ba371c561a4ae62c20dc
 		#region Movement
 		_isGrounded = CheckIfGrounded();
 		Move();
@@ -120,14 +124,14 @@ public class PlayerController : MonoBehaviour
 	void Move()
 	{
 		_horizontal = Input.GetAxis("Horizontal");
-		if( Mathf.Abs(_horizontal) > 0.1f)_rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) +1)*90);
+		if (Mathf.Abs(_horizontal) > 0.1f) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
 	}
 
 	void MovePlayer()
 	{
-		if(_isGrounded)
+		if (_isGrounded)
 		{
-			_rigidbodyPlayer.velocity = (Vector3.right*_horizontal*_speed)+Vector3.up*_rigidbodyPlayer.velocity.y;
+			_rigidbodyPlayer.velocity = (Vector3.right * _horizontal * _speed) + Vector3.up * _rigidbodyPlayer.velocity.y;
 		}
 		else
 		{
@@ -154,7 +158,7 @@ public class PlayerController : MonoBehaviour
 
 			else if (_detach == true && _switch == false)
 			{
-				_rigidbodyPlayer2.transform.position = transform.position+ -transform.right + transform.up*0.75f;
+				_rigidbodyPlayer2.transform.position = transform.position + -transform.right + transform.up * 0.75f;
 				_rigidbodyPlayer2.transform.SetParent(transform);
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
 				_detach = !_detach;
