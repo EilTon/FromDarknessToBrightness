@@ -20,19 +20,22 @@ public class PlayerController : MonoBehaviour
 	public float _delayDetach;
 	public float _delaySwitch;
 	public float _limitAttach;
+	public float _bufferDelay;
 	#endregion
 
 	#region Declarations private
 	private bool _isGrounded;
+	private bool _isBuffering = false;
+	private Player2Controller _controllerPlayer2;
 	private Rigidbody2D _rigidbodyPlayer1;
 	private Rigidbody2D _rigidbodyPlayer2;
 	private Rigidbody2D _rigidbodyPlayer;
 	private float _distToGround;
 	private float _jumpTime;
 	private Vector3 _movement;
+	private bool _isTrigger = false;
 	private bool _switch = false;
 	private bool _detach = false;
-	private bool _trigger = false;
 	private float _storeDelayDetach;
 	private float _storeDelaySwitch;
 	private float _speed;
@@ -71,30 +74,21 @@ public class PlayerController : MonoBehaviour
 		_rigidbodyPlayer2 = _player2.GetComponent<Rigidbody2D>();
 		_rigidbodyPlayer = _rigidbodyPlayer1;
 		_distToGround = GetComponent<Collider2D>().bounds.extents.y;
+		_controllerPlayer2 = FindObjectOfType<Player2Controller>();
 		StartCoroutine(Jumping());
+		StartCoroutine(isGroundedBuffering());
 		#endregion
 	}
-	bool Trigger = false;
 	private void Update()
 	{
-		float LeftTrigger = Input.GetAxis("LeftTrigger");
-		
-		if (LeftTrigger == 1)
-		{
-			Trigger = true;
-		}
-		else
-		{
-			Trigger = false;
-		}
 		#region Movement
-		_isGrounded = CheckIfGrounded();
+
 		Move();
 		#endregion
-
 		#region Actions
 		DetachAttach();
 		SwitchPlayer();
+		ShieldMode();
 		#endregion
 
 		#region Timer
@@ -102,7 +96,6 @@ public class PlayerController : MonoBehaviour
 		{
 			_delaySwitch += Time.deltaTime;
 		}
-
 		if (_delayDetach <= _storeDelayDetach)
 		{
 			_delayDetach += Time.deltaTime;
@@ -128,11 +121,27 @@ public class PlayerController : MonoBehaviour
 	#endregion
 
 	#region Helper
+	void ShieldMode()
+	{
+		if (Input.GetAxisRaw("LeftTrigger") == 1)
+		{
+			if (_isTrigger == false)
+			{
+				_controllerPlayer2.SetTrigger();
+				_isTrigger = true;
+			}
+			else
+			{
+				_controllerPlayer2.SetTrigger();
+				_isTrigger = false;
+			}
+		}
+	}
+
 	void Move()
 	{
-		
 		_horizontal = Input.GetAxis("Horizontal");
-		if (Mathf.Abs(_horizontal) > 0.1f && _trigger == false) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
+		if (Mathf.Abs(_horizontal) > 0.1f && _isTrigger == false) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
 	}
 
 	void MovePlayer()
@@ -223,7 +232,7 @@ public class PlayerController : MonoBehaviour
 	{
 		while (true)
 		{
-			if (_isGrounded && Input.GetButtonDown("Jump"))
+			if (Input.GetButtonDown("Jump") && _isGrounded)
 			{
 				_jumpTime = Time.time;
 				_rigidbodyPlayer.AddForce(Vector2.up * _jumpImpulse, ForceMode2D.Impulse);
@@ -233,6 +242,23 @@ public class PlayerController : MonoBehaviour
 					yield return new WaitForFixedUpdate();
 				}
 			}
+
+			yield return null;
+		}
+	}
+
+	IEnumerator isGroundedBuffering()
+	{
+		float lastHitTime = 0 ;
+		while (true)
+		{
+			if(CheckIfGrounded())
+			{
+				lastHitTime = Time.time;
+			}
+
+			_isGrounded = (lastHitTime > Time.time - _bufferDelay);
+
 			yield return null;
 		}
 	}

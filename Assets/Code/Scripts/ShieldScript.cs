@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestShield : MonoBehaviour
+public class ShieldScript : MonoBehaviour
 {
 	public int numberOfSides;
 	public float polygonRadius;
