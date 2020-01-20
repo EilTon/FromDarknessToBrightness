@@ -77,6 +77,8 @@ public class PlayerController : MonoBehaviour
 	bool Trigger = false;
 	private void Update()
 	{
+<<<<<<< HEAD
+=======
 		float LeftTrigger = Input.GetAxis("LeftTrigger");
 		
 		if (LeftTrigger == 1)
@@ -87,6 +89,7 @@ public class PlayerController : MonoBehaviour
 		{
 			Trigger = false;
 		}
+>>>>>>> 3a4ec6ca475e6edc72a7dcb00ca4baec16a37d5b
 		#region Movement
 		_isGrounded = CheckIfGrounded();
 		Move();
