@@ -137,11 +137,11 @@ MonoBehaviour:
   _jumpImpulsePlayer1: 17.5
   _jumpForcePlayer1: 90
   _jumpTimeDelayPlayer1: 0.2
-  _speedPlayer2: 7.5
-  _jumpImpulsePlayer2: 40
-  _jumpForcePlayer2: 40
-  _jumpTimeDelayPlayer2: 0.1
-  _airControlForcePlayer1: 10000
+  _speedPlayer2: 6
+  _jumpImpulsePlayer2: 0
+  _jumpForcePlayer2: 0
+  _jumpTimeDelayPlayer2: 0
+  _airControlForcePlayer1: 1000
   _airControlForcePlayer2: 0
   _layer:
     serializedVersion: 2

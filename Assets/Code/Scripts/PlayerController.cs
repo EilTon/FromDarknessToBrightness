@@ -77,16 +77,6 @@ public class PlayerController : MonoBehaviour
 	bool Trigger = false;
 	private void Update()
 	{
-		float LeftTrigger = Input.GetAxis("LeftTrigger");
-		
-		if (LeftTrigger == 1)
-		{
-			Trigger = true;
-		}
-		else
-		{
-			Trigger = false;
-		}
 		#region Movement
 		_isGrounded = CheckIfGrounded();
 		Move();
