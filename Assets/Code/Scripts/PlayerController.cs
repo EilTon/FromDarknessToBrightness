@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PlayerController : MonoBehaviour
 {
+
+
 	#region Declarations public
 	public float _speedPlayer1;
 	public float _jumpImpulsePlayer1;
@@ -42,7 +43,7 @@ public class PlayerController : MonoBehaviour
 	private float _jumpImpulse;
 	private float _jumpForce;
 	private float _jumpTimeDelay;
-	private float _horizontal;
+	public float _horizontal;
 	private float _airControlForce;
 	#endregion
 

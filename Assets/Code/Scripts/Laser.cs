@@ -8,9 +8,9 @@ public class Laser : MonoBehaviour
 	LineRenderer _lineRenderer;
 	Ray2D _ray;
 	RaycastHit2D _hit;
-	public float _rayDistance;
 
-	public LayerMask _layerGround;
+	public float _rayDistance;
+	public LayerMask _layer;
 
 	Vector3[] _positions;
 
@@ -28,6 +28,8 @@ public class Laser : MonoBehaviour
 		_positions = CastLaser(_ray, ref _hit, _rayDistance);
 		_lineRenderer.positionCount = _positions.Length;
 		_lineRenderer.SetPositions(_positions);
+
+
 	}
 
 	Vector3[] CastLaser(Ray2D ray, ref RaycastHit2D _hit, float distance = 10)
@@ -44,21 +46,34 @@ public class Laser : MonoBehaviour
 
 		while (positions.Count < 100)
 		{
-			_hit = Physics2D.Raycast(lastPosition, lastDirection, Mathf.Clamp(distance - laserLength, 0, distance), _layerGround);
+			_hit = Physics2D.Raycast(lastPosition, lastDirection, Mathf.Clamp(distance - laserLength, 0, distance), _layer);
 			if (_hit)
 			{
 				positions.Add(_hit.point);
-				Debug.Log(_hit.collider.tag);
-				if (_hit.collider.tag == "Reflect")
+				switch(_hit.collider.tag)
 				{
+					case "Player":
+						Destroy(_hit.collider.gameObject);
+						break;
+					case "Reflect":
+						laserLength += _hit.distance;
+						lastPosition = _hit.point + _hit.normal * 0.01f;
+						lastDirection = Vector3.Reflect(lastDirection, _hit.normal);
+						break;
+					case "Fear":
+						Debug.Log("Test Fear");
+						break;
 
-					laserLength += _hit.distance;
-					lastPosition = _hit.point + _hit.normal * 0.01f;
-					lastDirection = Vector3.Reflect(lastDirection, _hit.normal);
-				}
-				else
-				{
-					break;
+					case "Enable":
+						_hit.collider.GetComponent<Enable>()._Action.Invoke();
+						break;
+
+					case "Burn":
+						_hit.collider.GetComponent<BurnObject>().SetIsHit();
+						break;
+
+					default:
+						break;
 				}
 			}
 			else
