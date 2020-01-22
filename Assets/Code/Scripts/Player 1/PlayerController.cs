@@ -1,10 +1,9 @@
-﻿using System.Collections;
+﻿using Railcam2D;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
-
-
 	#region Declarations public
 	public float _speedPlayer1;
 	public float _jumpImpulsePlayer1;
@@ -43,8 +42,9 @@ public class PlayerController : MonoBehaviour
 	private float _jumpImpulse;
 	private float _jumpForce;
 	private float _jumpTimeDelay;
-	public float _horizontal;
+	private float _horizontal;
 	private float _airControlForce;
+	private Railcam2DCore _camera;
 	#endregion
 
 	#region Declarations Event Args
@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
 	{
 		#region Initialize
 		SetPlayer();
+		_camera = FindObjectOfType<Railcam2DCore>();
 		_rigidbodyPlayer1 = GetComponent<Rigidbody2D>();
 		_rigidbodyPlayer2 = _player2.GetComponent<Rigidbody2D>();
 		_rigidbodyPlayer = _rigidbodyPlayer1;
@@ -83,9 +84,9 @@ public class PlayerController : MonoBehaviour
 	private void Update()
 	{
 		#region Movement
-
 		Move();
 		#endregion
+
 		#region Actions
 		DetachAttach();
 		SwitchPlayer();
@@ -192,12 +193,14 @@ public class PlayerController : MonoBehaviour
 			_delaySwitch = 0;
 			if (_switch == false)
 			{
+				_camera.Target = _rigidbodyPlayer2.transform;
 				_rigidbodyPlayer = _rigidbodyPlayer2;
 				_switch = !_switch;
 				SetPlayer();
 			}
 			else if (_switch == true)
 			{
+				_camera.Target = _rigidbodyPlayer1.transform;
 				_rigidbodyPlayer = _rigidbodyPlayer1;
 				_switch = !_switch;
 				SetPlayer();

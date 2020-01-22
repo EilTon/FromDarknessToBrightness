@@ -4,21 +4,79 @@ using UnityEngine;
 
 public class ShieldScript : MonoBehaviour
 {
-	public int numberOfSides;
-	public float polygonRadius;
+	#region Declarations public
+	public int _numberOfSides;
+	public float _polygonRadius;
 	public float _offsetX;
 	public float _offsetY;
-	private Vector2 polygonCenter;
 	[SerializeField]
 	public List<Vector2> _positions;
+	#endregion
 
+	#region Declarations private
+	private Vector2 _polygonCenter;
+	#endregion
 
-	void Update()
+	#region Declarations Event Args
+
+	#endregion
+
+	#region Declarations Event Handler
+
+	#endregion
+
+	#region Declarations Event Call
+
+	#endregion
+
+	#region Functions Unity
+	private void Awake()
 	{
-		polygonCenter = new Vector2(transform.position.x + _offsetX, transform.position.y + _offsetY);
-		_positions = DebugDrawPolygon(polygonCenter, polygonRadius, numberOfSides);
+		#region Initialize
+
+		#endregion
 	}
 
+	private void Start()
+	{
+		#region Initialize
+
+		#endregion
+	}
+
+	private void Update()
+	{
+		#region Movement
+
+		#endregion
+
+		#region Actions
+		_polygonCenter = new Vector2(transform.position.x + _offsetX, transform.position.y + _offsetY);
+		_positions = DebugDrawPolygon(_polygonCenter, _polygonRadius, _numberOfSides);
+		#endregion
+
+		#region Timer
+
+		#endregion
+	}
+
+	private void FixedUpdate()
+	{
+		#region Movement
+
+		#endregion
+
+		#region Actions
+
+		#endregion
+
+		#region Timer
+
+		#endregion
+	}
+	#endregion
+
+	#region Helper
 	// Draw a polygon in the XY plane with a specfied position, number of sides
 	// and radius.
 	List<Vector2> DebugDrawPolygon(Vector2 center, float radius, int numSides)
@@ -34,7 +92,7 @@ public class ShieldScript : MonoBehaviour
 		for (int i = 1; i < numSides; i++)
 		{
 			// Calculate the angle of the corner in radians.
-			float cornerAngle = (2f * Mathf.PI / (float)numSides * i)/2f;
+			float cornerAngle = (2f * Mathf.PI / (float)numSides * i) / 2f;
 
 			// Get the X and Y coordinates of the corner point.
 			Vector2 currentCorner = new Vector2(Mathf.Cos(cornerAngle) * radius, Mathf.Sin(cornerAngle) * radius) + center;
@@ -50,5 +108,10 @@ public class ShieldScript : MonoBehaviour
 		Debug.DrawLine(startCorner, previousCorner);
 		return positions;
 	}
+	#endregion
+
+	#region Coroutine
+
+	#endregion
 
 }
