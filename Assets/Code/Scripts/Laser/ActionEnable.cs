@@ -6,10 +6,15 @@ using UnityEngine.Events;
 public class ActionEnable : MonoBehaviour
 {
 	#region Declarations public
-
+	public float _limitLeft;
+	public float _limitRight;
+	public float _limitUp;
+	public float _limitDown;
+	public float _speed;
 	#endregion
 
 	#region Declarations private
+	private float _direction = 1;
 	private bool _isTranslateHorizontal = false;
 	private bool _isTranslateVertical = false;
 	private bool _isOpenGate = false;
@@ -53,11 +58,11 @@ public class ActionEnable : MonoBehaviour
 		#region Actions
 		if (_isTranslateHorizontal)
 		{
-			Debug.Log("translate H");
+			MoveHorizontal();
 		}
 		else if (_isTranslateVertical)
 		{
-			Debug.Log("translate V");
+			MoveVertical();
 		}
 		else if (_isOpenGate)
 		{
@@ -118,6 +123,46 @@ public class ActionEnable : MonoBehaviour
 	public void Growing()
 	{
 		_isGrowing = true;
+	}
+
+	void MoveHorizontal()
+	{
+		Vector2 movement;
+		if (transform.position.x > _limitRight)
+		{
+			_direction = -1;
+		}
+		else if (transform.position.x < _limitLeft)
+		{
+			_direction = 1;
+		}
+		movement = Vector2.right * _direction * _speed * Time.deltaTime;
+		transform.Translate(movement);
+	}
+
+	void MoveVertical()
+	{
+		Vector2 movement;
+		if (transform.position.y > _limitUp)
+		{
+			_direction = -1;
+		}
+		else if (transform.position.y < _limitDown)
+		{
+			_direction = 1;
+		}
+		movement = Vector2.up * _direction * _speed * Time.deltaTime;
+		transform.Translate(movement);
+	}
+
+	void StrechGameObject()
+	{
+
+	}
+
+	void GrownthGameObject()
+	{
+
 	}
 	#endregion
 
