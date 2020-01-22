@@ -2,7 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+public enum Action
+{
+	TranslateHorizontal, 
+	TranslateVertical, 
+	OpenGate,
+	Growing,
+	Streching
+}
 public class ActionEnable : MonoBehaviour
 {
 	#region Declarations public
@@ -11,15 +18,19 @@ public class ActionEnable : MonoBehaviour
 	public float _limitUp;
 	public float _limitDown;
 	public float _speed;
+	public float _speedScaleY;
+	public float _speedPositionY;
+	public float _speedScaleX;
+	public float _speedPositionX;
+	public float _timeToStreching;
+	public float _timeToGrowing;
 	#endregion
 
 	#region Declarations private
+	private Action _action;
 	private float _direction = 1;
-	private bool _isTranslateHorizontal = false;
-	private bool _isTranslateVertical = false;
-	private bool _isOpenGate = false;
-	private bool _isGrowing = false;
-	private bool _isStreching = false;
+	private float _timerStrech;
+	private float _timerGrowth;
 	#endregion
 
 	#region Declarations Event Args
@@ -54,27 +65,29 @@ public class ActionEnable : MonoBehaviour
 		#region Movement
 
 		#endregion
-
+		Debug.Log(_timerStrech);
 		#region Actions
-		if (_isTranslateHorizontal)
+		switch(_action)
 		{
-			MoveHorizontal();
-		}
-		else if (_isTranslateVertical)
-		{
-			MoveVertical();
-		}
-		else if (_isOpenGate)
-		{
-			Debug.Log("Gate open");
-		}
-		else if (_isGrowing)
-		{
-			Debug.Log("Growth");
-		}
-		else if (_isStreching)
-		{
-			Debug.Log("Strech");
+			case Action.TranslateHorizontal:
+				MoveHorizontal();
+				break;
+
+			case Action.TranslateVertical:
+				MoveVertical();
+				break;
+
+			case Action.OpenGate:
+				break;
+
+			case Action.Streching:
+				StrechGameObject();
+				break;
+
+			case Action.Growing:
+				GrownthGameObject();
+				break;
+
 		}
 		#endregion
 
@@ -102,27 +115,27 @@ public class ActionEnable : MonoBehaviour
 	#region Helper
 	public void TranslateHorizontalPlatform()
 	{
-		_isTranslateHorizontal = true;
+		_action = Action.TranslateHorizontal;
 	}
 
 	public void TranslateVerticalPlatform()
 	{
-		_isTranslateVertical = true;
+		_action = Action.TranslateVertical;
 	}
 
 	public void OpenGate()
 	{
-		_isOpenGate = true;
+		_action = Action.OpenGate;
 	}
 
 	public void Strenching()
 	{
-		_isStreching = true;
+		_action = Action.Streching;
 	}
 
 	public void Growing()
 	{
-		_isGrowing = true;
+		_action = Action.Growing;
 	}
 
 	void MoveHorizontal()
@@ -157,12 +170,23 @@ public class ActionEnable : MonoBehaviour
 
 	void StrechGameObject()
 	{
+		if(_timerStrech<_timeToStreching)
+		{
+			transform.Translate(new Vector2(0, 1 * _speedPositionY * Time.deltaTime));
+			transform.localScale += new Vector3(0, 1 * _speedScaleY * Time.deltaTime);
+		}
+		_timerStrech += Time.deltaTime;
 
 	}
 
 	void GrownthGameObject()
 	{
-
+		if (_timerGrowth < _timeToGrowing)
+		{
+			transform.Translate(new Vector2(1 * _speedPositionX * Time.deltaTime, 1 * _speedPositionY * Time.deltaTime));
+			transform.localScale += new Vector3(1 * _speedScaleX * Time.deltaTime, 1 * _speedScaleY * Time.deltaTime);
+		}
+		_timerGrowth += Time.deltaTime;
 	}
 	#endregion
 
