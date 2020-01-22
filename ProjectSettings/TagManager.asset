@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Reflect
+  - Burn
+  - Death
+  - Fear
+  - Enable
   layers:
   - Default
   - TransparentFX
@@ -15,7 +19,7 @@ TagManager:
   - 
   - 
   - Ground
-  - 
+  - Fear
   - 
   - 
   - 
