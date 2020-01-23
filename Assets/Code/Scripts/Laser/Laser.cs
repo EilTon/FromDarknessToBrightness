@@ -96,7 +96,7 @@ public class Laser : MonoBehaviour
 				switch (_hit.collider.tag)
 				{
 					case "Player":
-						Destroy(_hit.collider.gameObject);
+						_hit.collider.GetComponent<PlayerController>();
 						break;
 
 					case "Reflect":

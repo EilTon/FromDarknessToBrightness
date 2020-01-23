@@ -65,7 +65,6 @@ public class ActionEnable : MonoBehaviour
 		#region Movement
 
 		#endregion
-		Debug.Log(_timerStrech);
 		#region Actions
 		switch(_action)
 		{
