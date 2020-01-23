@@ -1,22 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public enum MoreOrLessSize
+using Railcam2D;
+public enum ActionCamera
 {
 	More,
-	Less
+	Less,
+	Offset,
+	Nothing
 }
 
 public class TriggerCameraSize : MonoBehaviour
 {
-	public  MoreOrLessSize _moreOrLess;
-	public  float _newSizeCamera;
-	public  float _speedCamera;
+	public ActionCamera _moreOrLess;
+	public float _newSizeCamera;
+	public float _speedCamera;
+	public float _offsetX;
+	public float _offsetY;
+
 	private Camera _camera;
-	private  bool _isTrigger = false;
+	private bool _isTrigger = false;
 	private static float _sizeCamera;
-	private static  float _speedCam;
+	private static float _speedCam;
 	void Start()
 	{
 		_camera = Camera.main;
@@ -27,31 +32,48 @@ public class TriggerCameraSize : MonoBehaviour
 	{
 		if (_isTrigger)
 		{
-			switch(_moreOrLess)
-			{
-				case MoreOrLessSize.More:
-					if (_camera.orthographicSize < _newSizeCamera)
-					{
-						_camera.orthographicSize += Time.deltaTime * _speedCam;
-					}
-					else
-					{
-						_isTrigger = false;
-					}
-					break;
-
-				case MoreOrLessSize.Less:
-					if (_camera.orthographicSize > _newSizeCamera)
-					{
-						_camera.orthographicSize -= Time.deltaTime * _speedCam;
-					}
-					else
-					{
-						_isTrigger = false;
-					}
-					break;
-			}
+			ChangeSizeCamera();
+			//ChangeOffsetCamera();
 		}
+	}
+
+	void ChangeSizeCamera()
+	{
+		switch (_moreOrLess)
+		{
+			case ActionCamera.More:
+				if (_camera.orthographicSize < _newSizeCamera)
+				{
+					_camera.orthographicSize += Time.deltaTime * _speedCam * _sizeCamera;
+				}
+				else
+				{
+					_isTrigger = false;
+				}
+				break;
+
+			case ActionCamera.Less:
+				if (_camera.orthographicSize > _newSizeCamera)
+				{
+					_camera.orthographicSize -= Time.deltaTime * _speedCam * _sizeCamera;
+				}
+				else
+				{
+					_isTrigger = false;
+				}
+				break;
+
+			case ActionCamera.Offset:
+				ChangeOffsetCamera();
+				break;
+
+		}
+	}
+
+	void ChangeOffsetCamera()
+	{
+		_camera.GetComponent<Railcam2DCore>().OffsetX = _offsetX;
+		_camera.GetComponent<Railcam2DCore>().OffsetY = _offsetY;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
