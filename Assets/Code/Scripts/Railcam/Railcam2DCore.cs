@@ -333,7 +333,6 @@ namespace Railcam2D
                                 return null;
                             break;
 						case (TriggerEvent.ChangeSizeCamera):
-							Debug.Log("test");
 							_camera.orthographicSize = _currentTrigger.SizeCamera;
 							break;
                         default:

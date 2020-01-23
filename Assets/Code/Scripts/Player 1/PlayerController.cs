@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
 	private float _horizontal;
 	private float _airControlForce;
 	private Railcam2DCore _camera;
+	private Vector2 _resetPosition;
 	#endregion
 
 	#region Declarations Event Args
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
 	{
 		#region Initialize
 		SetPlayer();
+		_resetPosition = transform.position;
 		_camera = FindObjectOfType<Railcam2DCore>();
 		_rigidbodyPlayer1 = GetComponent<Rigidbody2D>();
 		_rigidbodyPlayer2 = _player2.GetComponent<Rigidbody2D>();
@@ -226,6 +228,16 @@ public class PlayerController : MonoBehaviour
 			_speed = _speedPlayer2;
 			_airControlForce = _airControlForcePlayer2;
 		}
+	}
+
+	public void SetResetPosition(Vector2 position)
+	{
+		_resetPosition = position;
+	}
+
+	public void ResetPlayer()
+	{
+		_rigidbodyPlayer.position = _resetPosition;
 	}
 
 	#endregion
