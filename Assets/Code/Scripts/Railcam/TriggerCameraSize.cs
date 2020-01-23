@@ -18,21 +18,27 @@ public class TriggerCameraSize : MonoBehaviour
 	public float _offsetX;
 	public float _offsetY;
 
-	public Camera _camera;
+	private ActionCamera _action;
+	private static Camera _camera;
+	private static Railcam2DCore _railcam;
 	private bool _isTrigger = false;
 	private static float _sizeCamera;
 	private static float _speedCam;
-	public static float offsetX;
-	public static float offsetY;
+	private static float offsetX;
+	private static float offsetY;
+
 	void Start()
 	{
+		_action = _moreOrLess;
 		_camera = Camera.main;
+		_railcam = _camera.GetComponent<Railcam2DCore>();
 		_sizeCamera = _newSizeCamera;
 		_speedCam = _speedCamera;
-		offsetX=_offsetX;
-		offsetY=_offsetY;
+		offsetX = _offsetX;
+		offsetY = _offsetY;
 	}
-	private void Update()
+
+	void Update()
 	{
 		if (_isTrigger)
 		{
@@ -43,7 +49,8 @@ public class TriggerCameraSize : MonoBehaviour
 
 	void ChangeSizeCamera()
 	{
-		switch (_moreOrLess)
+		//Debug.Log(_railcam.OffsetY);
+		switch (_action)
 		{
 			case ActionCamera.More:
 				if (_camera.orthographicSize < _newSizeCamera)
@@ -69,6 +76,7 @@ public class TriggerCameraSize : MonoBehaviour
 
 			case ActionCamera.Offset:
 				ChangeOffsetCamera();
+				//action = ActionCamera.Nothing;
 				break;
 
 		}
@@ -76,16 +84,27 @@ public class TriggerCameraSize : MonoBehaviour
 
 	void ChangeOffsetCamera()
 	{
-		_camera.GetComponent<Railcam2DCore>().OffsetX = offsetX;
-		_camera.GetComponent<Railcam2DCore>().OffsetY = offsetY;
+		_railcam.OffsetX = offsetX;
+		_railcam.OffsetY = offsetY;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		Debug.Log(collision.tag);
 		if (collision.tag == "Player")
 		{
 			_isTrigger = true;
+			_sizeCamera = _newSizeCamera;
+			_speedCam = _speedCamera;
+			offsetX = _offsetX;
+			offsetY = _offsetY;
+		}
+	}
+
+	private void OnTriggerExit2D(Collider2D collision)
+	{
+		if(collision.tag == "Player")
+		{
+			_isTrigger = false;
 		}
 	}
 }
