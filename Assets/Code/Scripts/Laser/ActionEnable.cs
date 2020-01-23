@@ -8,11 +8,13 @@ public enum Action
 	TranslateVertical, 
 	OpenGate,
 	Growing,
-	Streching
+	Streching,
+	Nothing
 }
 public class ActionEnable : MonoBehaviour
 {
 	#region Declarations public
+	public Action _actionPublic;
 	public float _limitLeft;
 	public float _limitRight;
 	public float _limitUp;
@@ -55,8 +57,17 @@ public class ActionEnable : MonoBehaviour
 
 	private void Start()
 	{
+		float x = transform.position.x;
+		float y = transform.position.y;
 		#region Initialize
-
+		if(_actionPublic != Action.Nothing)
+		{
+			_action = _actionPublic;
+		}
+		_limitRight =  x +_limitRight;
+		_limitLeft = x -_limitLeft;
+		_limitDown = y -_limitDown;
+		_limitUp = y +_limitUp;
 		#endregion
 	}
 

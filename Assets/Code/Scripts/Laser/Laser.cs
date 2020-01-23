@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[ExecuteInEditMode]
 [RequireComponent(typeof(LineRenderer))]
 public class Laser : MonoBehaviour
 {
@@ -96,7 +96,7 @@ public class Laser : MonoBehaviour
 				switch (_hit.collider.tag)
 				{
 					case "Player":
-						_hit.collider.GetComponent<PlayerController>();
+						_hit.collider.GetComponent<PlayerController>().ResetPlayer();
 						break;
 
 					case "Reflect":
