@@ -18,15 +18,19 @@ public class TriggerCameraSize : MonoBehaviour
 	public float _offsetX;
 	public float _offsetY;
 
-	private Camera _camera;
+	public Camera _camera;
 	private bool _isTrigger = false;
 	private static float _sizeCamera;
 	private static float _speedCam;
+	public static float offsetX;
+	public static float offsetY;
 	void Start()
 	{
 		_camera = Camera.main;
 		_sizeCamera = _newSizeCamera;
 		_speedCam = _speedCamera;
+		offsetX=_offsetX;
+		offsetY=_offsetY;
 	}
 	private void Update()
 	{
@@ -72,8 +76,8 @@ public class TriggerCameraSize : MonoBehaviour
 
 	void ChangeOffsetCamera()
 	{
-		_camera.GetComponent<Railcam2DCore>().OffsetX = _offsetX;
-		_camera.GetComponent<Railcam2DCore>().OffsetY = _offsetY;
+		_camera.GetComponent<Railcam2DCore>().OffsetX = offsetX;
+		_camera.GetComponent<Railcam2DCore>().OffsetY = offsetY;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
