@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3504054122288710535}
   m_Layer: 0
   m_Name: Player1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 10
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 401ffc15e98fb7e44a38748252692fc6, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -150,6 +150,7 @@ MonoBehaviour:
   _delayDetach: 0.1
   _delaySwitch: 0.1
   _limitAttach: 2
+  _bufferDelay: 0.2
 --- !u!114 &3504054122288710535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,8 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aabf001e8aee7f64fbf1768ffd50cb52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfSides: 250
-  polygonRadius: 1
+  _numberOfSides: 100
+  _polygonRadius: 1
   _offsetX: 0
   _offsetY: 0
   _positions: []
@@ -183,7 +184,7 @@ GameObject:
   - component: {fileID: 5342537332646167563}
   m_Layer: 0
   m_Name: Player2
-  m_TagString: Untagged
+  m_TagString: Reflect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -266,7 +267,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 10
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
