@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
 	private Railcam2DCore _camera;
 	private Vector2 _resetPosition;
 	private Vector2 _positionOrigin;
+	private Vector2 _originPlayer2;
 	private Vector3 _movement;
 	#endregion
 
@@ -84,6 +85,8 @@ public class PlayerController : MonoBehaviour
 		_rigidbodyPlayer = _rigidbodyPlayer1;
 		_distToGround = GetComponent<Collider2D>().bounds.extents.y;
 		_controllerPlayer2 = FindObjectOfType<Player2Controller>();
+		_originPlayer2 = _player2.transform.position;
+		Debug.Log(_originPlayer2);
 		StartCoroutine(Jumping());
 		StartCoroutine(isGroundedBuffering());
 		#endregion
@@ -98,7 +101,7 @@ public class PlayerController : MonoBehaviour
 		DetachAttach();
 		SwitchPlayer();
 		ShieldMode();
-		
+
 		#endregion
 
 		#region Timer
@@ -110,7 +113,7 @@ public class PlayerController : MonoBehaviour
 		{
 			_delayDetach += Time.deltaTime;
 		}
-		if(_delayShield <= _storeDelayShield)
+		if (_delayShield <= _storeDelayShield)
 		{
 			_delayShield += Time.deltaTime;
 		}
@@ -137,7 +140,7 @@ public class PlayerController : MonoBehaviour
 	#region Helper
 	void ShieldMode()
 	{
-		if (_delayShield >= _storeDelayShield && _detach ==false)
+		if (_delayShield >= _storeDelayShield && _detach == false)
 		{
 			if (Input.GetAxisRaw("LeftTrigger") == 1)
 			{
@@ -150,7 +153,7 @@ public class PlayerController : MonoBehaviour
 			}
 			else if (_isReset == true)
 			{
-				_rigidbodyPlayer.transform.eulerAngles = new Vector2(0,0);
+				_rigidbodyPlayer.transform.eulerAngles = new Vector2(0, 0);
 				_positionOrigin = _controllerPlayer2.GetPositionOrigin();
 				_rigidbodyPlayer2.transform.position = _positionOrigin;
 				_isReset = false;
@@ -257,6 +260,13 @@ public class PlayerController : MonoBehaviour
 
 	public void ResetPlayer()
 	{
+		_rigidbodyPlayer = _rigidbodyPlayer1;
+		_camera.Target = _rigidbodyPlayer.transform;
+		_rigidbodyPlayer2.transform.parent = _rigidbodyPlayer.transform;
+		_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
+		_rigidbodyPlayer2.transform.position = new Vector3(_rigidbodyPlayer.transform.position.x - 1.25f, _rigidbodyPlayer.transform.position.y + 0.25f);
+		_switch = false;
+		_detach = false;
 		_rigidbodyPlayer.position = _resetPosition;
 	}
 
