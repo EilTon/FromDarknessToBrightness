@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 	public GameObject _player2;
 	public float _delayDetach;
 	public float _delaySwitch;
+	public float _delayShield;
 	public float _limitAttach;
 	public float _bufferDelay;
 	#endregion
@@ -27,16 +28,17 @@ public class PlayerController : MonoBehaviour
 	#region Declarations private
 	private bool _isGrounded;
 	private bool _isBuffering = false;
+	private bool _isReset = false;
+	private bool _isTrigger = false;
+	private bool _switch = false;
+	private bool _detach = false;
 	private Player2Controller _controllerPlayer2;
 	private Rigidbody2D _rigidbodyPlayer1;
 	private Rigidbody2D _rigidbodyPlayer2;
 	private Rigidbody2D _rigidbodyPlayer;
 	private float _distToGround;
 	private float _jumpTime;
-	private Vector3 _movement;
-	private bool _isTrigger = false;
-	private bool _switch = false;
-	private bool _detach = false;
+	private float _storeDelayShield;
 	private float _storeDelayDetach;
 	private float _storeDelaySwitch;
 	private float _speed;
@@ -48,7 +50,7 @@ public class PlayerController : MonoBehaviour
 	private Railcam2DCore _camera;
 	private Vector2 _resetPosition;
 	private Vector2 _positionOrigin;
-	private bool _isReset = false;
+	private Vector3 _movement;
 	#endregion
 
 	#region Declarations Event Args
@@ -108,6 +110,10 @@ public class PlayerController : MonoBehaviour
 		{
 			_delayDetach += Time.deltaTime;
 		}
+		if(_delayShield <= _storeDelayShield)
+		{
+			_delayShield += Time.deltaTime;
+		}
 		#endregion
 	}
 
@@ -131,28 +137,27 @@ public class PlayerController : MonoBehaviour
 	#region Helper
 	void ShieldMode()
 	{
-		if (Input.GetAxisRaw("LeftTrigger") == 1)
+		if (_delayShield >= _storeDelayShield && _detach ==false)
 		{
-			_controllerPlayer2.SetTrigger(true);
-			_isTrigger = true;
-			if(_isReset==false)
+			if (Input.GetAxisRaw("LeftTrigger") == 1)
 			{
-				_isReset = true;
+				_controllerPlayer2.SetTrigger(true);
+				_isTrigger = true;
+				if (_isReset == false)
+				{
+					_isReset = true;
+				}
+			}
+			else if (_isReset == true)
+			{
+				_rigidbodyPlayer.transform.eulerAngles = new Vector2(0,0);
+				_positionOrigin = _controllerPlayer2.GetPositionOrigin();
+				_rigidbodyPlayer2.transform.position = _positionOrigin;
+				_isReset = false;
+				_isTrigger = false;
+				_controllerPlayer2.SetTrigger(false);
 			}
 		}
-		else if(_isReset == true)
-		{
-			_positionOrigin = _controllerPlayer2.GetPositionOrigin();
-			_rigidbodyPlayer2.transform.position = _positionOrigin;
-			_isReset = false;
-			_isTrigger = false;
-			_controllerPlayer2.SetTrigger(false);
-		}
-		//else
-		//{
-		//	_isTrigger = false;
-		//	_controllerPlayer2.SetTrigger(false);
-		//}
 	}
 
 	void Move()
@@ -208,6 +213,7 @@ public class PlayerController : MonoBehaviour
 			_delaySwitch = 0;
 			if (_switch == false)
 			{
+				_rigidbodyPlayer.velocity = Vector2.zero;
 				_camera.Target = _rigidbodyPlayer2.transform;
 				_rigidbodyPlayer = _rigidbodyPlayer2;
 				_switch = !_switch;
@@ -215,6 +221,7 @@ public class PlayerController : MonoBehaviour
 			}
 			else if (_switch == true)
 			{
+				_rigidbodyPlayer.velocity = Vector2.zero;
 				_camera.Target = _rigidbodyPlayer1.transform;
 				_rigidbodyPlayer = _rigidbodyPlayer1;
 				_switch = !_switch;
