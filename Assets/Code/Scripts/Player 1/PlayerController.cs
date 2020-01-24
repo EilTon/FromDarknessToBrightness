@@ -145,12 +145,14 @@ public class PlayerController : MonoBehaviour
 			_positionOrigin = _controllerPlayer2.GetPositionOrigin();
 			_rigidbodyPlayer2.transform.position = _positionOrigin;
 			_isReset = false;
-		}
-		else
-		{
 			_isTrigger = false;
 			_controllerPlayer2.SetTrigger(false);
 		}
+		//else
+		//{
+		//	_isTrigger = false;
+		//	_controllerPlayer2.SetTrigger(false);
+		//}
 	}
 
 	void Move()
