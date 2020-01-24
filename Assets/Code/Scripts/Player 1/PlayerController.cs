@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
 	private float _airControlForce;
 	private Railcam2DCore _camera;
 	private Vector2 _resetPosition;
+	private Vector2 _positionOrigin;
+	private bool _isReset = false;
 	#endregion
 
 	#region Declarations Event Args
@@ -94,6 +96,7 @@ public class PlayerController : MonoBehaviour
 		DetachAttach();
 		SwitchPlayer();
 		ShieldMode();
+		
 		#endregion
 
 		#region Timer
@@ -130,16 +133,23 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetAxisRaw("LeftTrigger") == 1)
 		{
-			if (_isTrigger == false)
+			_controllerPlayer2.SetTrigger(true);
+			_isTrigger = true;
+			if(_isReset==false)
 			{
-				_controllerPlayer2.SetTrigger();
-				_isTrigger = true;
+				_isReset = true;
 			}
-			else
-			{
-				_controllerPlayer2.SetTrigger();
-				_isTrigger = false;
-			}
+		}
+		else if(_isReset == true)
+		{
+			_positionOrigin = _controllerPlayer2.GetPositionOrigin();
+			_rigidbodyPlayer2.transform.position = _positionOrigin;
+			_isReset = false;
+		}
+		else
+		{
+			_isTrigger = false;
+			_controllerPlayer2.SetTrigger(false);
 		}
 	}
 
@@ -266,10 +276,10 @@ public class PlayerController : MonoBehaviour
 
 	IEnumerator isGroundedBuffering()
 	{
-		float lastHitTime = 0 ;
+		float lastHitTime = 0;
 		while (true)
 		{
-			if(CheckIfGrounded())
+			if (CheckIfGrounded())
 			{
 				lastHitTime = Time.time;
 			}

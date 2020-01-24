@@ -93,11 +93,21 @@ public class Player2Controller : MonoBehaviour
 				transform.position = positions[_cursor];
 			}
 		}
+		else
+		{
+			_cursor = 0;
+			_rightX = 0;
+		}
 	}
 
-	public void SetTrigger()
+	public void SetTrigger(bool trigger)
 	{
-		_trigger = !_trigger;
+		_trigger = trigger;
+	}
+
+	public Vector2 GetPositionOrigin()
+	{
+		return _shield._positions[0];
 	}
 	#endregion
 
