@@ -114,7 +114,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 3607800885811222559}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 401ffc15e98fb7e44a38748252692fc6, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -149,8 +149,9 @@ MonoBehaviour:
   _player2: {fileID: 3607800885926020920}
   _delayDetach: 0.1
   _delaySwitch: 0.1
+  _delayShield: 0
   _limitAttach: 2
-  _bufferDelay: 0.2
+  _bufferDelay: 0.1
 --- !u!114 &3504054122288710535
 MonoBehaviour:
   m_ObjectHideFlags: 0

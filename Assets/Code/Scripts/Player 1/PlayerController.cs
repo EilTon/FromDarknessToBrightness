@@ -97,10 +97,11 @@ public class PlayerController : MonoBehaviour
 		#endregion
 
 		#region Actions
+		_controllerPlayer2.SetPlayerAngle(transform.eulerAngles.y);
 		DetachAttach();
 		SwitchPlayer();
-		ShieldMode();
-
+		//ShieldMode();
+		
 		#endregion
 
 		#region Timer

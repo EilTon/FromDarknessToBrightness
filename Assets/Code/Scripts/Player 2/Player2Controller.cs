@@ -8,6 +8,11 @@ public class Player2Controller : MonoBehaviour
 	public GameObject _player1;
 	#endregion
 
+	#region Declarations privates
+	private bool _rotation = false;
+	private float _playerAngles;
+	#endregion
+
 	#region Declarations private
 	private ShieldScript _shield;
 	private float _rightX;
@@ -46,10 +51,12 @@ public class Player2Controller : MonoBehaviour
 	private void Update()
 	{
 		#region Movement
-		MoveShield();
+		//MoveShield();
+		MoveShieldTrigger();
 		#endregion
 
 		#region Actions
+		SetCursor();
 
 		#endregion
 
@@ -75,7 +82,7 @@ public class Player2Controller : MonoBehaviour
 	#endregion
 
 	#region Helper
-	void MoveShield()
+	void MoveShieldJoyStick()
 	{
 		if (_trigger)
 		{
@@ -100,6 +107,24 @@ public class Player2Controller : MonoBehaviour
 		}
 	}
 
+	void MoveShieldTrigger()
+	{
+		float trigger = Input.GetAxis("LTRT");
+		Debug.Log(trigger);
+		List<Vector2> positions = _shield._positions;
+		positions.Reverse();
+		if (trigger > 0 && _cursor < positions.Count)
+		{
+			_cursor++;
+			transform.position = positions[_cursor];
+		}
+		if (trigger < 0 && _cursor > -1)
+		{
+			_cursor--;
+			transform.position = positions[_cursor];
+		}
+	}
+
 	public void SetTrigger(bool trigger)
 	{
 		_trigger = trigger;
@@ -108,6 +133,27 @@ public class Player2Controller : MonoBehaviour
 	public Vector2 GetPositionOrigin()
 	{
 		return _shield._positions[0];
+	}
+
+	void SetCursor()
+	{
+		if (_playerAngles == 180 && _rotation == false)
+		{
+			_cursor = Mathf.Abs(100 - _cursor);
+			_rotation = true;
+		}
+		else if (_playerAngles == 0 && _rotation == true)
+		{
+			_cursor = Mathf.Abs(100 - _cursor);
+			_rotation = false;
+		}
+
+
+	}
+
+	public void SetPlayerAngle(float y)
+	{
+		_playerAngles = y;
 	}
 	#endregion
 
