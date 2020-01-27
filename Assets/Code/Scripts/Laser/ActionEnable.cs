@@ -11,10 +11,16 @@ public enum Action
 	Streching,
 	Nothing
 }
+
+public enum DirectionPlatform
+{
+	Up, Down, Left, Right
+}
 public class ActionEnable : MonoBehaviour
 {
 	#region Declarations public
 	public Action _actionPublic;
+	public DirectionPlatform _directionPlatform;
 	public float _limitLeft;
 	public float _limitRight;
 	public float _limitUp;
@@ -29,8 +35,8 @@ public class ActionEnable : MonoBehaviour
 	#endregion
 
 	#region Declarations private
-	private Action _action;
 	private float _direction = 1;
+	private Action _action;
 	private float _timerStrech;
 	private float _timerGrowth;
 	#endregion
@@ -57,17 +63,46 @@ public class ActionEnable : MonoBehaviour
 
 	private void Start()
 	{
+		#region Initialize
 		float x = transform.position.x;
 		float y = transform.position.y;
-		#region Initialize
-		if(_actionPublic != Action.Nothing)
-		{
-			_action = _actionPublic;
-		}
 		_limitRight =  x +_limitRight;
 		_limitLeft = x -_limitLeft;
 		_limitDown = y -_limitDown;
 		_limitUp = y +_limitUp;
+
+		switch (_actionPublic)
+		{
+			case Action.TranslateHorizontal:
+				TranslateHorizontalPlatform();
+				break;
+
+			case Action.TranslateVertical:
+				TranslateVerticalPlatform();
+				break;
+
+			case Action.Nothing:
+				_action = Action.Nothing;
+				break;
+
+			case Action.Streching:
+				Strenching();
+				break;
+
+			case Action.Growing:
+				Growing();
+				break;
+
+		}
+
+		if (_directionPlatform == DirectionPlatform.Left || _directionPlatform == DirectionPlatform.Down)
+		{
+			_direction = -1;
+		}
+		else
+		{
+			_direction = 1;
+		}
 		#endregion
 	}
 
@@ -76,6 +111,7 @@ public class ActionEnable : MonoBehaviour
 		#region Movement
 
 		#endregion
+
 		#region Actions
 		switch(_action)
 		{
@@ -151,11 +187,11 @@ public class ActionEnable : MonoBehaviour
 	void MoveHorizontal()
 	{
 		Vector2 movement;
-		if (transform.position.x > _limitRight)
+		if (transform.position.x > _limitRight && _direction != -1)
 		{
 			_direction = -1;
 		}
-		else if (transform.position.x < _limitLeft)
+		else if (transform.position.x < _limitLeft && _direction != 1)
 		{
 			_direction = 1;
 		}
@@ -166,11 +202,11 @@ public class ActionEnable : MonoBehaviour
 	void MoveVertical()
 	{
 		Vector2 movement;
-		if (transform.position.y > _limitUp)
+		if (transform.position.y > _limitUp && _direction != -1)
 		{
 			_direction = -1;
 		}
-		else if (transform.position.y < _limitDown)
+		else if (transform.position.y < _limitDown && _direction != 1)
 		{
 			_direction = 1;
 		}

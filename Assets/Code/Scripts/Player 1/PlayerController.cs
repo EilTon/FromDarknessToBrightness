@@ -86,7 +86,6 @@ public class PlayerController : MonoBehaviour
 		_distToGround = GetComponent<Collider2D>().bounds.extents.y;
 		_controllerPlayer2 = FindObjectOfType<Player2Controller>();
 		_originPlayer2 = _player2.transform.position;
-		Debug.Log(_originPlayer2);
 		StartCoroutine(Jumping());
 		StartCoroutine(isGroundedBuffering());
 		#endregion
