@@ -4294,12 +4294,12 @@ PrefabInstance:
     - target: {fileID: 189135392556746243, guid: e81cabfc777655744b38c5ca7af0e495,
         type: 3}
       propertyPath: m_Offset.y
-      value: 0.32530022
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 189135392556746243, guid: e81cabfc777655744b38c5ca7af0e495,
         type: 3}
       propertyPath: m_Radius
-      value: 0.8253002
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3504054122288710535, guid: e81cabfc777655744b38c5ca7af0e495,
         type: 3}
@@ -4309,17 +4309,17 @@ PrefabInstance:
     - target: {fileID: 3504054122288710535, guid: e81cabfc777655744b38c5ca7af0e495,
         type: 3}
       propertyPath: _polygonRadius
-      value: 1
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3607800885811222531, guid: e81cabfc777655744b38c5ca7af0e495,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 3607800885811222531, guid: e81cabfc777655744b38c5ca7af0e495,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.5
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 3607800885811222531, guid: e81cabfc777655744b38c5ca7af0e495,
         type: 3}
@@ -4370,6 +4370,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607800885926020924, guid: e81cabfc777655744b38c5ca7af0e495,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607800885926020924, guid: e81cabfc777655744b38c5ca7af0e495,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e81cabfc777655744b38c5ca7af0e495, type: 3}

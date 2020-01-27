@@ -60,5 +60,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c559a83996b02e442b70aab4b2ac34e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _newSizeCamera: 30
-  _speedCamera: 5
+  _actionCamera: 4
+  _newSizeCamera: 0
+  _speedCamera: 0
+  _offsetX: 0
+  _offsetY: 0
+  _speedOffsetX: 0
+  _speedOffsetY: 0
