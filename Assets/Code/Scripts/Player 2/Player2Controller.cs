@@ -110,7 +110,6 @@ public class Player2Controller : MonoBehaviour
 	void MoveShieldTrigger()
 	{
 		float trigger = Input.GetAxis("LTRT");
-		Debug.Log(trigger);
 		List<Vector2> positions = _shield._positions;
 		positions.Reverse();
 		if (trigger > 0 && _cursor < positions.Count)
