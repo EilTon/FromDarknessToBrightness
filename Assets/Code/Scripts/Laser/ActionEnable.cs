@@ -32,6 +32,7 @@ public class ActionEnable : MonoBehaviour
 	public float _speedPositionX;
 	public float _timeToStreching;
 	public float _timeToGrowing;
+	public UnityEvent _Action;
 	#endregion
 
 	#region Declarations private

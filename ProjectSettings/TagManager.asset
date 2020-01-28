@@ -9,6 +9,8 @@ TagManager:
   - Death
   - Fear
   - Enable
+  - EndLevel
+  - ActionEnable
   layers:
   - Default
   - TransparentFX
