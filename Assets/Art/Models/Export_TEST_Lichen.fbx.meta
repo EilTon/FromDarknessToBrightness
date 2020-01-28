@@ -2,7 +2,10 @@ fileFormatVersion: 2
 guid: c64f4bdf17f22bc4c93f293fb561ea6d
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -41063590448546742
+    second: obj_Lichen|Jump_L_Solo
   externalObjects: {}
   materials:
     materialImportMode: 1
