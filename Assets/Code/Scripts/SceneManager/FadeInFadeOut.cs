@@ -8,7 +8,7 @@ public class FadeInFadeOut : MonoBehaviour
 	public Image _fade;
 	public float _duration;
 
-    public void FadeIn()
+	public void FadeIn()
 	{
 		_fade.canvasRenderer.SetAlpha(0.0f);
 		_fade.CrossFadeAlpha(1, _duration, false);

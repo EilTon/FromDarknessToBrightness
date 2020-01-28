@@ -14,7 +14,6 @@ public class SceneController : MonoBehaviour
 
 	private void Start()
 	{
-		_canvas.canvasRenderer.SetAlpha(0.0f);
 		_fade = FindObjectOfType<FadeInFadeOut>();
 	}
 
@@ -23,18 +22,14 @@ public class SceneController : MonoBehaviour
 		if (collision.CompareTag("Player"))
 		{
 			StartCoroutine(ChangeScene());
-			
 		}
 	}
 
 	IEnumerator ChangeScene()
 	{
 		_fade.FadeIn();
-		while(_time<_fade._duration)
-		{
-			_time += Time.deltaTime;
-		}
-		//SceneManager.LoadScene(_sceneName, LoadSceneMode.Single);
+		yield return new WaitForSeconds(4);
+		SceneManager.LoadScene(_sceneName, LoadSceneMode.Single);
 		yield return null;
 	}
 }
