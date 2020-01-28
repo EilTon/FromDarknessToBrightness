@@ -113,6 +113,10 @@ public class Laser : MonoBehaviour
 						_hit.collider.GetComponent<Enable>()._Action.Invoke();
 						break;
 
+					case "ActionEnable":
+						_hit.collider.GetComponent<ActionEnable>()._Action.Invoke();
+						break;
+
 					case "Burn":
 						_hit.collider.GetComponent<BurnObject>().SetIsHit();
 						break;
