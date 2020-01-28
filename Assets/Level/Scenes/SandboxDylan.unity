@@ -2070,6 +2070,11 @@ PrefabInstance:
       propertyPath: m_Positions.Array.data[99].y
       value: 6.83
       objectReference: {fileID: 0}
+    - target: {fileID: 997607610362573933, guid: a17aa3309d0232d449ea74ae017ca704,
+        type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 997607610362573935, guid: a17aa3309d0232d449ea74ae017ca704,
         type: 3}
       propertyPath: m_Name

@@ -10,7 +10,6 @@ public class SceneController : MonoBehaviour
 	public Image _canvas;
 
 	private FadeInFadeOut _fade;
-	private float _time;
 
 	private void Start()
 	{
@@ -28,7 +27,7 @@ public class SceneController : MonoBehaviour
 	IEnumerator ChangeScene()
 	{
 		_fade.FadeIn();
-		yield return new WaitForSeconds(4);
+		yield return new WaitForSeconds(_fade._duration);
 		SceneManager.LoadScene(_sceneName, LoadSceneMode.Single);
 		yield return null;
 	}

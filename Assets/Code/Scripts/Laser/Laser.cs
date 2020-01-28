@@ -8,9 +8,13 @@ public class Laser : MonoBehaviour
 	#region Declarations public
 	public float _rayDistance;
 	public LayerMask _layer;
+	public bool _isContinue = true;
+	public float _timeTocast = 2;
 	#endregion
 
 	#region Declarations private
+	private float _timer = 0;
+	private float _storeCast;
 	private LineRenderer _lineRenderer;
 	private Ray2D _ray;
 	private RaycastHit2D _hit;
@@ -40,21 +44,52 @@ public class Laser : MonoBehaviour
 	private void Start()
 	{
 		#region Initialize
-
+		_storeCast = _timeTocast;
 		#endregion
 	}
-
+	
+	
 	private void Update()
 	{
 		#region Movement
 
 		#endregion
-
+		Debug.Log(_timeTocast + " " + _timer);
 		#region Actions
-		_ray = new Ray2D(transform.position, transform.up/*(_camera.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized*/);
-		_positions = CastLaser(_ray, ref _hit, _rayDistance);
-		_lineRenderer.positionCount = _positions.Length;
-		_lineRenderer.SetPositions(_positions);
+		if (_isContinue)
+		{
+			_ray = new Ray2D(transform.position, transform.up/*(_camera.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized*/);
+			_positions = CastLaser(_ray, ref _hit, _rayDistance);
+			_lineRenderer.positionCount = _positions.Length;
+			_lineRenderer.SetPositions(_positions);
+		}
+		else
+		{
+
+			if (_timer < _timeTocast)
+			{
+				_positions = null;
+				_lineRenderer.enabled = false;
+				_timer += Time.deltaTime;
+			}
+			else if (_timeTocast > 0)
+			{
+				_lineRenderer.enabled = true;
+				_ray = new Ray2D(transform.position, transform.up/*(_camera.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized*/);
+				_positions = CastLaser(_ray, ref _hit, _rayDistance);
+				_lineRenderer.positionCount = _positions.Length;
+				_lineRenderer.SetPositions(_positions);
+				_timeTocast -= Time.deltaTime;
+
+			}
+			else
+			{
+				_timer = 0;
+				_timeTocast = _storeCast;
+			}	
+		}
+
+
 		#endregion
 
 		#region Timer
