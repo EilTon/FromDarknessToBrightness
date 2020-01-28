@@ -11,6 +11,8 @@ TagManager:
   - Enable
   - EndLevel
   - ActionEnable
+  - Start
+  - Quit
   layers:
   - Default
   - TransparentFX

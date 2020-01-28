@@ -8,6 +8,9 @@ public class MenuController : MonoBehaviour
 	#region Declarations public
 	public List<Button> _buttons;
 	public float _delay;
+	public Color _chooseColor;
+	public Color _normalColor;
+	public Color _highligtedColor;
 	#endregion
 
 	#region Declarations private
@@ -15,13 +18,6 @@ public class MenuController : MonoBehaviour
 	private Button _currentButton;
 	private int _cursor = 0;
 	private float _timerDelay;
-
-	private ColorBlock _colorBlockChoose;
-	private Color _chooseColor;
-
-	private ColorBlock _colorBlockNormal;
-	private Color _normalColor;
-
 	#endregion
 
 	#region Declarations Event Args
@@ -48,15 +44,7 @@ public class MenuController : MonoBehaviour
 	{
 		#region Initialize
 		_currentButton = _buttons[0];
-		_chooseColor = new Color(174, 174, 174, 160);
-		_normalColor = new Color(255, 255, 255, 255);
-		_colorBlockChoose.normalColor = _chooseColor;
-		_colorBlockChoose.colorMultiplier = 1;
-
-		_colorBlockNormal.normalColor = _normalColor;
-		_colorBlockNormal.colorMultiplier = 1;
-
-		_currentButton.colors = _colorBlockChoose;
+		_currentButton.GetComponent<Image>().color = _chooseColor;
 		#endregion
 	}
 
@@ -67,11 +55,11 @@ public class MenuController : MonoBehaviour
 		#endregion
 
 		#region Actions
-
+	
 		#endregion
 
 		#region Timer
-		if(_timerDelay<_delay)
+		if (_timerDelay<_delay)
 		{
 			_timerDelay += Time.deltaTime;
 		}
@@ -99,13 +87,11 @@ public class MenuController : MonoBehaviour
 	void NavigateMenu()
 	{
 		_vertical = Input.GetAxis("Vertical");
-
 		if (_vertical > 0 && _timerDelay > _delay)
 		{
 			_cursor++;
 			if (_cursor == _buttons.Count)
 			{
-				_buttons[_buttons.Count].colors = _colorBlockNormal;
 				_cursor = 0;
 			}
 			_timerDelay = 0;
@@ -117,14 +103,13 @@ public class MenuController : MonoBehaviour
 			_cursor--;
 			if (_cursor == -1)
 			{
-				_buttons[0].colors = _colorBlockNormal;
 				_cursor = _buttons.Count -1;
 			}
 			_timerDelay = 0;
 		}
-		
+		_currentButton.GetComponent<Image>().color = _normalColor;
 		_currentButton = _buttons[_cursor];
-		_currentButton.colors = _colorBlockChoose;
+		_currentButton.GetComponent<Image>().color = _chooseColor;
 
 	}
 	#endregion
