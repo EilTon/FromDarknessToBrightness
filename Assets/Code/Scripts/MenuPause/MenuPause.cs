@@ -10,6 +10,7 @@ public class MenuPause : MonoBehaviour
 
 	#region Declarations private
 	private bool _isPause = false;
+	private PlayerController _playerController;
 	#endregion
 
 	#region Declarations Event Args
@@ -35,7 +36,7 @@ public class MenuPause : MonoBehaviour
 	private void Start()
 	{
 		#region Initialize
-
+		_playerController = GetComponent<PlayerController>();
 		#endregion
 	}
 
@@ -78,10 +79,12 @@ public class MenuPause : MonoBehaviour
 			_isPause = !_isPause;
 			if (_isPause)
 			{
+				_playerController.SetFreeze(true);
 				Time.timeScale = 0;
 			}
 			else
 			{
+				_playerController.SetFreeze(false);
 				Time.timeScale = 1;
 			}
 			

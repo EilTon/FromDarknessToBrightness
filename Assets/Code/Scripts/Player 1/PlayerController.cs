@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 	#endregion
 
 	#region Declarations private
+	private bool _isFreeze = false;
 	private bool _isGrounded;
 	private bool _isBuffering = false;
 	private bool _isReset = false;
@@ -90,6 +91,7 @@ public class PlayerController : MonoBehaviour
 		StartCoroutine(isGroundedBuffering());
 		#endregion
 	}
+
 	private void Update()
 	{
 		#region Movement
@@ -101,7 +103,7 @@ public class PlayerController : MonoBehaviour
 		DetachAttach();
 		SwitchPlayer();
 		//ShieldMode();
-		
+
 		#endregion
 
 		#region Timer
@@ -165,8 +167,11 @@ public class PlayerController : MonoBehaviour
 
 	void Move()
 	{
-		_horizontal = Input.GetAxis("Horizontal");
-		if (Mathf.Abs(_horizontal) > 0.1f && _isTrigger == false) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
+		if(_isFreeze == false)
+		{
+			_horizontal = Input.GetAxis("Horizontal");
+			if (Mathf.Abs(_horizontal) > 0.1f && _isTrigger == false) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
+		}
 	}
 
 	void MovePlayer()
@@ -273,6 +278,11 @@ public class PlayerController : MonoBehaviour
 		_switch = false;
 		_detach = false;
 		_rigidbodyPlayer.position = _resetPosition;
+	}
+
+	public void SetFreeze(bool freeze)
+	{
+		_isFreeze = freeze;
 	}
 
 	#endregion
