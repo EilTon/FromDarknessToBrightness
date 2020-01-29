@@ -288,12 +288,22 @@ public class PlayerController : MonoBehaviour
 	#endregion
 
 	#region Coroutine
-
+	float delayJump = 0;
 	IEnumerator Jumping()
 	{
 		while (true)
 		{
-			if (Input.GetButtonDown("Jump") && _isGrounded)
+			
+			if (_isFreeze == true)
+			{
+				delayJump = 0.5f;
+			}
+			else if(delayJump>0)
+			{
+				delayJump -= 0.01f;
+			}
+			Debug.Log(delayJump);
+			if (Input.GetButtonDown("Jump") && _isGrounded && delayJump <= 0)
 			{
 				_jumpTime = Time.time;
 				_rigidbodyPlayer.AddForce(Vector2.up * _jumpImpulse, ForceMode2D.Impulse);

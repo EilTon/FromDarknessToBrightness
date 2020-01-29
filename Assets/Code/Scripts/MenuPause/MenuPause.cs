@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuPause : MenuController
 {
@@ -46,7 +47,11 @@ public class MenuPause : MenuController
 	private void Update()
 	{
 		#region Movement
-		NavigateMenu();
+		if(_isPause == true)
+		{
+			NavigateMenu();
+			InputPause();
+		}
 		#endregion
 
 		#region Actions
@@ -89,9 +94,7 @@ public class MenuPause : MenuController
 			}
 			else
 			{
-				_pauseGUI.SetActive(false);
-				_playerController.SetFreeze(false);
-				Time.timeScale = 1;
+				Resume();
 			}
 
 		}
@@ -99,35 +102,31 @@ public class MenuPause : MenuController
 
 	void Resume()
 	{
-
-	}
-
-	void CheckpointReset()
-	{
-
-	}
-
-	void QuitMainMenu()
-	{
-
+		_isPause = !_isPause;
+		_pauseGUI.SetActive(false);
+		_playerController.SetFreeze(false);
+		Time.timeScale = 1;
 	}
 
 	void InputPause()
 	{
 		if (Input.GetButtonDown("Submit"))
 		{
+			Debug.Log("test");
 			switch (GetButton().tag)
 			{
 				case "Resume":
-					Debug.Log("resume");
+					Resume();
 					break;
 
 				case "ResetCheckpoint":
-					Debug.Log("checkpoint");
+					Resume();
+					_playerController.ResetPlayer();
 					break;
 
 				case "QuitMainMenu":
-					Debug.Log("mainmenu");
+					Resume();
+					SceneManager.LoadScene("MainMenu");
 					break;	
 			}
 		}
