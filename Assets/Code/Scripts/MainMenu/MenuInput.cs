@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class MenuInput : MonoBehaviour
 {
+	private GameObject _buttonSelected;
+	private MenuController _menuController;
+	private void Start()
+	{
+		_menuController = FindObjectOfType<MenuController>();
+	}
 
-    void Update()
+	void Update()
     {
+		_buttonSelected = _menuController.GetButton();
         if(Input.GetButtonDown("Submit"))
 		{
-			if(gameObject.tag == "Start")
+			if(_buttonSelected.tag == "Start")
 			{
 				StartGame();
 			}
-			else if(gameObject.tag == "Quit")
+			else if(_buttonSelected.tag == "Quit")
 			{
 				QuitGame();
 			}
@@ -30,4 +37,5 @@ public class MenuInput : MonoBehaviour
 		Debug.Log("test quit");
 		Application.Quit();
 	}
+
 }

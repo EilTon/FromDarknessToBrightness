@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuPause : MonoBehaviour
+public class MenuPause : MenuController
 {
 	#region Declarations public
 
@@ -11,6 +11,7 @@ public class MenuPause : MonoBehaviour
 	#region Declarations private
 	private bool _isPause = false;
 	private PlayerController _playerController;
+	public GameObject _pauseGUI;
 	#endregion
 
 	#region Declarations Event Args
@@ -37,13 +38,15 @@ public class MenuPause : MonoBehaviour
 	{
 		#region Initialize
 		_playerController = GetComponent<PlayerController>();
+		_pauseGUI.SetActive(false);
+		SetupMenu();
 		#endregion
 	}
 
 	private void Update()
 	{
 		#region Movement
-
+		NavigateMenu();
 		#endregion
 
 		#region Actions
@@ -51,7 +54,7 @@ public class MenuPause : MonoBehaviour
 		#endregion
 
 		#region Timer
-
+		Timer();
 		#endregion
 	}
 
@@ -74,20 +77,59 @@ public class MenuPause : MonoBehaviour
 	#region Helper
 	void PauseGame()
 	{
-		if(Input.GetButtonDown("Pause"))
+		if (Input.GetButtonDown("Pause"))
 		{
 			_isPause = !_isPause;
 			if (_isPause)
 			{
+				_pauseGUI.SetActive(true);
 				_playerController.SetFreeze(true);
 				Time.timeScale = 0;
+				
 			}
 			else
 			{
+				_pauseGUI.SetActive(false);
 				_playerController.SetFreeze(false);
 				Time.timeScale = 1;
 			}
-			
+
+		}
+	}
+
+	void Resume()
+	{
+
+	}
+
+	void CheckpointReset()
+	{
+
+	}
+
+	void QuitMainMenu()
+	{
+
+	}
+
+	void InputPause()
+	{
+		if (Input.GetButtonDown("Submit"))
+		{
+			switch (GetButton().tag)
+			{
+				case "Resume":
+					Debug.Log("resume");
+					break;
+
+				case "ResetCheckpoint":
+					Debug.Log("checkpoint");
+					break;
+
+				case "QuitMainMenu":
+					Debug.Log("mainmenu");
+					break;	
+			}
 		}
 	}
 	#endregion
