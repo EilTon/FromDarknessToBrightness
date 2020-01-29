@@ -15,9 +15,6 @@ public class Player2Controller : MonoBehaviour
 	#region Declarations privates
 	private bool _rotation = false;
 	private float _playerAngles;
-	#endregion
-
-	#region Declarations private
 	private ShieldScript _shield;
 	private float _rightX;
 	private int _cursor = 0;
@@ -47,7 +44,7 @@ public class Player2Controller : MonoBehaviour
 	private void Start()
 	{
 		#region Initialize
-		_shield = _player1.GetComponent<ShieldScript>();
+		//_shield = _player1.GetComponent<ShieldScript>();
 		//_cursor = _shield._positions.Count;
 		#endregion
 	}
@@ -109,7 +106,6 @@ public class Player2Controller : MonoBehaviour
 			_rightX = 0;
 		}
 	}
-
 
 	void MoveShieldTrigger()
 	{
