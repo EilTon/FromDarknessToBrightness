@@ -54,7 +54,6 @@ public class Laser : MonoBehaviour
 		#region Movement
 
 		#endregion
-		Debug.Log(_timeTocast + " " + _timer);
 		#region Actions
 		if (_isContinue)
 		{

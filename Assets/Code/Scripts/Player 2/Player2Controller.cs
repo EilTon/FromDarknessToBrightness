@@ -15,7 +15,6 @@ public class Player2Controller : MonoBehaviour
 	#region Declarations privates
 	private bool _rotation = false;
 	private float _playerAngles;
-	
 	#endregion
 
 	#region Declarations private
@@ -49,7 +48,7 @@ public class Player2Controller : MonoBehaviour
 	{
 		#region Initialize
 		_shield = _player1.GetComponent<ShieldScript>();
-		_cursor = _shield._positions.Count;
+		//_cursor = _shield._positions.Count;
 		#endregion
 	}
 
@@ -61,8 +60,7 @@ public class Player2Controller : MonoBehaviour
 		#endregion
 
 		#region Actions
-		SetCursor();
-
+		//SetCursor();
 		#endregion
 
 		#region Timer
@@ -112,7 +110,7 @@ public class Player2Controller : MonoBehaviour
 		}
 	}
 
-	
+
 	void MoveShieldTrigger()
 	{
 		//List<Vector2> positions = _shield._positions;
@@ -125,12 +123,14 @@ public class Player2Controller : MonoBehaviour
 		//{
 		//	_cursor--;
 		//}
-
-		float trigger = Input.GetAxis("LTRT");
-		_currentShieldAngle = Mathf.Clamp(_currentShieldAngle + trigger * _shieldSpeed * _player1.transform.right.x * Time.deltaTime, _minMaxShieldAngle.x, _minMaxShieldAngle.y);
-		Vector2 p1Top2 = new Vector2(Mathf.Sin(_currentShieldAngle*Mathf.Deg2Rad * _player1.transform.right.x),Mathf.Cos(_currentShieldAngle * Mathf.Deg2Rad * _player1.transform.right.x));
-		transform.position = _player1.transform.position + (Vector3)p1Top2*_shieldDistance;
-		transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(-p1Top2.x, p1Top2.y) * Mathf.Rad2Deg+90,Vector3.forward);
+		if (_player1.GetComponent<PlayerController>().GetDetach()==false)
+		{
+			float trigger = Input.GetAxis("LTRT");
+			_currentShieldAngle = Mathf.Clamp(_currentShieldAngle + trigger * _shieldSpeed * _player1.transform.right.x * Time.deltaTime, _minMaxShieldAngle.x, _minMaxShieldAngle.y);
+			Vector2 p1Top2 = new Vector2(Mathf.Sin(_currentShieldAngle * Mathf.Deg2Rad * _player1.transform.right.x), Mathf.Cos(_currentShieldAngle * Mathf.Deg2Rad * _player1.transform.right.x));
+			transform.position = _player1.transform.position + (Vector3)p1Top2 * _shieldDistance;
+			transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(-p1Top2.x, p1Top2.y) * Mathf.Rad2Deg + 90, Vector3.forward);
+		}
 	}
 
 	public void SetTrigger(bool trigger)
@@ -143,26 +143,24 @@ public class Player2Controller : MonoBehaviour
 		return _shield._positions[0];
 	}
 
-	void SetCursor()
-	{
-		if (_playerAngles == 180 && _rotation == false)
-		{
-			_cursor = Mathf.Abs(100 - _cursor);
-			_rotation = true;
-		}
-		else if (_playerAngles == 0 && _rotation == true)
-		{
-			_cursor = Mathf.Abs(100 - _cursor);
-			_rotation = false;
-		}
+	//void SetCursor()
+	//{
+	//	if (_playerAngles == 180 && _rotation == false)
+	//	{
+	//		_cursor = Mathf.Abs(100 - _cursor);
+	//		_rotation = true;
+	//	}
+	//	else if (_playerAngles == 0 && _rotation == true)
+	//	{
+	//		_cursor = Mathf.Abs(100 - _cursor);
+	//		_rotation = false;
+	//	}
+	//}
 
-
-	}
-
-	public void SetPlayerAngle(float y)
-	{
-		_playerAngles = y;
-	}
+	//public void SetPlayerAngle(float y)
+	//{
+	//	_playerAngles = y;
+	//}
 	#endregion
 
 	#region Coroutine

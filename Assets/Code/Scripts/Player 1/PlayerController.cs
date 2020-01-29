@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
 		#endregion
 
 		#region Actions
-		_controllerPlayer2.SetPlayerAngle(transform.eulerAngles.y);
+		//_controllerPlayer2.SetPlayerAngle(transform.eulerAngles.y);
 		DetachAttach();
 		SwitchPlayer();
 		//ShieldMode();
@@ -256,6 +256,11 @@ public class PlayerController : MonoBehaviour
 	public void SetResetPosition(Vector2 position)
 	{
 		_resetPosition = position;
+	}
+
+	public bool GetDetach()
+	{
+		return _detach;
 	}
 
 	public void ResetPlayer()
