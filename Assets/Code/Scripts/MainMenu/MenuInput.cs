@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuInput : MonoBehaviour
 {
+	public string _sceneToLoad;
 	private GameObject _buttonSelected;
 	private MenuController _menuController;
 	private void Start()
@@ -29,12 +31,11 @@ public class MenuInput : MonoBehaviour
 
 	public void StartGame()
 	{
-		Debug.Log("Test start");
+		SceneManager.LoadScene(_sceneToLoad, LoadSceneMode.Single);
 	}
 
 	public void QuitGame()
 	{
-		Debug.Log("test quit");
 		Application.Quit();
 	}
 

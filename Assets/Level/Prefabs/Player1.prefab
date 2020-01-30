@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 555730569}
   - component: {fileID: 555730568}
   - component: {fileID: 555730573}
-  - component: {fileID: 3504054122288710535}
+  - component: {fileID: 982863461}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player
@@ -151,8 +151,8 @@ MonoBehaviour:
   _delaySwitch: 0.1
   _delayShield: 0
   _limitAttach: 2
-  _bufferDelay: 0.1
---- !u!114 &3504054122288710535
+  _bufferDelay: 0.02
+--- !u!114 &982863461
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,14 +161,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 3607800885811222559}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aabf001e8aee7f64fbf1768ffd50cb52, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a8c4fbc304de06469800f09ed898ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfSides: 100
-  _polygonRadius: 1
-  _offsetX: 0
-  _offsetY: 0
-  _positions: []
+  _buttons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _delay: 0.5
+  _chooseColor: {r: 0.5754717, g: 0.53475434, b: 0.53475434, a: 1}
+  _normalColor: {r: 1, g: 1, b: 1, a: 1}
+  _pauseGUI: {fileID: 0}
 --- !u!1 &3607800885926020920
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,3 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player1: {fileID: 3607800885811222559}
+  _shieldSpeed: 90
+  _shieldDistance: 1
+  _minMaxShieldAngle: {x: -45, y: 45}
+  _currentShieldAngle: -45

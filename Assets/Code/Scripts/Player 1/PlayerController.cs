@@ -302,7 +302,6 @@ public class PlayerController : MonoBehaviour
 			{
 				delayJump -= 0.01f;
 			}
-			Debug.Log(delayJump);
 			if (Input.GetButtonDown("Jump") && _isGrounded && delayJump <= 0)
 			{
 				_jumpTime = Time.time;
