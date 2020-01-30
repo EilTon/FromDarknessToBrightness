@@ -5,21 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Level/Scenes/SandboxDylan.unity
     guid: cdad55862f4ffd248bbfc41c65d1fc8e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Level/Scenes/ScenePrototype.unity
     guid: 03b253a1ee376384e8a5bd84d9625727
-  - enabled: 0
+  - enabled: 1
     path: Assets/Level/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-<<<<<<< HEAD
     path: Assets/Level/Scenes/MainMenu.unity
     guid: dfa9303a0b9f295468088f9ec64a5525
-=======
-    path: Assets/Level/Scenes/Tabloid01.unity
-    guid: 331bc516ce350154c8f6342a3b71b9e2
->>>>>>> 0c9fd05350d56f1940597d4af52103420302fde4
   m_configObjects: {}
