@@ -23,7 +23,7 @@ ModelImporter:
     second: arm_Lichen|Walk_L_Solo
   externalObjects: {}
   materials:
-    materialImportMode: 1
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
     materialLocation: 1
