@@ -1,11 +1,26 @@
 fileFormatVersion: 2
-guid: 32fefeb636a62074bb1524765fd13905
+guid: 26fef84e5d95ac54894c3b848f8e611e
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
-      74: -41063590448546742
-    second: obj_Lichen|Jump_L_Solo
+      74: 450024653498026833
+    second: arm_Lichen|Idle_L_Duo
+  - first:
+      74: 2548148600331113488
+    second: arm_Lichen|Idle_L_Solo
+  - first:
+      74: -864635258747934205
+    second: arm_Lichen|Jump_Duo
+  - first:
+      74: 377755680091060022
+    second: arm_Lichen|Jump_L_Solo
+  - first:
+      74: 5190878358075722937
+    second: arm_Lichen|Run_L_Solo
+  - first:
+      74: -415011761268048640
+    second: arm_Lichen|Walk_L_Solo
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -39,7 +54,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
