@@ -10,6 +10,7 @@ public class MenuController : MonoBehaviour
 	public float _delay;
 	public Color _chooseColor;
 	public Color _normalColor;
+	public Color _highligtedColor;
 	#endregion
 
 	#region Declarations private
@@ -42,7 +43,8 @@ public class MenuController : MonoBehaviour
 	private void Start()
 	{
 		#region Initialize
-		SetupMenu();
+		_currentButton = _buttons[0];
+		_currentButton.GetComponent<Image>().color = _chooseColor;
 		#endregion
 	}
 
@@ -53,11 +55,15 @@ public class MenuController : MonoBehaviour
 		#endregion
 
 		#region Actions
-
+	
 		#endregion
 
 		#region Timer
-		Timer();
+		if (_timerDelay<_delay)
+		{
+			_timerDelay += Time.deltaTime;
+		}
+		
 		#endregion
 	}
 
@@ -78,7 +84,7 @@ public class MenuController : MonoBehaviour
 	#endregion
 
 	#region Helper
-	public virtual void NavigateMenu()
+	void NavigateMenu()
 	{
 		_vertical = Input.GetAxis("Vertical");
 		if (_vertical > 0 && _timerDelay > _delay)
@@ -106,26 +112,6 @@ public class MenuController : MonoBehaviour
 		_currentButton.GetComponent<Image>().color = _chooseColor;
 
 	}
-
-	public virtual void SetupMenu()
-	{
-		_currentButton = _buttons[0];
-		_currentButton.GetComponent<Image>().color = _chooseColor;
-	}
-
-	public virtual void Timer()
-	{
-		if (_timerDelay < _delay)
-		{
-			_timerDelay += 0.01f;
-		}
-	}
-
-	public virtual GameObject GetButton()
-	{
-		return _currentButton.gameObject;
-	}
-
 	#endregion
 
 	#region Coroutine

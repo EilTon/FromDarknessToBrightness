@@ -13,9 +13,6 @@ TagManager:
   - ActionEnable
   - Start
   - Quit
-  - Resume
-  - QuitMainMenu
-  - ResetCheckpoint
   layers:
   - Default
   - TransparentFX

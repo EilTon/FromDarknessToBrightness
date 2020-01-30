@@ -1,28 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MenuInput : MonoBehaviour
 {
-	public string _sceneToLoad;
-	private GameObject _buttonSelected;
-	private MenuController _menuController;
-	private void Start()
-	{
-		_menuController = FindObjectOfType<MenuController>();
-	}
 
-	void Update()
+    void Update()
     {
-		_buttonSelected = _menuController.GetButton();
         if(Input.GetButtonDown("Submit"))
 		{
-			if(_buttonSelected.tag == "Start")
+			if(gameObject.tag == "Start")
 			{
 				StartGame();
 			}
-			else if(_buttonSelected.tag == "Quit")
+			else if(gameObject.tag == "Quit")
 			{
 				QuitGame();
 			}
@@ -31,12 +22,12 @@ public class MenuInput : MonoBehaviour
 
 	public void StartGame()
 	{
-		SceneManager.LoadScene(_sceneToLoad, LoadSceneMode.Single);
+		Debug.Log("Test start");
 	}
 
 	public void QuitGame()
 	{
+		Debug.Log("test quit");
 		Application.Quit();
 	}
-
 }

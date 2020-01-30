@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
 	#endregion
 
 	#region Declarations private
-	private bool _isFreeze = false;
 	private bool _isGrounded;
 	private bool _isBuffering = false;
 	private bool _isReset = false;
@@ -91,7 +90,6 @@ public class PlayerController : MonoBehaviour
 		StartCoroutine(isGroundedBuffering());
 		#endregion
 	}
-
 	private void Update()
 	{
 		#region Movement
@@ -103,7 +101,7 @@ public class PlayerController : MonoBehaviour
 		DetachAttach();
 		SwitchPlayer();
 		//ShieldMode();
-
+		
 		#endregion
 
 		#region Timer
@@ -167,11 +165,8 @@ public class PlayerController : MonoBehaviour
 
 	void Move()
 	{
-		if(_isFreeze == false)
-		{
-			_horizontal = Input.GetAxis("Horizontal");
-			if (Mathf.Abs(_horizontal) > 0.1f && _isTrigger == false) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
-		}
+		_horizontal = Input.GetAxis("Horizontal");
+		if (Mathf.Abs(_horizontal) > 0.1f && _isTrigger == false) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
 	}
 
 	void MovePlayer()
@@ -280,29 +275,15 @@ public class PlayerController : MonoBehaviour
 		_rigidbodyPlayer.position = _resetPosition;
 	}
 
-	public void SetFreeze(bool freeze)
-	{
-		_isFreeze = freeze;
-	}
-
 	#endregion
 
 	#region Coroutine
-	float delayJump = 0;
+
 	IEnumerator Jumping()
 	{
 		while (true)
 		{
-			
-			if (_isFreeze == true)
-			{
-				delayJump = 0.5f;
-			}
-			else if(delayJump>0)
-			{
-				delayJump -= 0.01f;
-			}
-			if (Input.GetButtonDown("Jump") && _isGrounded && delayJump <= 0)
+			if (Input.GetButtonDown("Jump") && _isGrounded)
 			{
 				_jumpTime = Time.time;
 				_rigidbodyPlayer.AddForce(Vector2.up * _jumpImpulse, ForceMode2D.Impulse);
