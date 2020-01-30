@@ -136,7 +136,7 @@ public class Laser : MonoBehaviour
 					case "Reflect":
 						laserLength += _hit.distance;
 						lastPosition = _hit.point + _hit.normal * 0.01f;
-						lastDirection = Vector2.Reflect(lastDirection, _hit.normal);
+						lastDirection = Vector3.Reflect(lastDirection, _hit.normal);
 						break;
 
 					case "Fear":
