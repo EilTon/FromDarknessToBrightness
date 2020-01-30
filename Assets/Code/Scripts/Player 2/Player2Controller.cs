@@ -119,13 +119,13 @@ public class Player2Controller : MonoBehaviour
 		//{
 		//	_cursor--;
 		//}
-		if (_player1.GetComponent<PlayerController>().GetDetach()==false)
+		if (_player1.GetComponent<PlayerController>().GetDetach() == false)
 		{
 			float trigger = Input.GetAxis("LTRT");
 			_currentShieldAngle = Mathf.Clamp(_currentShieldAngle + trigger * _shieldSpeed * _player1.transform.right.x * Time.deltaTime, _minMaxShieldAngle.x, _minMaxShieldAngle.y);
 			Vector2 p1Top2 = new Vector2(Mathf.Sin(_currentShieldAngle * Mathf.Deg2Rad * _player1.transform.right.x), Mathf.Cos(_currentShieldAngle * Mathf.Deg2Rad * _player1.transform.right.x));
 			transform.position = _player1.transform.position + (Vector3)p1Top2 * _shieldDistance;
-			transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(-p1Top2.x, p1Top2.y) * Mathf.Rad2Deg + 90, Vector3.forward);
+			transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(-p1Top2.x, p1Top2.y) * Mathf.Rad2Deg, Vector3.forward);
 		}
 	}
 
