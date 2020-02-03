@@ -221,6 +221,7 @@ public class PlayerController : MonoBehaviour
 			_delaySwitch = 0;
 			if (_switch == false)
 			{
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
 				_rigidbodyPlayer.velocity = Vector2.zero;
 				_camera.Target = _rigidbodyPlayer2.transform;
 				_rigidbodyPlayer = _rigidbodyPlayer2;

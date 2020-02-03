@@ -20,6 +20,9 @@ namespace Railcam2D
 		/// <summary>Change size camera related to the Trigger's Event.</summary>
 		public float SizeCamera;
 
+		/// <summary>Change size camera related to the Trigger's Event.</summary>
+		public float TimeToSize;
+
 		/// <summary>The time period the Trigger waits for between scans.</summary>
 		public float ScanInterval;
 

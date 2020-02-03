@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Railcam2D
@@ -333,7 +334,7 @@ namespace Railcam2D
                                 return null;
                             break;
 						case (TriggerEvent.ChangeSizeCamera):
-							_camera.orthographicSize = _currentTrigger.SizeCamera;
+							StartCoroutine(ChangeSizeCamera(_currentTrigger.TimeToSize,_camera.orthographicSize,_currentTrigger.SizeCamera));
 							break;
                         default:
                             return _currentRail;
@@ -498,6 +499,19 @@ namespace Railcam2D
                 Gizmos.DrawRay(topLeft, new Vector3(_screenSizeInWorldUnits.x, 0f, 0f));
             }
         }
+
+		private IEnumerator ChangeSizeCamera(float time,float oldSize, float newSize)
+		{
+			float elapsed = 0;
+			while (elapsed <= time)
+			{
+				elapsed += Time.deltaTime;
+				float t = Mathf.Clamp01(elapsed / time);
+
+				_camera.orthographicSize = Mathf.Lerp(oldSize, newSize, t);
+				yield return null;
+			}
+		}
 
         #endif
     }
