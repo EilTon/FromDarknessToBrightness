@@ -71,7 +71,7 @@ public class ActionEnable : MonoBehaviour
 		#region Initialize
 		float x = transform.position.x;
 		float y = transform.position.y;
-		_resetStrech.position = transform.position;
+		//_resetStrech.position = transform.position;
 		_limitRight = x + _limitRight;
 		_limitLeft = x - _limitLeft;
 		_limitDown = y - _limitDown;
