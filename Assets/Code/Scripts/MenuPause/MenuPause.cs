@@ -112,7 +112,6 @@ public class MenuPause : MenuController
 	{
 		if (Input.GetButtonDown("Submit"))
 		{
-			Debug.Log("test");
 			switch (GetButton().tag)
 			{
 				case "Resume":

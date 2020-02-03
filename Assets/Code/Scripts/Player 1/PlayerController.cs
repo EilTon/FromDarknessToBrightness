@@ -296,7 +296,7 @@ public class PlayerController : MonoBehaviour
 			
 			if (_isFreeze == true)
 			{
-				delayJump = 0.5f;
+				delayJump = 0.2f;
 			}
 			else if(delayJump>0)
 			{
