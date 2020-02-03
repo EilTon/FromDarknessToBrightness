@@ -19,6 +19,7 @@ public class Laser : MonoBehaviour
 	private Ray2D _ray;
 	private RaycastHit2D _hit;
 	private Vector3[] _positions;
+	private ActionEnable _holding;
 	#endregion
 
 	#region Declarations Event Args
@@ -154,8 +155,9 @@ public class Laser : MonoBehaviour
 						break;
 
 					case "ActionEnable":
-						_hit.collider.GetComponent<ActionEnable>()._Action.Invoke();
-						_hit.collider.GetComponent<ActionEnable>()._isStreching = true;
+						_holding = _hit.collider.GetComponent<ActionEnable>();
+						_holding._Action.Invoke();
+						_holding._isStreching = true;
 						break;
 
 					case "Burn":
@@ -163,7 +165,10 @@ public class Laser : MonoBehaviour
 						break;
 
 					default:
-						FindObjectOfType<ActionEnable>()._isStreching = false;
+						if(_holding != null)
+						{
+							_holding._isStreching = false;
+						}
 						break;
 				}
 			}

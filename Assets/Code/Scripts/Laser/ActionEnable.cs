@@ -36,6 +36,7 @@ public class ActionEnable : MonoBehaviour
 	[HideInInspector]
 	public bool _isStreching;
 	public UnityEvent _Action;
+	public GameObject _platformToHold;
 	#endregion
 
 	#region Declarations private
@@ -43,7 +44,7 @@ public class ActionEnable : MonoBehaviour
 	private Action _action;
 	private float _timerStrech;
 	private float _timerGrowth;
-	private Transform _resetStrech;
+	
 	#endregion
 
 	#region Declarations Event Args
@@ -137,7 +138,7 @@ public class ActionEnable : MonoBehaviour
 				break;
 
 			case Action.HoldStreching:
-				StrechGameObject();
+				HoldStrechGameObject();
 				break;
 
 			case Action.Growing:
@@ -229,25 +230,27 @@ public class ActionEnable : MonoBehaviour
 		transform.Translate(movement);
 	}
 
-	void StrechGameObject()
+	void HoldStrechGameObject()
 	{
-		Debug.Log(_isStreching);
+
 		if (_timerStrech < _timeToStreching && _isStreching == true)
 		{
 			transform.Translate(new Vector2(0, 1 * _speedPositionY * Time.deltaTime));
 			transform.localScale += new Vector3(0, 1 * _speedScaleY * Time.deltaTime);
+			_platformToHold.transform.Translate(new Vector2(0, 1 * -_speedPositionY * Time.deltaTime));
 			_timerStrech += Time.deltaTime;
 		}
 		else if (_isStreching == false && _timerStrech > 0)
 		{
 			transform.Translate(new Vector2(0, 1 * -_speedPositionY * Time.deltaTime));
 			transform.localScale += new Vector3(0, 1 * -_speedScaleY * Time.deltaTime);
+			_platformToHold.transform.Translate(new Vector2(0, 1 * _speedPositionY * Time.deltaTime));
 			_timerStrech -= Time.deltaTime;
 		}
 
 	}
 
-	void HoldStrechGameObject()
+	void StrechGameObject()
 	{
 		if (_timerStrech < _timeToStreching)
 		{
