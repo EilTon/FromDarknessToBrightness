@@ -254,6 +254,7 @@ namespace Railcam2D
 			Vector2 currentPosition = Vector2.zero;
 			float currentRadius = 0f;
 			float currentSizeCamera = 0f;
+			float currentSizeCameraSpeed = 0f;
 			Vector2 currentSize = Vector2.zero;
 
 			if (trigger != null)
@@ -267,6 +268,7 @@ namespace Railcam2D
 				currentRadius = trigger.Radius;
 				currentSize = trigger.Size;
 				currentSizeCamera = trigger.SizeCamera;
+				currentSizeCameraSpeed = trigger.TimeToSize;
 			}
 			else
 				GUI.enabled = false;
@@ -311,6 +313,12 @@ namespace Railcam2D
 				if(trigger.SizeCamera != newSizeCamera)
 				{
 					trigger.SizeCamera = newSizeCamera;
+				}
+				_content = new GUIContent("Speed size Camera", "Change the speed of camera");
+				var newSpeedCamera = EditorGUILayout.FloatField(_content, currentSizeCameraSpeed);
+				if (trigger.TimeToSize != newSpeedCamera)
+				{
+					trigger.TimeToSize = newSpeedCamera;
 				}
 			}
 
