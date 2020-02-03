@@ -1,18 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum DirectionStart
+{
+	Left,
+	Right
+}
 public class StartScene : MonoBehaviour
 {
 	public GameObject _player;
+	public DirectionStart _direction;
 
-    void Start()
-    {
-		Vector3 startPosition = new Vector3(_player.transform.position.x, _player.transform.position.y);
-		Vector3 EndPosition = new Vector3(_player.transform.position.x + 10, _player.transform.position.y);
-		StartCoroutine(MoveFromTo(_player.transform,startPosition,EndPosition,5));
+	void Start()
+	{
+		Vector3 startPosition;
+		Vector3 endPosition;
+		if (_direction == DirectionStart.Right)
+		{
+			startPosition = new Vector3(_player.transform.position.x, _player.transform.position.y);
+			endPosition = new Vector3(_player.transform.position.x + 10, _player.transform.position.y);
+		}
+		else
+		{
+			startPosition = new Vector3(-_player.transform.position.x, _player.transform.position.y);
+			endPosition = new Vector3(-_player.transform.position.x - 10, _player.transform.position.y);
+		}
+
+		StartCoroutine(MoveFromTo(_player.transform, startPosition, endPosition, 5));
 		FindObjectOfType<FadeInFadeOut>().FadeOut();
-    }
+	}
 
 	IEnumerator MoveFromTo(Transform objectToMove, Vector3 a, Vector3 b, float speed)
 	{

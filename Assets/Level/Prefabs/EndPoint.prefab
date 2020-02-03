@@ -71,4 +71,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneName: ScenePrototype
+  _direction: 0
   _canvas: {fileID: 0}

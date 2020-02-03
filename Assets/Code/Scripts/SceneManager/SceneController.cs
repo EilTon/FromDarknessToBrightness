@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SceneController : MonoBehaviour
 {
 	public string _sceneName;
+	public DirectionStart _direction;
 	public Image _canvas;
 
 	private FadeInFadeOut _fade;
@@ -21,9 +22,20 @@ public class SceneController : MonoBehaviour
 		if (collision.CompareTag("Player"))
 		{
 			//collision.GetComponent<PlayerController>().enabled = false;
-			Vector3 startPosition = new Vector3(collision.transform.position.x, collision.transform.position.y);
-			Vector3 EndPosition = new Vector3(collision.transform.position.x + 10, collision.transform.position.y);
-			StartCoroutine(MoveFromTo(collision.transform,startPosition, EndPosition,5));
+			Vector3 startPosition;
+			Vector3 endPosition;
+			if (_direction == DirectionStart.Right)
+			{
+				startPosition = new Vector3(collision.transform.position.x, collision.transform.position.y);
+				endPosition = new Vector3(collision.transform.position.x + 10, collision.transform.position.y);
+			}
+			else
+			{
+				startPosition = new Vector3(-collision.transform.position.x, collision.transform.position.y);
+				endPosition = new Vector3(-collision.transform.position.x - 10, collision.transform.position.y);
+			}
+			
+			StartCoroutine(MoveFromTo(collision.transform,startPosition, endPosition,5));
 			StartCoroutine(ChangeScene());
 		}
 	}

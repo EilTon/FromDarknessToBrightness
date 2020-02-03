@@ -456,6 +456,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6377054944047003494, guid: 6856801bc6a89f74f88f39e87670690e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6856801bc6a89f74f88f39e87670690e, type: 3}
+--- !u!1 &363405692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3607800885811222559, guid: e81cabfc777655744b38c5ca7af0e495,
+    type: 3}
+  m_PrefabInstance: {fileID: 555730565}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &430140787
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -580,7 +586,7 @@ PrefabInstance:
     - target: {fileID: 3607800885811222531, guid: e81cabfc777655744b38c5ca7af0e495,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -58
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 3607800885811222531, guid: e81cabfc777655744b38c5ca7af0e495,
         type: 3}
@@ -1148,7 +1154,7 @@ PrefabInstance:
     - target: {fileID: 997607610362573933, guid: a17aa3309d0232d449ea74ae017ca704,
         type: 3}
       propertyPath: m_Positions.Array.data[1].y
-      value: -92.97
+      value: -94
       objectReference: {fileID: 0}
     - target: {fileID: 997607610362573933, guid: a17aa3309d0232d449ea74ae017ca704,
         type: 3}
@@ -2570,7 +2576,6 @@ GameObject:
   - component: {fileID: 1907567526}
   - component: {fileID: 1907567525}
   - component: {fileID: 1907567528}
-  - component: {fileID: 1907567529}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2668,18 +2673,6 @@ MonoBehaviour:
   SmoothY: 1.5
   BoundX: 0.67
   BoundY: 0.67
---- !u!114 &1907567529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907567524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b272f106554fa7e4f86b480e05cc7c15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2065587506
 GameObject:
   m_ObjectHideFlags: 0
@@ -2927,7 +2920,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3787106413701422924, guid: 953502067b5ec8d4ead6e265a25c5946, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 953502067b5ec8d4ead6e265a25c5946, type: 3}
 --- !u!1 &2068458993386928585 stripped
 GameObject:
@@ -2947,6 +2941,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdee52b2fb29f044aa0c54b26b54259b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 363405692}
+  _direction: 1
 --- !u!1001 &7911767221661272822
 PrefabInstance:
   m_ObjectHideFlags: 0
