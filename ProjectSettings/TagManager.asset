@@ -13,6 +13,10 @@ TagManager:
   - ActionEnable
   - Start
   - Quit
+  - ResetCheckpoint
+  - Resume
+  - QuitMainMenu
+  - ReflectPlayer
   layers:
   - Default
   - TransparentFX

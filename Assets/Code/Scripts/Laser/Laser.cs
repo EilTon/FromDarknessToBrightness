@@ -139,6 +139,12 @@ public class Laser : MonoBehaviour
 						lastDirection = Vector2.Reflect(lastDirection, _hit.normal);
 						break;
 
+					case "ReflectPlayer":
+						laserLength += _hit.distance;
+						lastPosition = _hit.point + _hit.normal * 0.01f;
+						lastDirection = Vector2.Reflect(lastDirection, _hit.normal);
+						break;
+
 					case "Fear":
 						Debug.Log("Test Fear");
 						break;
@@ -149,6 +155,7 @@ public class Laser : MonoBehaviour
 
 					case "ActionEnable":
 						_hit.collider.GetComponent<ActionEnable>()._Action.Invoke();
+						_hit.collider.GetComponent<ActionEnable>()._isStreching = true;
 						break;
 
 					case "Burn":
@@ -156,6 +163,7 @@ public class Laser : MonoBehaviour
 						break;
 
 					default:
+						FindObjectOfType<ActionEnable>()._isStreching = false;
 						break;
 				}
 			}

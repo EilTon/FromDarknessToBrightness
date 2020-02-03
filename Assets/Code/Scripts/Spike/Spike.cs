@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Spike : MonoBehaviour
 {
+	public PlayerController _resetPlayer;
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if(collision.tag == "Player")
+		if(collision.tag == "Player" || collision.tag == "ReflectPlayer")
 		{
-			collision.GetComponent<PlayerController>().ResetPlayer();
+			_resetPlayer.ResetPlayer();
 		}
 	}
 }
