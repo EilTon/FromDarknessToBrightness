@@ -205,6 +205,8 @@ public class PlayerController : MonoBehaviour
 
 			else if (_detach == true && _switch == false)
 			{
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.None;
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
 				_rigidbodyPlayer2.transform.position = transform.position + -transform.right + transform.up * 0.75f;
 				_rigidbodyPlayer2.transform.SetParent(transform);
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
@@ -221,6 +223,7 @@ public class PlayerController : MonoBehaviour
 			_delaySwitch = 0;
 			if (_switch == false)
 			{
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
 				_rigidbodyPlayer.velocity = Vector2.zero;
 				_camera.Target = _rigidbodyPlayer2.transform;
 				_rigidbodyPlayer = _rigidbodyPlayer2;
@@ -229,9 +232,12 @@ public class PlayerController : MonoBehaviour
 			}
 			else if (_switch == true)
 			{
+				
 				_rigidbodyPlayer.velocity = Vector2.zero;
 				_camera.Target = _rigidbodyPlayer1.transform;
 				_rigidbodyPlayer = _rigidbodyPlayer1;
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.None;
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
 				_switch = !_switch;
 				SetPlayer();
 			}
