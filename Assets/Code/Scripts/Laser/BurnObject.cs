@@ -6,6 +6,7 @@ public class BurnObject : MonoBehaviour
 {
 	#region Declarations public
 	public float _timeToBurn;
+	public Rigidbody2D _rigidbody2D;
 	#endregion
 
 	#region Declarations private
@@ -52,6 +53,7 @@ public class BurnObject : MonoBehaviour
 			_timerBurn += Time.deltaTime;
 			if (_timerBurn > _timeToBurn)
 			{
+				_rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
 				Destroy(gameObject);
 			}
 		}
