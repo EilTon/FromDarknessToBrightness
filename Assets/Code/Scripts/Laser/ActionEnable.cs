@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 public enum Action
 {
-	TranslateHorizontal, 
-	TranslateVertical, 
+	TranslateHorizontal,
+	TranslateVertical,
 	OpenGate,
 	Growing,
 	Streching,
+	HoldStreching,
 	Nothing
 }
 
@@ -32,6 +33,8 @@ public class ActionEnable : MonoBehaviour
 	public float _speedPositionX;
 	public float _timeToStreching;
 	public float _timeToGrowing;
+	[HideInInspector]
+	public bool _isStreching;
 	public UnityEvent _Action;
 	#endregion
 
@@ -40,6 +43,7 @@ public class ActionEnable : MonoBehaviour
 	private Action _action;
 	private float _timerStrech;
 	private float _timerGrowth;
+	private Transform _resetStrech;
 	#endregion
 
 	#region Declarations Event Args
@@ -67,10 +71,11 @@ public class ActionEnable : MonoBehaviour
 		#region Initialize
 		float x = transform.position.x;
 		float y = transform.position.y;
-		_limitRight =  x +_limitRight;
-		_limitLeft = x -_limitLeft;
-		_limitDown = y -_limitDown;
-		_limitUp = y +_limitUp;
+		_resetStrech.position = transform.position;
+		_limitRight = x + _limitRight;
+		_limitLeft = x - _limitLeft;
+		_limitDown = y - _limitDown;
+		_limitUp = y + _limitUp;
 
 		switch (_actionPublic)
 		{
@@ -114,7 +119,7 @@ public class ActionEnable : MonoBehaviour
 		#endregion
 
 		#region Actions
-		switch(_action)
+		switch (_action)
 		{
 			case Action.TranslateHorizontal:
 				MoveHorizontal();
@@ -128,6 +133,10 @@ public class ActionEnable : MonoBehaviour
 				break;
 
 			case Action.Streching:
+				StrechGameObject();
+				break;
+
+			case Action.HoldStreching:
 				StrechGameObject();
 				break;
 
@@ -185,6 +194,11 @@ public class ActionEnable : MonoBehaviour
 		_action = Action.Growing;
 	}
 
+	public void HoldStrech()
+	{
+		_action = Action.HoldStreching;
+	}
+
 	void MoveHorizontal()
 	{
 		Vector2 movement;
@@ -217,7 +231,25 @@ public class ActionEnable : MonoBehaviour
 
 	void StrechGameObject()
 	{
-		if(_timerStrech<_timeToStreching)
+		Debug.Log(_isStreching);
+		if (_timerStrech < _timeToStreching && _isStreching == true)
+		{
+			transform.Translate(new Vector2(0, 1 * _speedPositionY * Time.deltaTime));
+			transform.localScale += new Vector3(0, 1 * _speedScaleY * Time.deltaTime);
+			_timerStrech += Time.deltaTime;
+		}
+		else if (_isStreching == false && _timerStrech > 0)
+		{
+			transform.Translate(new Vector2(0, 1 * -_speedPositionY * Time.deltaTime));
+			transform.localScale += new Vector3(0, 1 * -_speedScaleY * Time.deltaTime);
+			_timerStrech -= Time.deltaTime;
+		}
+
+	}
+
+	void HoldStrechGameObject()
+	{
+		if (_timerStrech < _timeToStreching)
 		{
 			transform.Translate(new Vector2(0, 1 * _speedPositionY * Time.deltaTime));
 			transform.localScale += new Vector3(0, 1 * _speedScaleY * Time.deltaTime);
