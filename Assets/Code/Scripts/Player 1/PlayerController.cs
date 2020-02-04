@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 	#endregion
 
 	#region Declarations private
+	private AnimationManager _animationManager;
 	private bool _isFreeze = false;
 	private bool _isGrounded;
 	private bool _isBuffering = false;
@@ -89,6 +90,7 @@ public class PlayerController : MonoBehaviour
 		_originPlayer2 = _player2.transform.position;
 		StartCoroutine(Jumping());
 		StartCoroutine(isGroundedBuffering());
+		_animationManager = GetComponent<AnimationManager>();
 		#endregion
 	}
 
@@ -170,6 +172,7 @@ public class PlayerController : MonoBehaviour
 		if(_isFreeze == false)
 		{
 			_horizontal = Input.GetAxis("Horizontal");
+			//_animationManager.SetSpeedDuo(_horizontal);
 			if (Mathf.Abs(_horizontal) > 0.1f && _isTrigger == false) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
 		}
 	}
@@ -205,9 +208,17 @@ public class PlayerController : MonoBehaviour
 
 			else if (_detach == true && _switch == false)
 			{
+<<<<<<< HEAD
 				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.None;
 				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
 				_rigidbodyPlayer2.transform.position = transform.position + -transform.right + transform.up * 0.75f;
+=======
+				_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x-0.1300149f, transform.position.y - 0.03745449f);
+				if(_rigidbodyPlayer2.transform.eulerAngles.y != _rigidbodyPlayer1.transform.eulerAngles.y)
+				{
+					_rigidbodyPlayer2.transform.eulerAngles = new Vector2(_rigidbodyPlayer2.transform.eulerAngles.x, _rigidbodyPlayer1.transform.eulerAngles.y);
+				}
+>>>>>>> IntegrationAnimations
 				_rigidbodyPlayer2.transform.SetParent(transform);
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
 				_detach = !_detach;

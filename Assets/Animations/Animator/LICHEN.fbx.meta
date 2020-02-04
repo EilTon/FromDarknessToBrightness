@@ -1,0 +1,973 @@
+fileFormatVersion: 2
+guid: 857344b544fa13f45a2d78f595cf536c
+ModelImporter:
+  serializedVersion: 26
+  internalIDToNameTable:
+  - first:
+      74: -6566524894119237543
+    second: Curve_Duo
+  - first:
+      74: 1276460593755876604
+    second: Idle_Duo
+  - first:
+      74: -8484628755361723217
+    second: Jump_Duo
+  - first:
+      74: -4185643349442215484
+    second: Walk_Duo
+  - first:
+      74: 1244865604627456704
+    second: Idle_L_Solo
+  - first:
+      74: 2212518571183689719
+    second: Jump_L_Solo
+  - first:
+      74: 922664578922280014
+    second: Walk_L_Solo
+  - first:
+      74: -7267434063206225775
+    second: Run_L_Solo
+  - first:
+      74: 8252845274180089921
+    second: arm_Lichen|arm_LichenAction
+  - first:
+      74: 450024653498026833
+    second: arm_Lichen|Idle_L_Duo
+  - first:
+      74: 2548148600331113488
+    second: arm_Lichen|Idle_L_Solo
+  - first:
+      74: 377755680091060022
+    second: arm_Lichen|Jump_L_Solo
+  - first:
+      74: 5190878358075722937
+    second: arm_Lichen|Run_L_Solo
+  - first:
+      74: -415011761268048640
+    second: arm_Lichen|Walk_L_Solo
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Curve_Duo
+      takeName: Curve_Duo
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle_Duo
+      takeName: Idle_Duo
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Jump_Duo
+      takeName: Jump_Duo
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walk_Duo
+      takeName: Walk_Duo
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle_L_Solo
+      takeName: Idle_L_Solo
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Jump_L_Solo
+      takeName: Jump_L_Solo
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walk_L_Solo
+      takeName: Walk_L_Solo
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Run_L_Solo
+      takeName: Run_L_Solo
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arm_Lichen|arm_LichenAction
+      takeName: arm_Lichen|arm_LichenAction
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arm_Lichen|Idle_L_Duo
+      takeName: arm_Lichen|Idle_L_Duo
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arm_Lichen|Idle_L_Solo
+      takeName: arm_Lichen|Idle_L_Solo
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arm_Lichen|Jump_L_Solo
+      takeName: arm_Lichen|Jump_L_Solo
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arm_Lichen|Run_L_Solo
+      takeName: arm_Lichen|Run_L_Solo
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: arm_Lichen|Walk_L_Solo
+      takeName: arm_Lichen|Walk_L_Solo
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: LICHEN(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: obj_Lichen
+      parentName: LICHEN(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: arm_Lichen
+      parentName: LICHEN(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: bon_Hand_R.001
+      parentName: arm_Lichen
+      position: {x: -0.00081957324, y: 0.00855481, z: 0.021268344}
+      rotation: {x: 0.0024309158, y: 0.000022876076, z: 0.009409514, w: 0.9999528}
+      scale: {x: 1, y: 1.0000006, z: 1.0000001}
+    - name: bon_Hand_R.001_end
+      parentName: bon_Hand_R.001
+      position: {x: -0, y: 0.0037283595, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Leg2_R.001
+      parentName: arm_Lichen
+      position: {x: 0.0064924713, y: 0.005428889, z: 0.000010313987}
+      rotation: {x: 0.50000006, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1.0000002, y: 0.99999976, z: 1.0000005}
+    - name: bon_Leg2_R.001_end
+      parentName: bon_Leg2_R.001
+      position: {x: -0, y: 0.006666062, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Leg2_L.001
+      parentName: arm_Lichen
+      position: {x: -0.002011375, y: -0.005428889, z: 0.000010313987}
+      rotation: {x: 0.50000006, y: 0.5, z: 0.5, w: 0.5}
+      scale: {x: 1.0000002, y: 0.99999976, z: 1.0000005}
+    - name: bon_Leg2_L.001_end
+      parentName: bon_Leg2_L.001
+      position: {x: -0, y: 0.0067477175, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Arm1_R.001
+      parentName: arm_Lichen
+      position: {x: -0.008821785, y: 0.0085533485, z: 0.018318117}
+      rotation: {x: 0.000000029802322, y: -0.000000059604645, z: 0.70710677, w: 0.7071068}
+      scale: {x: 0.9999998, y: 1.0000001, z: 1}
+    - name: bon_Arm1_R.001_end
+      parentName: bon_Arm1_R.001
+      position: {x: -0, y: 0.00317858, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Hand_L.001
+      parentName: arm_Lichen
+      position: {x: -0.0010357447, y: -0.009722101, z: 0.020749137}
+      rotation: {x: 0.9999591, y: -0.0087183695, z: -0.00021848734, w: 0.0024005175}
+      scale: {x: 0.99999994, y: 0.99997914, z: 0.99999094}
+    - name: bon_Hand_L.001_end
+      parentName: bon_Hand_L.001
+      position: {x: -0, y: 0.0037258926, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Arm1_L.001
+      parentName: arm_Lichen
+      position: {x: -0.009235315, y: -0.0085533485, z: 0.018318117}
+      rotation: {x: 0.7071068, y: -0.7071067, z: -0, w: -0.000000059604645}
+      scale: {x: 0.9999997, y: 0.99999964, z: 0.9999998}
+    - name: bon_Arm1_L.001_end
+      parentName: bon_Arm1_L.001
+      position: {x: -0, y: 0.0024152338, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Hanches.001
+      parentName: arm_Lichen
+      position: {x: -0, y: 0, z: 0.0142795285}
+      rotation: {x: 0.39574727, y: 0.39574727, z: 0.5859899, w: 0.5859898}
+      scale: {x: 0.99999976, y: 0.9999997, z: 0.9999998}
+    - name: bon_Hanches
+      parentName: bon_Hanches.001
+      position: {x: 0.00004506188, y: 0.00076599076, z: 0.002372994}
+      rotation: {x: -0.5783179, y: -0.17051996, z: -0.67761445, w: 0.4210821}
+      scale: {x: 1.0000007, y: 1.0000013, z: 1.0000006}
+    - name: bon_Queue3
+      parentName: bon_Hanches
+      position: {x: 1.7093741e-11, y: 0.0024939685, z: -5.7079225e-10}
+      rotation: {x: 0.4599176, y: 0.0025322475, z: -0.011486679, w: 0.88788366}
+      scale: {x: 1.0000001, y: 1, z: 1.0000005}
+    - name: bon_Queue3a
+      parentName: bon_Queue3
+      position: {x: -6.661338e-18, y: 0.0035362928, z: 6.705522e-10}
+      rotation: {x: 0.20263064, y: 2.3283064e-10, z: -0.00000004164758, w: 0.97925526}
+      scale: {x: 0.99999964, y: 0.99999964, z: 0.9999991}
+    - name: bon_Queue3b
+      parentName: bon_Queue3a
+      position: {x: 7.105427e-17, y: 0.0031924269, z: 8.940696e-10}
+      rotation: {x: -0.18502675, y: -0.0000000126561295, z: -0.00000001970676, w: 0.9827335}
+      scale: {x: 0.9999996, y: 0.9999999, z: 1}
+    - name: bon_Queue3b_end
+      parentName: bon_Queue3b
+      position: {x: -0, y: 0.0017255135, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Queue2a_L
+      parentName: bon_Queue3
+      position: {x: -6.661338e-18, y: 0.0035362928, z: 6.705522e-10}
+      rotation: {x: 0.36204162, y: -0.91135865, z: 0.19498919, w: 0.018182624}
+      scale: {x: 1.0000001, y: 0.9999999, z: 1.0000002}
+    - name: bon_Queue2b_L
+      parentName: bon_Queue2a_L
+      position: {x: 5.826939e-10, y: 0.0040404205, z: 0.0000000010058283}
+      rotation: {x: 0.36275008, y: 0.02233689, z: 0.03793284, w: 0.93084615}
+      scale: {x: 0.9999996, y: 0.9999997, z: 1.0000005}
+    - name: bon_Queue2b_L_end
+      parentName: bon_Queue2b_L
+      position: {x: -0, y: 0.0019086723, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Queue2a_R
+      parentName: bon_Queue3
+      position: {x: -6.661338e-18, y: 0.0035362928, z: 6.705522e-10}
+      rotation: {x: -0.19498898, y: -0.01818244, z: -0.3620418, w: 0.9113586}
+      scale: {x: 1, y: 0.9999995, z: 1.0000001}
+    - name: bon_Queue2b_R
+      parentName: bon_Queue2a_R
+      position: {x: -4.063679e-11, y: 0.0040404205, z: -5.5879353e-11}
+      rotation: {x: 0.3627503, y: 0.022337422, z: -0.037932977, w: -0.93084604}
+      scale: {x: 1.0000001, y: 1.0000002, z: 1.0000008}
+    - name: bon_Queue2b_R_end
+      parentName: bon_Queue2b_R
+      position: {x: -0, y: 0.0019086723, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Dos_Bas
+      parentName: bon_Hanches
+      position: {x: 1.3521331e-11, y: 0.0000000013456156, z: -2.9314834e-10}
+      rotation: {x: -0.017780155, y: -0.20537506, z: -0.97842085, w: -0.014056796}
+      scale: {x: 1.0000006, y: 0.99999976, z: 0.9999998}
+    - name: bon_Dos_Mid
+      parentName: bon_Dos_Bas
+      position: {x: 2.3283064e-12, y: 0.0023175164, z: 9.695941e-10}
+      rotation: {x: -0.003879704, y: 0.9437697, z: 0.32917026, w: -0.030509118}
+      scale: {x: 1.0000007, y: 1.000001, z: 1.0000004}
+    - name: bon_Dos_Haut
+      parentName: bon_Dos_Mid
+      position: {x: 4.6566128e-12, y: 0.0027340343, z: 8.323695e-11}
+      rotation: {x: -0.14292891, y: -0.018632734, z: -0.0068554333, w: 0.9895338}
+      scale: {x: 0.99999994, y: 1.0000005, z: 0.9999997}
+    - name: bon_Arm1_R
+      parentName: bon_Dos_Haut
+      position: {x: 0.0017714194, y: 0.0041772802, z: 0.000025475036}
+      rotation: {x: -0.34127912, y: -0.34092584, z: -0.6194912, w: 0.619297}
+      scale: {x: 1.0000007, y: 1.0000012, z: 1.0000002}
+    - name: bon_Arm2_R
+      parentName: bon_Arm1_R
+      position: {x: -0.00000000115484, y: 0.006781932, z: 0.0000000013038516}
+      rotation: {x: -0.0003179609, y: 0.0000009834764, z: -0.0016443204, w: 0.99999857}
+      scale: {x: 1.0000014, y: 0.9999998, z: 1.000001}
+    - name: bon_Hand_R
+      parentName: bon_Arm2_R
+      position: {x: -0, y: 0.0066732857, z: 0.0000000024586915}
+      rotation: {x: -0.009903219, y: 0.00016321795, z: 0.011052683, w: 0.9998899}
+      scale: {x: 0.99999976, y: 0.99999946, z: 1.0000007}
+    - name: bon_MidFinger1_R
+      parentName: bon_Hand_R
+      position: {x: 0.0000052596256, y: 0.004011587, z: 0.0007498215}
+      rotation: {x: 0.010302797, y: -0.00013692884, z: -0.008091147, w: 0.99991417}
+      scale: {x: 0.9999999, y: 1.0000002, z: 1.0000004}
+    - name: bon_MidFinger2_R
+      parentName: bon_MidFinger1_R
+      position: {x: -4.4703483e-10, y: 0.0023272377, z: 5.7742e-10}
+      rotation: {x: 0.0020202687, y: 0.00000011908372, z: 0.00000029798986, w: 0.999998}
+      scale: {x: 1.0000006, y: 1.0000007, z: 1.0000006}
+    - name: bon_MidFinger2_R_end
+      parentName: bon_MidFinger2_R
+      position: {x: -0, y: 0.002087593, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_SmallFinger1_R
+      parentName: bon_Hand_R
+      position: {x: 0.000005061254, y: 0.0039916653, z: -0.0011681493}
+      rotation: {x: 0.010302738, y: -0.00013690078, z: -0.008090924, w: 0.9999142}
+      scale: {x: 1.0000002, y: 1.0000006, z: 1.0000006}
+    - name: bon_SmallFinger2_R
+      parentName: bon_SmallFinger1_R
+      position: {x: -4.4703483e-10, y: 0.0023272359, z: 0.000000001322478}
+      rotation: {x: 0.002020239, y: 0.00000011896097, z: 0.00000019288497, w: 0.99999803}
+      scale: {x: 1.0000005, y: 1.0000008, z: 1.0000008}
+    - name: bon_SmallFinger2_R_end
+      parentName: bon_SmallFinger2_R
+      position: {x: -0, y: 0.002087593, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Pouce1_R
+      parentName: bon_Hand_R
+      position: {x: -0.000030036494, y: 0.0021407166, z: 0.0016702595}
+      rotation: {x: 0.16628107, y: -0.0036780862, z: -0.0034103037, w: 0.9860657}
+      scale: {x: 1.0000007, y: 1, z: 1.0000001}
+    - name: bon_Pouce2_R
+      parentName: bon_Pouce1_R
+      position: {x: 2.2351741e-10, y: 0.0015797425, z: 8.1956386e-10}
+      rotation: {x: -0.028720878, y: 0.00000028964126, z: 0.00000048364734, w: 0.99958754}
+      scale: {x: 0.99999976, y: 1.0000002, z: 0.99999964}
+    - name: bon_Pouce2_R_end
+      parentName: bon_Pouce2_R
+      position: {x: -0, y: 0.0015558727, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Arm1_L
+      parentName: bon_Dos_Haut
+      position: {x: -0.0017714192, y: 0.0041772774, z: 0.000025474976}
+      rotation: {x: 0.61949164, y: -0.61929667, z: 0.34127885, w: 0.34092596}
+      scale: {x: 1.0000005, y: 1.000001, z: 0.99999994}
+    - name: bon_Arm2_L
+      parentName: bon_Arm1_L
+      position: {x: 6.61239e-10, y: 0.00678193, z: -0.000000002235174}
+      rotation: {x: 0.00031813976, y: 0.0000026822088, z: -0.0016444919, w: 0.99999857}
+      scale: {x: 1.0000007, y: 1.0000004, z: 1.0000008}
+    - name: bon_Hand_L
+      parentName: bon_Arm2_L
+      position: {x: -0, y: 0.006673287, z: 0.00000000115484}
+      rotation: {x: 0.009962895, y: -0.00035010753, z: 0.010359653, w: 0.99989665}
+      scale: {x: 0.99999994, y: 0.99999857, z: 1.0000012}
+    - name: bon_MidFinger1_L
+      parentName: bon_Hand_L
+      position: {x: 0.0000045833735, y: 0.004009085, z: -0.0007498336}
+      rotation: {x: -0.010314196, y: 0.0003200097, z: -0.0074964557, w: 0.9999187}
+      scale: {x: 1.0000001, y: 1.0000001, z: 0.9999998}
+    - name: bon_MidFinger2_L
+      parentName: bon_MidFinger1_L
+      position: {x: -2.9802322e-10, y: 0.002327238, z: -3.352761e-10}
+      rotation: {x: -0.0020202391, y: -0.00000017865382, z: 0.00000029668132, w: 0.999998}
+      scale: {x: 1.000001, y: 1.000001, z: 1.0000007}
+    - name: bon_MidFinger2_L_end
+      parentName: bon_MidFinger2_L
+      position: {x: -0, y: 0.002087593, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_SmallFinger1_L
+      parentName: bon_Hand_L
+      position: {x: 0.000005140677, y: 0.0039892714, z: 0.0011681372}
+      rotation: {x: -0.010314688, y: 0.00032002982, z: -0.007496366, w: 0.9999187}
+      scale: {x: 1.0000005, y: 1.0000006, z: 1.0000002}
+    - name: bon_SmallFinger2_L
+      parentName: bon_SmallFinger1_L
+      position: {x: -0, y: 0.0023272422, z: 9.965151e-10}
+      rotation: {x: -0.002020209, y: -0.00000013395035, z: 0.00000041589712, w: 0.999998}
+      scale: {x: 1.0000013, y: 1.0000011, z: 1.0000012}
+    - name: bon_SmallFinger2_L_end
+      parentName: bon_SmallFinger2_L
+      position: {x: -0, y: 0.0020875882, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Pouce1_L
+      parentName: bon_Hand_L
+      position: {x: -0.000028476472, y: 0.0021381115, z: -0.0016701575}
+      rotation: {x: -0.16634853, y: 0.003598194, z: -0.0031267933, w: 0.9860555}
+      scale: {x: 1.0000006, y: 0.9999999, z: 0.9999999}
+    - name: bon_Pouce2_L
+      parentName: bon_Pouce1_L
+      position: {x: 9.685754e-10, y: 0.001579741, z: 0.000000001117587}
+      rotation: {x: 0.028720163, y: -0.00000005587934, z: 0.0000003418535, w: 0.9995875}
+      scale: {x: 1.0000005, y: 1.0000008, z: 1}
+    - name: bon_Pouce2_L_end
+      parentName: bon_Pouce2_L
+      position: {x: -0, y: 0.0015558727, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Cou
+      parentName: bon_Dos_Haut
+      position: {x: -1.7462298e-12, y: 0.004211203, z: -7.084964e-11}
+      rotation: {x: 0.2782913, y: 0.00000009313224, z: 0.000000029802319, w: 0.9604967}
+      scale: {x: 1.0000008, y: 1, z: 1.0000012}
+    - name: bon_Head
+      parentName: bon_Cou
+      position: {x: -9.8953025e-12, y: 0.0023941763, z: -0.0000000021003195}
+      rotation: {x: -0.13538007, y: 0.000000027364411, z: -0.000000030223486, w: 0.9907938}
+      scale: {x: 1.000001, y: 1.0000002, z: 1.0000006}
+    - name: bon_Hair1a_R
+      parentName: bon_Head
+      position: {x: 5.2023095e-12, y: 0.004974689, z: 2.370075e-10}
+      rotation: {x: -0.37297913, y: -0.21630998, z: -0.17141102, w: 0.88584137}
+      scale: {x: 0.9999999, y: 0.99999964, z: 1}
+    - name: bon_Hair1b_R
+      parentName: bon_Hair1a_R
+      position: {x: 2.3283063e-11, y: 0.0070291515, z: -0.0000000023841857}
+      rotation: {x: 0.17551553, y: 0.11902885, z: 0.14663109, w: 0.96619135}
+      scale: {x: 0.99999976, y: 1.0000007, z: 1.0000001}
+    - name: bon_Hair1b_R_end
+      parentName: bon_Hair1b_R
+      position: {x: -0, y: 0.0035454668, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Hair2a_R
+      parentName: bon_Head
+      position: {x: 5.2023095e-12, y: 0.004974689, z: 2.370075e-10}
+      rotation: {x: -0.44965455, y: -0.36078003, z: -0.39738622, w: 0.71395576}
+      scale: {x: 0.99999976, y: 0.99999964, z: 1}
+    - name: bon_Hair2b_R
+      parentName: bon_Hair2a_R
+      position: {x: 1.04773785e-11, y: 0.006692721, z: 0.000000002682209}
+      rotation: {x: -0.08675259, y: 0.010381501, z: 0.11817816, w: 0.9891411}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: bon_Hair2b_R_end
+      parentName: bon_Hair2b_R
+      position: {x: -0, y: 0.003948443, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Hair3a_R
+      parentName: bon_Head
+      position: {x: 5.2023095e-12, y: 0.004974689, z: 2.370075e-10}
+      rotation: {x: -0.5529306, y: -0.28696185, z: -0.4162586, w: 0.6623062}
+      scale: {x: 0.9999995, y: 0.99999964, z: 1.0000002}
+    - name: bon_Hair3b_R
+      parentName: bon_Hair3a_R
+      position: {x: 4.947651e-10, y: 0.007693894, z: -1.8975697e-10}
+      rotation: {x: -0.04715683, y: 0.0076857936, z: -0.05481252, w: 0.99735284}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000005}
+    - name: bon_Hair3b_R_end
+      parentName: bon_Hair3b_R
+      position: {x: -0, y: 0.0031257903, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Hair1a_L
+      parentName: bon_Head
+      position: {x: 5.2023095e-12, y: 0.004974689, z: 2.370075e-10}
+      rotation: {x: 0.17141141, y: -0.88584137, z: 0.37297907, w: 0.21630976}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1.0000002}
+    - name: bon_Hair1b_L
+      parentName: bon_Hair1a_L
+      position: {x: 9.359792e-10, y: 0.007029149, z: -0.0000000010430813}
+      rotation: {x: -0.17551522, y: -0.119028546, z: 0.14663146, w: 0.9661915}
+      scale: {x: 0.9999999, y: 1, z: 0.9999999}
+    - name: bon_Hair1b_L_end
+      parentName: bon_Hair1b_L
+      position: {x: -0, y: 0.0035454668, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Hair2a_L
+      parentName: bon_Head
+      position: {x: 5.2023095e-12, y: 0.004974689, z: 2.370075e-10}
+      rotation: {x: 0.39738655, y: -0.71395576, z: 0.4496545, w: 0.3607796}
+      scale: {x: 0.9999997, y: 0.99999994, z: 1.0000002}
+    - name: bon_Hair2b_L
+      parentName: bon_Hair2a_L
+      position: {x: 2.2351741e-10, y: 0.00669272, z: -3.1664968e-10}
+      rotation: {x: 0.086752586, y: -0.01038098, z: 0.11817823, w: 0.9891411}
+      scale: {x: 0.9999999, y: 0.99999994, z: 0.9999998}
+    - name: bon_Hair2b_L_end
+      parentName: bon_Hair2b_L
+      position: {x: -0, y: 0.0039484426, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Hair3a_L
+      parentName: bon_Head
+      position: {x: 5.2023095e-12, y: 0.004974689, z: 2.370075e-10}
+      rotation: {x: 0.41625878, y: -0.6623059, z: 0.5529308, w: 0.28696197}
+      scale: {x: 0.99999976, y: 1, z: 1.0000006}
+    - name: bon_Hair3b_L
+      parentName: bon_Hair3a_L
+      position: {x: -1.3737007e-10, y: 0.0076938933, z: -4.4121407e-10}
+      rotation: {x: 0.047156867, y: -0.0076860012, z: -0.05481262, w: 0.99735284}
+      scale: {x: 1.0000005, y: 1.0000006, z: 1.0000005}
+    - name: bon_Hair3b_L_end
+      parentName: bon_Hair3b_L
+      position: {x: -0, y: 0.00312579, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Queue1a_L
+      parentName: bon_Hanches
+      position: {x: 1.7093741e-11, y: 0.0024939685, z: -5.7079225e-10}
+      rotation: {x: 0.28545815, y: -0.9257857, z: -0.19688553, w: -0.15056771}
+      scale: {x: 1.0000007, y: 0.99999994, z: 1.0000008}
+    - name: bon_Queue1b_L
+      parentName: bon_Queue1a_L
+      position: {x: -4.4607304e-10, y: 0.003539991, z: 2.2351741e-10}
+      rotation: {x: 0.1122387, y: 0.0036880674, z: 0.00901565, w: 0.99363357}
+      scale: {x: 1, y: 1.0000005, z: 1.0000006}
+    - name: bon_Queue1b_L_end
+      parentName: bon_Queue1b_L
+      position: {x: -0, y: 0.0025270246, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Leg1_R
+      parentName: bon_Hanches
+      position: {x: 0.0012584687, y: -0.00005702701, z: -0.0013127325}
+      rotation: {x: 0.2959235, y: -0.224444, z: 0.15683633, w: -0.91512656}
+      scale: {x: 0.99999976, y: 1.0000007, z: 1.000001}
+    - name: bon_Leg2_R
+      parentName: bon_Leg1_R
+      position: {x: -8.492497e-10, y: 0.00835637, z: -7.392373e-10}
+      rotation: {x: -0.03290058, y: 0.87795794, z: -0.1797776, w: 0.44247863}
+      scale: {x: 1.0000005, y: 1.0000013, z: 1.0000004}
+    - name: bon_Leg2_R_end
+      parentName: bon_Leg2_R
+      position: {x: -0, y: 0.009995394, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Leg1_L
+      parentName: bon_Hanches
+      position: {x: -0.0013887702, y: -0.000009182426, z: -0.0012728475}
+      rotation: {x: 0.14471543, y: -0.92108774, z: 0.29753473, w: -0.20525098}
+      scale: {x: 1.0000007, y: 1.0000014, z: 1.000001}
+    - name: bon_Leg2_L
+      parentName: bon_Leg1_L
+      position: {x: 1.4901161e-10, y: 0.008356373, z: -0.0000000011920929}
+      rotation: {x: 0.032900803, y: -0.87795794, z: -0.17977752, w: 0.44247878}
+      scale: {x: 0.9999995, y: 1.0000004, z: 0.9999999}
+    - name: bon_Leg2_L_end
+      parentName: bon_Leg2_L
+      position: {x: -0, y: 0.009995394, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bon_Queue1a_R
+      parentName: bon_Hanches
+      position: {x: 1.7093741e-11, y: 0.0024939685, z: -5.7079225e-10}
+      rotation: {x: 0.19525212, y: 0.16091326, z: -0.3050721, w: 0.9181038}
+      scale: {x: 0.99999994, y: 1.0000011, z: 1.000001}
+    - name: bon_Queue1b_R
+      parentName: bon_Queue1a_R
+      position: {x: -8.523603e-11, y: 0.0035399904, z: 4.0978193e-10}
+      rotation: {x: 0.11223877, y: 0.003688082, z: -0.0090155415, w: -0.9936335}
+      scale: {x: 1.0000004, y: 1.0000007, z: 1.0000008}
+    - name: bon_Queue1b_R_end
+      parentName: bon_Queue1b_R
+      position: {x: -0, y: 0.0025270246, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
