@@ -208,17 +208,14 @@ public class PlayerController : MonoBehaviour
 
 			else if (_detach == true && _switch == false)
 			{
-<<<<<<< HEAD
 				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.None;
 				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
 				_rigidbodyPlayer2.transform.position = transform.position + -transform.right + transform.up * 0.75f;
-=======
 				_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x-0.1300149f, transform.position.y - 0.03745449f);
 				if(_rigidbodyPlayer2.transform.eulerAngles.y != _rigidbodyPlayer1.transform.eulerAngles.y)
 				{
 					_rigidbodyPlayer2.transform.eulerAngles = new Vector2(_rigidbodyPlayer2.transform.eulerAngles.x, _rigidbodyPlayer1.transform.eulerAngles.y);
 				}
->>>>>>> IntegrationAnimations
 				_rigidbodyPlayer2.transform.SetParent(transform);
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
 				_detach = !_detach;
