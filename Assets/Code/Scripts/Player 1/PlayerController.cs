@@ -169,10 +169,28 @@ public class PlayerController : MonoBehaviour
 
 	void Move()
 	{
-		if(_isFreeze == false)
+		if (_isFreeze == false)
 		{
 			_horizontal = Input.GetAxis("Horizontal");
-			//_animationManager.SetSpeedDuo(_horizontal);
+			if (_detach == false)
+			{
+				_animationManager.StartSpeedDuo();
+				_animationManager.SetSpeedDuo(_horizontal);
+			}
+			else
+			{
+				_animationManager.StopSpeedDuo();
+				if (_switch == false)
+				{
+					_animationManager.SetSpeedLichen(_horizontal);
+				}
+				else
+				{
+					_animationManager.SetSpeedTrilo(_horizontal);
+				}
+
+			}
+
 			if (Mathf.Abs(_horizontal) > 0.1f && _isTrigger == false) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
 		}
 	}
@@ -208,8 +226,8 @@ public class PlayerController : MonoBehaviour
 
 			else if (_detach == true && _switch == false)
 			{
-				_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x-0.1300149f, transform.position.y - 0.03745449f);
-				if(_rigidbodyPlayer2.transform.eulerAngles.y != _rigidbodyPlayer1.transform.eulerAngles.y)
+				_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x - 0.1300149f, transform.position.y - 0.03745449f);
+				if (_rigidbodyPlayer2.transform.eulerAngles.y != _rigidbodyPlayer1.transform.eulerAngles.y)
 				{
 					_rigidbodyPlayer2.transform.eulerAngles = new Vector2(_rigidbodyPlayer2.transform.eulerAngles.x, _rigidbodyPlayer1.transform.eulerAngles.y);
 				}
@@ -301,12 +319,12 @@ public class PlayerController : MonoBehaviour
 	{
 		while (true)
 		{
-			
+
 			if (_isFreeze == true)
 			{
 				delayJump = 0.2f;
 			}
-			else if(delayJump>0)
+			else if (delayJump > 0)
 			{
 				delayJump -= 0.01f;
 			}
