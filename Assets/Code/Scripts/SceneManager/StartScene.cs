@@ -22,8 +22,8 @@ public class StartScene : MonoBehaviour
 		}
 		else
 		{
-			startPosition = new Vector3(-_player.transform.position.x, _player.transform.position.y);
-			endPosition = new Vector3(-_player.transform.position.x - 10, _player.transform.position.y);
+			startPosition = new Vector3(_player.transform.position.x, _player.transform.position.y);
+			endPosition = new Vector3(_player.transform.position.x - 10, _player.transform.position.y);
 		}
 
 		StartCoroutine(MoveFromTo(_player.transform, startPosition, endPosition, 5));
