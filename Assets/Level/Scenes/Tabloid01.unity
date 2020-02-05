@@ -999,7 +999,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125527981}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -136, y: -3.72, z: 0}
+  m_LocalPosition: {x: -136, y: -3.72, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7400,7 +7400,7 @@ MonoBehaviour:
       bevelSize: 0
       spriteIndex: 0
       corner: 1
-    - position: {x: -498.09293, y: 3.9982226, z: -0.0000019073486}
+    - position: {x: -498.68005, y: 3.8507946, z: -0.0000019073486}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -8655,20 +8655,12 @@ EdgeCollider2D:
   - {x: -617.1282, y: 6.5677605}
   - {x: -617.0425, y: 7.1567717}
   - {x: -502.28763, y: 6.850212}
-  - {x: -501.16083, y: 12.638176}
-  - {x: -499.8354, y: 13.888436}
   - {x: -499.0787, y: 15.734765}
   - {x: -487.60922, y: 15.734764}
-  - {x: -486.1432, y: 21.451933}
-  - {x: -484.6648, y: 22.36743}
-  - {x: -484.17834, y: 23.772558}
-  - {x: -483.21143, y: 24.195032}
-  - {x: -476.96005, y: 24.152227}
-  - {x: -476.5342, y: 24.149538}
-  - {x: -474.67245, y: 24.116932}
+  - {x: -485.17093, y: 24.049305}
   - {x: -468.59375, y: 23.995775}
-  - {x: -464.71823, y: 32.09964}
-  - {x: -443.58017, y: 32.07903}
+  - {x: -465.90134, y: 32.02678}
+  - {x: -443.2844, y: 32.07903}
   - {x: -444.14517, y: 27.565077}
   - {x: -442.79184, y: 25.87726}
   - {x: -442.88254, y: 4.0047326}
@@ -9576,7 +9568,7 @@ PrefabInstance:
     - target: {fileID: 3607800885811222531, guid: e81cabfc777655744b38c5ca7af0e495,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3607800885811222531, guid: e81cabfc777655744b38c5ca7af0e495,
         type: 3}
