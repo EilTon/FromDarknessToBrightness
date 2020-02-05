@@ -51,6 +51,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackgroundCanvas
+    uniqueID: 2776798559
+    locked: 0
+  - name: Background02
+    uniqueID: 4128048545
+    locked: 0
   - name: Background01
     uniqueID: 154362443
     locked: 0
