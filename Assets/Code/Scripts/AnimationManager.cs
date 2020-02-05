@@ -37,4 +37,10 @@ public class AnimationManager : MonoBehaviour
 		_lichen.SetLayerWeight(2, 1);
 		_trilo.SetLayerWeight(2, 1);
 	}
+
+	public void SetCourbe(float courbe)
+	{
+		_lichen.SetLayerWeight(4, courbe);
+		_trilo.SetLayerWeight(1, courbe);
+	}
 }

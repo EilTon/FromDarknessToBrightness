@@ -9,15 +9,13 @@ public class Player2Controller : MonoBehaviour
 	public float _shieldSpeed = 15;
 	public float _shieldDistance = 1;
 	public Vector2 _minMaxShieldAngle = new Vector2(-30, 30);
-	public float _currentShieldAngle = -45;
+	public float _currentShieldAngle = 0;
 	#endregion
 
 	#region Declarations privates
+	private AnimationManager _animationManager;
 	private bool _rotation = false;
 	private float _playerAngles;
-	#endregion
-
-	#region Declarations private
 	private ShieldScript _shield;
 	private float _rightX;
 	private int _cursor = 0;
@@ -48,6 +46,7 @@ public class Player2Controller : MonoBehaviour
 	{
 		#region Initialize
 		_shield = _player1.GetComponent<ShieldScript>();
+		_animationManager = FindObjectOfType<AnimationManager>();
 		//_cursor = _shield._positions.Count;
 		#endregion
 	}
@@ -126,10 +125,14 @@ public class Player2Controller : MonoBehaviour
 		if (_player1.GetComponent<PlayerController>().GetDetach()==false)
 		{
 			float trigger = Input.GetAxis("LTRT");
+			float _horizontal = Input.GetAxis("Horizontal");
 			_currentShieldAngle = Mathf.Clamp(_currentShieldAngle + trigger * _shieldSpeed * _player1.transform.right.x * Time.deltaTime, _minMaxShieldAngle.x, _minMaxShieldAngle.y);
 			Vector2 p1Top2 = new Vector2(Mathf.Sin(_currentShieldAngle * Mathf.Deg2Rad * _player1.transform.right.x), Mathf.Cos(_currentShieldAngle * Mathf.Deg2Rad * _player1.transform.right.x));
 			transform.position = _player1.transform.position + (Vector3)p1Top2 * _shieldDistance;
-			transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(-p1Top2.x, p1Top2.y) * Mathf.Rad2Deg + 90, Vector3.forward);
+			//Debug.Log(Quaternion.AngleAxis(Mathf.Atan2(-p1Top2.x, p1Top2.y) * Mathf.Rad2Deg, Vector3.forward));
+			transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(-p1Top2.x , p1Top2.y) * Mathf.Rad2Deg, Vector3.forward) * _player1.transform.rotation;
+			_animationManager.SetCourbe(_currentShieldAngle / _minMaxShieldAngle.y);
+
 		}
 	}
 
