@@ -28,10 +28,10 @@ TagManager:
   - 
   - Ground
   - Fear
-  - 
-  - 
-  - 
-  - 
+  - PPP
+  - IgnoreLightPlayer
+  - BGPlaceHolder
+  - Pics
   - 
   - 
   - 
@@ -51,6 +51,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackgroundCanvas
+    uniqueID: 2166786177
+    locked: 0
   - name: Background02
     uniqueID: 3564487469
     locked: 0
