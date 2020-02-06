@@ -29,11 +29,13 @@ public class AnimationManager : MonoBehaviour
 	public void StopSpeedDuo()
 	{
 		_lichen.SetLayerWeight(2, 0);
-		_trilo.SetLayerWeight(2, 0);
+		_trilo.SetLayerWeight(0, 0);
+		_trilo.SetLayerWeight(3, 1);
 	}
 
 	public void StartSpeedDuo()
 	{
+		_trilo.SetLayerWeight(3, 0);
 		_lichen.SetLayerWeight(2, 1);
 		_trilo.SetLayerWeight(2, 1);
 	}
@@ -42,5 +44,35 @@ public class AnimationManager : MonoBehaviour
 	{
 		_lichen.SetLayerWeight(4, courbe);
 		_trilo.SetLayerWeight(1, courbe);
+	}
+
+	public void SetDuoJump()
+	{
+		//stop speed
+		_lichen.SetLayerWeight(2, 0);
+		_trilo.SetLayerWeight(0, 0);
+		//start jump
+		_lichen.SetLayerWeight(3, 1);
+		_trilo.SetLayerWeight(2, 1);
+		//Enable jump
+		_lichen.SetBool("Jump_Duo_Lichen",true);
+		_lichen.SetBool("Landing_Duo_Lichen", true);
+		_trilo.SetTrigger("Jump_Duo_Trilo");
+		_trilo.SetBool("Landing_Duo_Trilo", true);
+	}
+
+	public void StopDuoJump()
+	{
+		//stop speed
+		_lichen.SetLayerWeight(2, 1);
+		_trilo.SetLayerWeight(0, 1);
+		//start jump
+		_lichen.SetLayerWeight(3, 0);
+		_trilo.SetLayerWeight(2, 0);
+		//Enable jump
+		_lichen.SetBool("Jump_Duo_Lichen", false);
+		_lichen.SetBool("Landing_Duo_Lichen", false);
+		_trilo.SetTrigger("Jump_Duo_Trilo");
+		_trilo.SetBool("Landing_Duo_Trilo", false);
 	}
 }

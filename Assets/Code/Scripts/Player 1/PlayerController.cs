@@ -23,10 +23,12 @@ public class PlayerController : MonoBehaviour
 	public float _delayShield;
 	public float _limitAttach;
 	public float _bufferDelay;
+	public CircleCollider2D _Shield;
 	#endregion
 
 	#region Declarations private
 	private AnimationManager _animationManager;
+	private bool _isJumping = false;
 	private bool _isFreeze = false;
 	private bool _isGrounded;
 	private bool _isBuffering = false;
@@ -201,6 +203,12 @@ public class PlayerController : MonoBehaviour
 	{
 		if (_isGrounded)
 		{
+			//if(_isJumping == true)
+			//{
+			//	_animationManager.StopDuoJump();
+			//	_isJumping = false;
+			//}
+			//_isJumping = false;
 			_rigidbodyPlayer.velocity = (Vector3.right * _horizontal * _speed) + Vector3.up * _rigidbodyPlayer.velocity.y;
 		}
 		else
@@ -223,6 +231,7 @@ public class PlayerController : MonoBehaviour
 			{
 				_rigidbodyPlayer2.transform.parent = null;
 				_colliderPlayer2Capsule.enabled = true;
+				_Shield.enabled = false;
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Dynamic;
 				_detach = !_detach;
 			}
@@ -230,6 +239,7 @@ public class PlayerController : MonoBehaviour
 			else if (_detach == true && _switch == false)
 			{
 				_colliderPlayer2Capsule.enabled = false;
+				_Shield.enabled = true;
 				_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x - 0.1300149f, transform.position.y - 0.03745449f);
 				if (_rigidbodyPlayer2.transform.eulerAngles.y != _rigidbodyPlayer1.transform.eulerAngles.y)
 				{
@@ -247,6 +257,8 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetButtonDown("Switch") && _delaySwitch >= _storeDelaySwitch && _detach == true)
 		{
+			_animationManager.SetSpeedLichen(0);
+			_animationManager.SetSpeedTrilo(0);
 			_delaySwitch = 0;
 			if (_switch == false)
 			{
@@ -366,6 +378,11 @@ public class PlayerController : MonoBehaviour
 			}
 			if (Input.GetButtonDown("Jump") && _isGrounded && delayJump <= 0)
 			{
+				_isJumping = true;
+				if(_detach == false)
+				{
+					//_animationManager.SetDuoJump();
+				}
 				_jumpTime = Time.time;
 				_rigidbodyPlayer.AddForce(Vector2.up * _jumpImpulse, ForceMode2D.Impulse);
 				while (Input.GetButton("Jump") && Time.time < _jumpTime + _jumpTimeDelay)
