@@ -56,27 +56,6 @@ public class AnimationManager : MonoBehaviour
 		_trilo.SetLayerWeight(2, 1);
 		//Enable jump
 		_lichen.SetBool("Jump_Duo_Lichen",true);
-<<<<<<< HEAD
-		_lichen.SetBool("Landing_Duo_Lichen", true);
-		_trilo.SetTrigger("Jump_Duo_Trilo");
-		_trilo.SetBool("Landing_Duo_Trilo", true);
-	}
-
-	public void StopDuoJump()
-	{
-		//stop speed
-		_lichen.SetLayerWeight(2, 1);
-		_trilo.SetLayerWeight(0, 1);
-		//start jump
-		_lichen.SetLayerWeight(3, 0);
-		_trilo.SetLayerWeight(2, 0);
-		//Enable jump
-		_lichen.SetBool("Jump_Duo_Lichen", false);
-		_lichen.SetBool("Landing_Duo_Lichen", false);
-		_trilo.SetTrigger("Jump_Duo_Trilo");
-		_trilo.SetBool("Landing_Duo_Trilo", false);
-	}
-=======
 		//_lichen.SetBool("Landing_Duo_Lichen", true);
 		_trilo.SetBool("Jump_Duo_Trilo",true);
 		//_trilo.SetBool("Landing_Duo_Trilo", true);
@@ -102,5 +81,4 @@ public class AnimationManager : MonoBehaviour
 		_trilo.SetLayerWeight(2, 0);
 	}
 
->>>>>>> origin/IntegrationAnimations
 }

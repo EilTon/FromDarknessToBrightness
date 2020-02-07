@@ -207,16 +207,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (_isGrounded)
 		{
-<<<<<<< HEAD
-			//if(_isJumping == true)
-			//{
-			//	_animationManager.StopDuoJump();
-			//	_isJumping = false;
-			//}
-			//_isJumping = false;
-=======
 			_animationManager.StopDuoLanding();
->>>>>>> origin/IntegrationAnimations
 			_rigidbodyPlayer.velocity = (Vector3.right * _horizontal * _speed) + Vector3.up * _rigidbodyPlayer.velocity.y;
 		}
 		else
@@ -362,10 +353,7 @@ public class PlayerController : MonoBehaviour
 		_camera.Target = _rigidbodyPlayer.transform;
 		_rigidbodyPlayer2.transform.parent = _rigidbodyPlayer.transform;
 		_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
-<<<<<<< HEAD
-=======
 		_rigidbodyPlayer2.transform.eulerAngles = new Vector2(0, 0);
->>>>>>> origin/IntegrationAnimations
 		_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x - 0.1300149f, transform.position.y - 0.03745449f);
 		_switch = false;
 		_detach = false;
@@ -398,19 +386,12 @@ public class PlayerController : MonoBehaviour
 			if (Input.GetButtonDown("Jump") && _isGrounded && delayJump <= 0)
 			{
 				_isJumping = true;
-<<<<<<< HEAD
-				if(_detach == false)
-				{
-					//_animationManager.SetDuoJump();
-				}
-=======
 
 				if (_detach == false)
 				{
 					_animationManager.SetDuoJump();
 				}
 
->>>>>>> origin/IntegrationAnimations
 				_jumpTime = Time.time;
 				_rigidbodyPlayer.AddForce(Vector2.up * _jumpImpulse, ForceMode2D.Impulse);
 
