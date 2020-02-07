@@ -8,7 +8,7 @@ public class Checkpoint : MonoBehaviour
 	{
 		if(collision.tag == "Player")
 		{
-			collision.gameObject.GetComponent<PlayerController>().SetResetPosition(transform.position);
+			FindObjectOfType<PlayerController>().SetResetPosition(transform.position);
 		}
 	}
 }

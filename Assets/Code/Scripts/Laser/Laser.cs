@@ -131,7 +131,7 @@ public class Laser : MonoBehaviour
 				switch (_hit.collider.tag)
 				{
 					case "Player":
-						_hit.collider.GetComponent<PlayerController>().ResetPlayer();
+						FindObjectOfType<PlayerController>().ResetPlayer();
 						break;
 
 					case "Reflect":
