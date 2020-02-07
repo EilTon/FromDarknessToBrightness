@@ -6,6 +6,7 @@ public class Player2Controller : MonoBehaviour
 {
 	#region Declarations public
 	public GameObject _player1;
+	public GameObject _colliderBody;
 	public float _shieldSpeed = 15;
 	public float _shieldDistance = 1;
 	public Vector2 _minMaxShieldAngle = new Vector2(-30, 30);
@@ -129,7 +130,9 @@ public class Player2Controller : MonoBehaviour
 			_currentShieldAngle = Mathf.Clamp(_currentShieldAngle + trigger * _shieldSpeed * _player1.transform.right.x * Time.deltaTime, _minMaxShieldAngle.x, _minMaxShieldAngle.y);
 			Vector2 p1Top2 = new Vector2(Mathf.Sin(_currentShieldAngle * Mathf.Deg2Rad * _player1.transform.right.x), Mathf.Cos(_currentShieldAngle * Mathf.Deg2Rad * _player1.transform.right.x));
 			transform.position = _player1.transform.position + (Vector3)p1Top2 * _shieldDistance;
+			//_colliderBody.transform.position = _player1.transform.position + (Vector3)p1Top2 * _shieldDistance; 
 			_animationManager.SetCourbe(_currentShieldAngle / _minMaxShieldAngle.y);
+			
 			//_test.transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(-p1Top2.x , p1Top2.y) * Mathf.Rad2Deg * _currentShieldAngle/_minMaxShieldAngle.y, Vector3.forward) * _player1.transform.rotation;
 		}
 	}

@@ -131,6 +131,10 @@ public class PlayerController : MonoBehaviour
 	{
 		#region Movement
 		MovePlayer();
+		if (_rigidbodyPlayer.velocity.y < -0.1f)
+		{
+			_animationManager.SetDuoLanding();
+		}
 		#endregion
 
 		#region Actions
@@ -203,12 +207,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (_isGrounded)
 		{
-			//if(_isJumping == true)
-			//{
-			//	_animationManager.StopDuoJump();
-			//	_isJumping = false;
-			//}
-			//_isJumping = false;
+			_animationManager.StopDuoLanding();
 			_rigidbodyPlayer.velocity = (Vector3.right * _horizontal * _speed) + Vector3.up * _rigidbodyPlayer.velocity.y;
 		}
 		else
@@ -345,9 +344,16 @@ public class PlayerController : MonoBehaviour
 	{
 		_rigidbodyPlayer.velocity = Vector2.zero;
 		_rigidbodyPlayer = _rigidbodyPlayer1;
+		_jumpImpulse = _jumpImpulsePlayer1;
+		_jumpForce = _jumpForcePlayer1;
+		_jumpTimeDelay = _jumpTimeDelayPlayer1;
+		_speed = _speedPlayer1;
+		_airControlForce = _airControlForcePlayer1;
+		_rigidbodyPlayer.transform.eulerAngles = new Vector2(0,0);
 		_camera.Target = _rigidbodyPlayer.transform;
 		_rigidbodyPlayer2.transform.parent = _rigidbodyPlayer.transform;
 		_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
+		_rigidbodyPlayer2.transform.eulerAngles = new Vector2(0, 0);
 		_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x - 0.1300149f, transform.position.y - 0.03745449f);
 		_switch = false;
 		_detach = false;
@@ -376,15 +382,19 @@ public class PlayerController : MonoBehaviour
 			{
 				delayJump -= 0.01f;
 			}
+
 			if (Input.GetButtonDown("Jump") && _isGrounded && delayJump <= 0)
 			{
 				_isJumping = true;
-				if(_detach == false)
+
+				if (_detach == false)
 				{
-					//_animationManager.SetDuoJump();
+					_animationManager.SetDuoJump();
 				}
+
 				_jumpTime = Time.time;
 				_rigidbodyPlayer.AddForce(Vector2.up * _jumpImpulse, ForceMode2D.Impulse);
+
 				while (Input.GetButton("Jump") && Time.time < _jumpTime + _jumpTimeDelay)
 				{
 					_rigidbodyPlayer.AddForce(Vector2.up * _jumpForce, ForceMode2D.Force);
