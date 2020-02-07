@@ -135,6 +135,10 @@ public class Player2Controller : MonoBehaviour
 			
 			//_test.transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(-p1Top2.x , p1Top2.y) * Mathf.Rad2Deg * _currentShieldAngle/_minMaxShieldAngle.y, Vector3.forward) * _player1.transform.rotation;
 		}
+		else
+		{
+			_animationManager.SetCourbe(0);
+		}
 	}
 
 	public void SetTrigger(bool trigger)

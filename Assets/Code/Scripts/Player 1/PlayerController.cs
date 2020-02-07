@@ -340,8 +340,15 @@ public class PlayerController : MonoBehaviour
 		return _detach;
 	}
 
+	public bool GetSwitch()
+	{
+		return _switch;
+	}
+
 	public void ResetPlayer()
 	{
+		//_animationManager._trilo.;
+		_Shield.enabled = true;
 		_rigidbodyPlayer.velocity = Vector2.zero;
 		_rigidbodyPlayer = _rigidbodyPlayer1;
 		_jumpImpulse = _jumpImpulsePlayer1;
