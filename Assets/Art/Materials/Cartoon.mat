@@ -40,26 +40,26 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _FresnelBias: 0
-    - _FresnelColorOverride: 0
+    - _FresnelBias: -148.04
+    - _FresnelColorOverride: 1
     - _FresnelIntensity: 1
     - _FresnelLightColorOverride: 0.774
     - _FresnelLightUse: 0.774
-    - _FresnelPower: 0
-    - _FresnelScale: 0
-    - _LightColorIntensity: 0
+    - _FresnelPower: -0.53
+    - _FresnelScale: 24.5
+    - _LightColorIntensity: 1
     - _LitShaprness: 85.68
     - _LitSmoothness: 8.42
-    - _ShadowOffset: 1
+    - _ShadowOffset: -0.95
     - _SpecIntensity: 1
-    - _SpecSize: 0.716
+    - _SpecSize: 0.564
     - _SpecSmoothness: 0
     - _StepSmoothness: 7.66
     - _Steps: 2
     - __dirty: 0
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 0, g: 0, b: 0, a: 1}
-    - _ShadowColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularColor: {r: 0.5943396, g: 0.5522873, b: 0.5522873, a: 1}

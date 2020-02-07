@@ -341,7 +341,7 @@ namespace Railcam2D
 							{
 								InCoroutine = true;
 								FlagCoroutine = true;
-								//StartCoroutine(ChangeSizeCamera(_currentTrigger.TimeToSize, _currentTrigger.SizeCamera, oldSize));
+								StartCoroutine(ChangeSizeCamera(_currentTrigger.TimeToSize, _currentTrigger.SizeCamera, oldSize));
 							}
 
 							else if (InCoroutine == false)
