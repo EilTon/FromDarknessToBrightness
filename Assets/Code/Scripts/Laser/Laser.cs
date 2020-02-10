@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 [ExecuteInEditMode]
 [RequireComponent(typeof(LineRenderer))]
+[RequireComponent(typeof(ParticleSystem))]
 public class Laser : MonoBehaviour
 {
 	#region Declarations public
