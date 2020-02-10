@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
 	private Vector2 _positionOrigin;
 	private CapsuleCollider2D _colliderPlayer2Capsule;
 	private Vector3 _movement;
+	private float _resetJump;
 	#endregion
 
 	#region Declarations Event Args
@@ -124,6 +125,11 @@ public class PlayerController : MonoBehaviour
 		{
 			_delayShield += Time.deltaTime;
 		}
+		if (Time.time > _resetJump + 1.5f)
+		{
+			_isJumping = false;
+			_resetJump = Time.time;
+		}
 		#endregion
 	}
 
@@ -131,8 +137,9 @@ public class PlayerController : MonoBehaviour
 	{
 		#region Movement
 		MovePlayer();
-		if (_rigidbodyPlayer.velocity.y < -0.1f)
+		if ((_rigidbodyPlayer.velocity.y < -0.1f && _isGrounded))
 		{
+			_isJumping = false;
 			_animationManager.SetDuoLanding();
 		}
 		#endregion
@@ -232,6 +239,7 @@ public class PlayerController : MonoBehaviour
 				_colliderPlayer2Capsule.enabled = true;
 				_Shield.enabled = false;
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Dynamic;
+				_rigidbodyPlayer2.velocity = Vector2.zero;
 				_detach = !_detach;
 			}
 
@@ -261,7 +269,7 @@ public class PlayerController : MonoBehaviour
 			_delaySwitch = 0;
 			if (_switch == false)
 			{
-				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
 				_rigidbodyPlayer.velocity = Vector2.zero;
 				_camera.Target = _rigidbodyPlayer2.transform;
 				_rigidbodyPlayer = _rigidbodyPlayer2;
@@ -270,9 +278,10 @@ public class PlayerController : MonoBehaviour
 			}
 			else if (_switch == true)
 			{
-				_rigidbodyPlayer.velocity = Vector2.zero;
+				_rigidbodyPlayer.velocity = Vector2.down;
 				_camera.Target = _rigidbodyPlayer1.transform;
 				_rigidbodyPlayer = _rigidbodyPlayer1;
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
 				_switch = !_switch;
 				SetPlayer();
 			}
@@ -347,10 +356,10 @@ public class PlayerController : MonoBehaviour
 
 	public void ResetPlayer()
 	{
-		//_animationManager._trilo.;
 		_Shield.enabled = true;
 		_rigidbodyPlayer.velocity = Vector2.zero;
 		_rigidbodyPlayer = _rigidbodyPlayer1;
+		_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
 		_jumpImpulse = _jumpImpulsePlayer1;
 		_jumpForce = _jumpForcePlayer1;
 		_jumpTimeDelay = _jumpTimeDelayPlayer1;
@@ -390,10 +399,9 @@ public class PlayerController : MonoBehaviour
 				delayJump -= 0.01f;
 			}
 
-			if (Input.GetButtonDown("Jump") && _isGrounded && delayJump <= 0)
+			if (Input.GetButtonDown("Jump") && _isGrounded && delayJump <= 0 && _isJumping == false)
 			{
 				_isJumping = true;
-
 				if (_detach == false)
 				{
 					_animationManager.SetDuoJump();
@@ -422,7 +430,6 @@ public class PlayerController : MonoBehaviour
 			{
 				lastHitTime = Time.time;
 			}
-
 			_isGrounded = (lastHitTime > Time.time - _bufferDelay);
 
 			yield return null;
