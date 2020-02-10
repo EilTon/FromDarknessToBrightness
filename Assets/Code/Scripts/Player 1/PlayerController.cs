@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 	public float _delayShield;
 	public float _limitAttach;
 	public float _bufferDelay;
-	public CircleCollider2D _Shield;
+	public PolygonCollider2D _Shield;
 	#endregion
 
 	#region Declarations private
@@ -186,6 +186,10 @@ public class PlayerController : MonoBehaviour
 		if (_isFreeze == false)
 		{
 			_horizontal = Input.GetAxis("Horizontal");
+			if(_horizontal>0.01f|| _horizontal < -0.01f)
+			{
+				_animationManager.SetIdle();
+			}
 			if (_detach == false)
 			{
 				_animationManager.StartSpeedDuo();

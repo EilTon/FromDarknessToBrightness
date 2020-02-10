@@ -81,4 +81,16 @@ public class AnimationManager : MonoBehaviour
 		_trilo.SetLayerWeight(2, 0);
 	}
 
+	public void StopIdle()
+	{
+		_lichen.speed = 0;
+		_trilo.speed = 0;
+	}
+
+	public void SetIdle()
+	{
+		_lichen.speed = 1;
+		_trilo.speed = 1;
+	}
+
 }
