@@ -1,0 +1,847 @@
+fileFormatVersion: 2
+guid: 7af0ca73e0a09514a84fc48293e60949
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3639259091173791151
+    second: Atlas_decor_0
+  - first:
+      213: 6589730271973883979
+    second: Atlas_decor_1
+  - first:
+      213: -8306855123416139988
+    second: Atlas_decor_2
+  - first:
+      213: 8155617617035402005
+    second: Atlas_decor_3
+  - first:
+      213: -6758175540177887679
+    second: Atlas_decor_5
+  - first:
+      213: -6676207386546230418
+    second: Atlas_decor_6
+  - first:
+      213: -6519486938362478924
+    second: Atlas_decor_8
+  - first:
+      213: 5857344389115609639
+    second: Atlas_decor_10
+  - first:
+      213: -9204540551067082475
+    second: Atlas_decor_11
+  - first:
+      213: 3192095701865902287
+    second: Atlas_decor_12
+  - first:
+      213: -3609848182718719552
+    second: Atlas_decor_13
+  - first:
+      213: 1968924088807008484
+    second: Atlas_decor_14
+  - first:
+      213: -8012023466957644318
+    second: Atlas_decor_15
+  - first:
+      213: -4040195877443805345
+    second: Atlas_decor_16
+  - first:
+      213: -3986755950894881521
+    second: Atlas_decor_17
+  - first:
+      213: 3063556787587968069
+    second: Atlas_decor_18
+  - first:
+      213: -2029768001262209797
+    second: Atlas_decor_19
+  - first:
+      213: 5330703116284324469
+    second: Atlas_decor_20
+  - first:
+      213: 5797124606588132479
+    second: Atlas_decor_21
+  - first:
+      213: 216870946069982803
+    second: Atlas_decor_22
+  - first:
+      213: -7192160819803435236
+    second: Atlas_decor_23
+  - first:
+      213: -1002515333143604077
+    second: Atlas_decor_25
+  - first:
+      213: -6127821981278351904
+    second: Atlas_decor_26
+  - first:
+      213: 1609937037585673237
+    second: Atlas_decor_27
+  - first:
+      213: -1618683109051123352
+    second: Atlas_decor_28
+  - first:
+      213: -724476358927146724
+    second: Atlas_decor_29
+  - first:
+      213: -8382092756246762113
+    second: Atlas_decor_30
+  - first:
+      213: 306706626045165684
+    second: Atlas_decor_31
+  - first:
+      213: -4360176417560433193
+    second: Atlas_decor_32
+  - first:
+      213: -158754967133019101
+    second: Atlas_decor_33
+  - first:
+      213: -2104763385817851581
+    second: Atlas_decor_34
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 64
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Atlas_decor_0
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 1496
+        width: 192
+        height: 454
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 163255fcce90d8b48b157326bb74c77a
+      internalID: -3639259091173791151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_1
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 1470
+        width: 193
+        height: 476
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54af4c59a972943408e09f9cca1eb770
+      internalID: 6589730271973883979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_2
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 1500
+        width: 261
+        height: 448
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df9d6750c217dbf488c44a1ff40aaabf
+      internalID: -8306855123416139988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_3
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 1552
+        width: 335
+        height: 388
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a3e97ed087ea5241932917062f7505f
+      internalID: 8155617617035402005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_5
+      rect:
+        serializedVersion: 2
+        x: 1246
+        y: 1853
+        width: 49
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d5686023546e5f4287bd9e501b32572
+      internalID: -6758175540177887679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_6
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 1854
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad26fd230ca4bad43877de45da8c2f29
+      internalID: -6676207386546230418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_8
+      rect:
+        serializedVersion: 2
+        x: 1233
+        y: 1659
+        width: 157
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62c53dd534a37d84d8b3b6ad921dfff2
+      internalID: -6519486938362478924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_10
+      rect:
+        serializedVersion: 2
+        x: 1245
+        y: 1461
+        width: 145
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08eba5b8e61c19b4a8de13f237af8f8b
+      internalID: 5857344389115609639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_11
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 1274
+        width: 415
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f66222e912638144a57fa1ee6b3c97a
+      internalID: -9204540551067082475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_12
+      rect:
+        serializedVersion: 2
+        x: 615
+        y: 1154
+        width: 220
+        height: 287
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8c13fbb6758b924b87523c0c1a7480e
+      internalID: 3192095701865902287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_13
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 994
+        width: 242
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc6cde9fd1bf4ab468c6a48423af6430
+      internalID: -3609848182718719552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_14
+      rect:
+        serializedVersion: 2
+        x: 1204
+        y: 994
+        width: 242
+        height: 453
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66ea175b60cfd5245896b305e0e2d2ed
+      internalID: 1968924088807008484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_15
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 1042
+        width: 437
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1787468279fab2b4c9e6ec9f1145d096
+      internalID: -8012023466957644318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_16
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 994
+        width: 81
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d8e9eb78dc96904b9f9ad2de891ff01
+      internalID: -4040195877443805345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_17
+      rect:
+        serializedVersion: 2
+        x: 801
+        y: 986
+        width: 86
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a825bf3b24a52ab41a9678b8c64ae6ed
+      internalID: -3986755950894881521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_18
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 949
+        width: 84
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4eaa5cef976dfa448bde9dc233e249e
+      internalID: 3063556787587968069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_19
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 951
+        width: 79
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87526d6fdd453f5478c75637880a6c7a
+      internalID: -2029768001262209797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_20
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 948
+        width: 99
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79cc363ac834e1c45ab8c3dfd02a21e3
+      internalID: 5330703116284324469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_21
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 852
+        width: 80
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 665c50d1567c8734d8a0d5cefe6c3e99
+      internalID: 5797124606588132479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_22
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 854
+        width: 88
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 777891a74762922479bc0b914c8a0ccb
+      internalID: 216870946069982803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_23
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 848
+        width: 110
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07370de36c98ec24fa3082b8246ea4e8
+      internalID: -7192160819803435236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_25
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 753
+        width: 181
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5981d2807d3351e4ea8ad0adc909f60a
+      internalID: -1002515333143604077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_26
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 748
+        width: 74
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fd7d52d05fbc8544b09ca1dcbc73ead
+      internalID: -6127821981278351904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_27
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 746
+        width: 40
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94450da3d81d5e34494f0b339d9f6143
+      internalID: 1609937037585673237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_28
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 748
+        width: 144
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be6db275e692cd64283a23fdc06638e0
+      internalID: -1618683109051123352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_29
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 716
+        width: 83
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bdd939284358be44b785956a2fa9e7e
+      internalID: -724476358927146724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_30
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 722
+        width: 101
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81878e96537fc9646ad3dce84fd555e8
+      internalID: -8382092756246762113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_31
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 612
+        width: 68
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7316306e0eb98f14987c4c0f4b4148e7
+      internalID: 306706626045165684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_32
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 562
+        width: 193
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94a9c35db68f73f43bd3ade71127c250
+      internalID: -4360176417560433193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_33
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 550
+        width: 190
+        height: 137
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 025b743661af6484b89d068021f03a0a
+      internalID: -158754967133019101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_decor_34
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 593
+        width: 49
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca5fa4f360910794aa340356ac1665e8
+      internalID: -2104763385817851581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: d0df0eaa37b333949ae63be478c35e93
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
