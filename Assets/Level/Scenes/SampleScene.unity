@@ -24494,7 +24494,7 @@ PrefabInstance:
     - target: {fileID: 997607610362573930, guid: a17aa3309d0232d449ea74ae017ca704,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.94
+      value: 14.8
       objectReference: {fileID: 0}
     - target: {fileID: 997607610362573930, guid: a17aa3309d0232d449ea74ae017ca704,
         type: 3}
@@ -32300,7 +32300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &840064815
 Transform:
   m_ObjectHideFlags: 0
@@ -69844,7 +69844,7 @@ PrefabInstance:
     - target: {fileID: 1297517268240613705, guid: 8873b426154f5e74db2a0e25bdb230f4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -35.49
+      value: -119.7
       objectReference: {fileID: 0}
     - target: {fileID: 1297517268240613705, guid: 8873b426154f5e74db2a0e25bdb230f4,
         type: 3}

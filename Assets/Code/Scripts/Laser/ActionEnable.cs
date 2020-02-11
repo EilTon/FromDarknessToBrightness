@@ -37,6 +37,7 @@ public class ActionEnable : MonoBehaviour
 	public bool _isStreching;
 	public UnityEvent _Action;
 	public GameObject _platformToHold;
+	public float _timeToDecreaze;
 	#endregion
 
 	#region Declarations private
@@ -44,7 +45,8 @@ public class ActionEnable : MonoBehaviour
 	private Action _action;
 	private float _timerStrech;
 	private float _timerGrowth;
-	
+	private float _timerDecreaze;
+	private Vector2 _originTransform;
 	#endregion
 
 	#region Declarations Event Args
@@ -70,6 +72,7 @@ public class ActionEnable : MonoBehaviour
 	private void Start()
 	{
 		#region Initialize
+		_originTransform = new Vector2(transform.position.x,transform.position.y);
 		float x = transform.position.x;
 		float y = transform.position.y;
 		//_resetStrech.position = transform.position;
@@ -263,16 +266,59 @@ public class ActionEnable : MonoBehaviour
 
 	void GrownthGameObject()
 	{
+
 		if (_timerGrowth < _timeToGrowing)
 		{
 			transform.Translate(new Vector2(1 * _speedPositionX * Time.deltaTime, 1 * _speedPositionY * Time.deltaTime));
 			transform.localScale += new Vector3(1 * _speedScaleX * Time.deltaTime, 1 * _speedScaleY * Time.deltaTime);
 		}
+
+		/*if (_timerDecreaze < _timeToDecreaze)
+		{
+			transform.Translate(new Vector2(1 * -_speedPositionX * Time.deltaTime, 1 * -_speedPositionY * Time.deltaTime));
+			transform.localScale += new Vector3(1 * -_speedScaleX * Time.deltaTime, 1 * -_speedScaleY * Time.deltaTime);
+		}
+
+		if (_timerGrowth > _timeToGrowing)
+		{
+			_timerDecreaze += Time.deltaTime;
+		}*/
 		_timerGrowth += Time.deltaTime;
 	}
 	#endregion
-
+	public float maxSize;
+	public float growFactor;
+	public float waitTime;
 	#region Coroutine
+	IEnumerator Scale()
+	{
+		float timer = 0;
 
+		while (true) // this could also be a condition indicating "alive or dead"
+		{
+			// we scale all axis, so they will have the same value, 
+			// so we can work with a float instead of comparing vectors
+			while (maxSize > transform.localScale.x)
+			{
+				timer += Time.deltaTime;
+				transform.localScale += new Vector3(1, 1, 1) * Time.deltaTime * growFactor;
+				yield return null;
+			}
+			// reset the timer
+
+			yield return new WaitForSeconds(waitTime);
+
+			timer = 0;
+			while (1 < transform.localScale.x)
+			{
+				timer += Time.deltaTime;
+				transform.localScale -= new Vector3(1, 1, 1) * Time.deltaTime * growFactor;
+				yield return null;
+			}
+
+			timer = 0;
+			yield return new WaitForSeconds(waitTime);
+		}
+	}
 	#endregion
 }

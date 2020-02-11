@@ -11,6 +11,7 @@ public class Laser : MonoBehaviour
 	public LayerMask _layer;
 	public bool _isContinue = true;
 	public float _timeTocast = 2;
+	public float _timeToHold = 100f;
 	#endregion
 
 	#region Declarations private
@@ -21,6 +22,8 @@ public class Laser : MonoBehaviour
 	private RaycastHit2D _hit;
 	private Vector3[] _positions;
 	private ActionEnable _holding;
+	private float _timerHold = 0f;
+
 	#endregion
 
 	#region Declarations Event Args
@@ -56,6 +59,7 @@ public class Laser : MonoBehaviour
 		#region Movement
 
 		#endregion
+
 		#region Actions
 		if (_isContinue)
 		{
@@ -126,6 +130,7 @@ public class Laser : MonoBehaviour
 		while (positions.Count < 100)
 		{
 			_hit = Physics2D.Raycast(lastPosition, lastDirection, Mathf.Clamp(distance - laserLength, 0, distance), _layer);
+			HoldCast(_hit);
 			if (_hit)
 			{
 				positions.Add(_hit.point);
@@ -156,13 +161,19 @@ public class Laser : MonoBehaviour
 						break;
 
 					case "ActionEnable":
-						_holding = _hit.collider.GetComponent<ActionEnable>();
-						_holding._Action.Invoke();
-						_holding._isStreching = true;
+						if(_timerHold>_timeToHold)
+						{
+							_holding = _hit.collider.GetComponent<ActionEnable>();
+							_holding._Action.Invoke();
+							_holding._isStreching = true;
+						}
 						break;
 
 					case "Burn":
-						_hit.collider.GetComponent<BurnObject>().SetIsHit();
+						if(_timerHold>_timeToHold)
+						{
+							_hit.collider.GetComponent<BurnObject>().SetIsHit();
+						}
 						break;
 
 					default:
@@ -180,6 +191,22 @@ public class Laser : MonoBehaviour
 			}
 		}
 		return positions.ToArray();
+	}
+
+	void HoldCast(RaycastHit2D hit)
+	{
+		if(hit.collider.tag == "ActionEnable")
+		{
+			if (_timerHold < _timeToHold)
+			{
+				_timerHold += Time.deltaTime;
+			}
+		}
+		else
+		{
+			_timerHold = 0f;
+		}
+		
 	}
 	#endregion
 
