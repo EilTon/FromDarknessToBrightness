@@ -1,6 +1,10 @@
 fileFormatVersion: 2
 <<<<<<< HEAD:Assets/Level/Prefabs/LICHEN.prefab.meta
-guid: d26e2c4f0571e794dadd910abe622a79
+<<<<<<< HEAD
+guid: bb5b1e31d6a95f646a786f8cd3b32c08
+=======
+guid: 0a5eaa92cc8eead44815d26d83213b01
+>>>>>>> 5a53776309b18ef2a1acf51a844bbc5447973ccf
 PrefabImporter:
 =======
 guid: 3607a1239debad645962bbd7beed95bb

@@ -1,0 +1,994 @@
+fileFormatVersion: 2
+guid: 902404d311124ab4a80340f928cd7d2b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1881999071883060745
+    second: Atlas_interectable_0
+  - first:
+      213: -6059459957176422171
+    second: Atlas_interectable_1
+  - first:
+      213: 8239930524107041756
+    second: Atlas_interectable_2
+  - first:
+      213: -6808775214638982007
+    second: Atlas_interectable_3
+  - first:
+      213: -4602409673560993119
+    second: Atlas_interectable_4
+  - first:
+      213: -3366425269474744857
+    second: Atlas_interectable_5
+  - first:
+      213: 9013525374790248478
+    second: Atlas_interectable_6
+  - first:
+      213: -6235245149272662193
+    second: Atlas_interectable_7
+  - first:
+      213: -8877593375329922054
+    second: Atlas_interectable_8
+  - first:
+      213: 7850328572750670425
+    second: Atlas_interectable_9
+  - first:
+      213: 617024483756986898
+    second: Atlas_interectable_10
+  - first:
+      213: 3524913246045326884
+    second: Atlas_interectable_11
+  - first:
+      213: -7795260021986683206
+    second: Atlas_interectable_12
+  - first:
+      213: 673699608176845060
+    second: Atlas_interectable_13
+  - first:
+      213: -5506313017885531394
+    second: Atlas_interectable_14
+  - first:
+      213: -4827086514598778893
+    second: Atlas_interectable_15
+  - first:
+      213: -4441884098112041590
+    second: Atlas_interectable_16
+  - first:
+      213: 3513093473224324542
+    second: Atlas_interectable_17
+  - first:
+      213: -8313920857910118295
+    second: Atlas_interectable_18
+  - first:
+      213: 5306884724755154670
+    second: Atlas_interectable_19
+  - first:
+      213: 4715658256286814321
+    second: Atlas_interectable_20
+  - first:
+      213: 8574376074654507297
+    second: Atlas_interectable_21
+  - first:
+      213: 1128187863201049414
+    second: Atlas_interectable_22
+  - first:
+      213: -5930216237197787722
+    second: Atlas_interectable_23
+  - first:
+      213: 5666323933222807482
+    second: Atlas_interectable_24
+  - first:
+      213: 3950055688980669463
+    second: Atlas_interectable_25
+  - first:
+      213: 2940179376853504633
+    second: Atlas_interectable_26
+  - first:
+      213: 8776785948604929543
+    second: Atlas_interectable_27
+  - first:
+      213: -713752463068974903
+    second: Atlas_interectable_28
+  - first:
+      213: 9068080292204672425
+    second: Atlas_interectable_29
+  - first:
+      213: -5688867133393297645
+    second: Atlas_interectable_30
+  - first:
+      213: -861092075774336353
+    second: Atlas_interectable_31
+  - first:
+      213: 7219694405938581766
+    second: Atlas_interectable_32
+  - first:
+      213: -4021090369562623735
+    second: Atlas_interectable_33
+  - first:
+      213: -6038511087548541546
+    second: Atlas_interectable_34
+  - first:
+      213: 3249875318497216065
+    second: Atlas_interectable_35
+  - first:
+      213: -3479485013653626710
+    second: Atlas_interectable_36
+  - first:
+      213: -3708604935278101116
+    second: Atlas_interectable_37
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: -1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Atlas_interectable_0
+      rect:
+        serializedVersion: 2
+        x: 1507
+        y: 1547
+        width: 988
+        height: 378
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d67bd3cbe584cfc46854025c20ccbba1
+      internalID: -1881999071883060745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_1
+      rect:
+        serializedVersion: 2
+        x: 2608
+        y: 1845
+        width: 392
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37d9e476ad1562646ba1c13292e07c0f
+      internalID: -6059459957176422171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_2
+      rect:
+        serializedVersion: 2
+        x: 3108
+        y: 1845
+        width: 392
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5b276b4d017a3d4aa2bc7ed6abfd095
+      internalID: 8239930524107041756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_3
+      rect:
+        serializedVersion: 2
+        x: 3608
+        y: 1845
+        width: 392
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d2429a38cf0a6a44b0457325f656da5
+      internalID: -6808775214638982007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_4
+      rect:
+        serializedVersion: 2
+        x: 2608
+        y: 1645
+        width: 392
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9fe613da11810b4fae087dad30267d7
+      internalID: -4602409673560993119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_5
+      rect:
+        serializedVersion: 2
+        x: 3108
+        y: 1645
+        width: 392
+        height: 135
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89e020040382494429aaf2468c0c7dd9
+      internalID: -3366425269474744857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_6
+      rect:
+        serializedVersion: 2
+        x: 3599
+        y: 1661
+        width: 248
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cf60610a29a2c947b2ff5633d6a6554
+      internalID: 9013525374790248478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_7
+      rect:
+        serializedVersion: 2
+        x: 2643
+        y: 1445
+        width: 514
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a1b9fce95af375499b8997a8072caa3
+      internalID: -6235245149272662193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_8
+      rect:
+        serializedVersion: 2
+        x: 3597
+        y: 1545
+        width: 190
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0db3bf8402660944a9892decb034efe
+      internalID: -8877593375329922054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_9
+      rect:
+        serializedVersion: 2
+        x: 3805
+        y: 1555
+        width: 116
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80b4a9b23a8698140932a0e608ddc940
+      internalID: 7850328572750670425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_10
+      rect:
+        serializedVersion: 2
+        x: 1496
+        y: 1053
+        width: 1179
+        height: 446
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27341bc6a994914468e5b316115554ad
+      internalID: 617024483756986898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_11
+      rect:
+        serializedVersion: 2
+        x: 2697
+        y: 1309
+        width: 478
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52e71e2a88b91af448f7b19e08655577
+      internalID: 3524913246045326884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_12
+      rect:
+        serializedVersion: 2
+        x: 3217
+        y: 1351
+        width: 186
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c4ec92c457024240874e5a2dd8d8864
+      internalID: -7795260021986683206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_13
+      rect:
+        serializedVersion: 2
+        x: 3499
+        y: 1345
+        width: 94
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26723fdd4ce24584ba7e7d17a5b62700
+      internalID: 673699608176845060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_14
+      rect:
+        serializedVersion: 2
+        x: 3697
+        y: 1347
+        width: 94
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0c162865d6360048ac3843da0ae5b14
+      internalID: -5506313017885531394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_15
+      rect:
+        serializedVersion: 2
+        x: 2701
+        y: 1107
+        width: 400
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 171ba6c6730becb49a2c3265e8520e95
+      internalID: -4827086514598778893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_16
+      rect:
+        serializedVersion: 2
+        x: 3227
+        y: 1029
+        width: 618
+        height: 218
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72fbad91b2af9fc4cbf64559e9a1aca5
+      internalID: -4441884098112041590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_17
+      rect:
+        serializedVersion: 2
+        x: 1617
+        y: 773
+        width: 984
+        height: 254
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89bad82452d8b304bad95a6a94a309f8
+      internalID: 3513093473224324542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_18
+      rect:
+        serializedVersion: 2
+        x: 2697
+        y: 911
+        width: 284
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f9319dd9b6128749942b3debeafd987
+      internalID: -8313920857910118295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_19
+      rect:
+        serializedVersion: 2
+        x: 3143
+        y: 789
+        width: 796
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e88e2feade6f85e44a42bf548e96594b
+      internalID: 5306884724755154670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_20
+      rect:
+        serializedVersion: 2
+        x: 1201
+        y: 673
+        width: 388
+        height: 162
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fbd4abc0c2aea543b20af68ddd380b5
+      internalID: 4715658256286814321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_21
+      rect:
+        serializedVersion: 2
+        x: 1699
+        y: 649
+        width: 406
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ac5300b2fbe1544c97c56b41a180ff5
+      internalID: 8574376074654507297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_22
+      rect:
+        serializedVersion: 2
+        x: 2223
+        y: 571
+        width: 468
+        height: 182
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cf0b4c7ed5d7304590b1b8bc6d71069
+      internalID: 1128187863201049414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_23
+      rect:
+        serializedVersion: 2
+        x: 2701
+        y: 733
+        width: 284
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4724113c6ccc41849bdb22b778962fde
+      internalID: -5930216237197787722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_24
+      rect:
+        serializedVersion: 2
+        x: 3154
+        y: 587
+        width: 741
+        height: 178
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 988b0f10e53c93d409a36751f7775d02
+      internalID: 5666323933222807482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_25
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 467
+        width: 520
+        height: 160
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f94c49402882ee84b94000a5d1101705
+      internalID: 3950055688980669463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_26
+      rect:
+        serializedVersion: 2
+        x: 1803
+        y: 445
+        width: 338
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12f45c9f0d2b24f409c1cd3e4fa53383
+      internalID: 2940179376853504633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_27
+      rect:
+        serializedVersion: 2
+        x: 2095
+        y: 335
+        width: 486
+        height: 144
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4ccd7e2479d8cc44b7fbfdb73c3189a
+      internalID: 8776785948604929543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_28
+      rect:
+        serializedVersion: 2
+        x: 2747
+        y: 477
+        width: 308
+        height: 174
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c77e5b53ccb352b4e9a186ff3dc61c04
+      internalID: -713752463068974903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_29
+      rect:
+        serializedVersion: 2
+        x: 3141
+        y: 291
+        width: 462
+        height: 259
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50b4ce5b726a83542ad7756d9c967ef0
+      internalID: 9068080292204672425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_30
+      rect:
+        serializedVersion: 2
+        x: 3643
+        y: 45
+        width: 316
+        height: 490
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b2b40bca1e9e044183bda5d01955e21
+      internalID: -5688867133393297645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_31
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 233
+        width: 296
+        height: 178
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c586aa8e74ece1442ba7b055fca5276f
+      internalID: -861092075774336353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_32
+      rect:
+        serializedVersion: 2
+        x: 2637
+        y: 213
+        width: 437
+        height: 240
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c18c455fd1425c48b9f68f6fbe678b4
+      internalID: 7219694405938581766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_34
+      rect:
+        serializedVersion: 2
+        x: 1321
+        y: 75
+        width: 425
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1495e359ad8aa16459baed717f88ab51
+      internalID: -6038511087548541546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_35
+      rect:
+        serializedVersion: 2
+        x: 1898
+        y: 61
+        width: 383
+        height: 158
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6e409cf8a54c534e89c221211dd72fc
+      internalID: 3249875318497216065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_36
+      rect:
+        serializedVersion: 2
+        x: 2351
+        y: 45
+        width: 450
+        height: 162
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11b1348f4dd0175409f340de3442e465
+      internalID: -3479485013653626710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_interectable_37
+      rect:
+        serializedVersion: 2
+        x: 3119
+        y: 57
+        width: 436
+        height: 228
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be80972ea6e5b8444ae87e2b63a73843
+      internalID: -3708604935278101116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 422e4d00edacfe74a854a8e9363ca58e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
