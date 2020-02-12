@@ -130,7 +130,7 @@ public class Laser : MonoBehaviour
 		while (positions.Count < 100)
 		{
 			_hit = Physics2D.Raycast(lastPosition, lastDirection, Mathf.Clamp(distance - laserLength, 0, distance), _layer);
-			HoldCast(_hit);
+			
 			if (_hit)
 			{
 				positions.Add(_hit.point);
@@ -161,7 +161,8 @@ public class Laser : MonoBehaviour
 						break;
 
 					case "ActionEnable":
-						if(_timerHold>_timeToHold)
+						HoldCast(_hit);
+						if (_timerHold>_timeToHold)
 						{
 							_holding = _hit.collider.GetComponent<ActionEnable>();
 							_holding._Action.Invoke();
@@ -170,7 +171,8 @@ public class Laser : MonoBehaviour
 						break;
 
 					case "Burn":
-						if(_timerHold>_timeToHold)
+						HoldCast(_hit);
+						if (_timerHold>_timeToHold)
 						{
 							_hit.collider.GetComponent<BurnObject>().SetIsHit();
 						}
@@ -195,7 +197,7 @@ public class Laser : MonoBehaviour
 
 	void HoldCast(RaycastHit2D hit)
 	{
-		if(hit.collider.tag == "ActionEnable")
+		if(hit.collider.tag == "ActionEnable" || hit.collider.tag == "Burn")
 		{
 			if (_timerHold < _timeToHold)
 			{

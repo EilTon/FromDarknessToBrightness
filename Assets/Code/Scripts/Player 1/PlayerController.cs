@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	#region Declarations public
+	public FreeParallax _parallax;
 	public float _speedPlayer1;
 	public float _jumpImpulsePlayer1;
 	public float _jumpForcePlayer1;
@@ -23,7 +24,8 @@ public class PlayerController : MonoBehaviour
 	public float _delayShield;
 	public float _limitAttach;
 	public float _bufferDelay;
-	public PolygonCollider2D _Shield;
+	public CircleCollider2D _Shield;
+	public float _speedParallax;
 	#endregion
 
 	#region Declarations private
@@ -101,6 +103,7 @@ public class PlayerController : MonoBehaviour
 	{
 		#region Movement
 		Move();
+		Parallax();
 		#endregion
 
 		#region Actions
@@ -383,6 +386,24 @@ public class PlayerController : MonoBehaviour
 	public void SetFreeze(bool freeze)
 	{
 		_isFreeze = freeze;
+	}
+	void Parallax()
+	{
+		if (_parallax != null)
+		{
+			if (_horizontal<-0.1)
+			{
+				_parallax.Speed = _speedParallax;
+			}
+			else if (_horizontal > 0.1)
+			{
+				_parallax.Speed = -_speedParallax;
+			}
+			else
+			{
+				_parallax.Speed = 0.0f;
+			}
+		}
 	}
 
 	#endregion
