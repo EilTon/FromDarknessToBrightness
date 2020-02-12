@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class BurnObject : MonoBehaviour
 {
 	#region Declarations public
@@ -12,6 +11,7 @@ public class BurnObject : MonoBehaviour
 	#region Declarations private
 	private float _timerBurn;
 	private bool _isHit = false;
+	private bool _isBurn = false;
 	#endregion
 
 	#region Declarations Event Args
@@ -37,7 +37,8 @@ public class BurnObject : MonoBehaviour
 	private void Start()
 	{
 		#region Initialize
-
+		GetComponent<ParticleSystem>().enableEmission = false;
+		GetComponent<ParticleSystem>().startRotation = transform.rotation.eulerAngles.y * Mathf.Deg2Rad;
 		#endregion
 	}
 
@@ -50,10 +51,22 @@ public class BurnObject : MonoBehaviour
 		#region Actions
 		if (_isHit)
 		{
+			GetComponent<ParticleSystem>().enableEmission = true;
+
+		}
+		else
+		{
+			GetComponent<ParticleSystem>().enableEmission = false;
+		}
+		if (_isBurn)
+		{
 			_timerBurn += Time.deltaTime;
 			if (_timerBurn > _timeToBurn)
 			{
-				_rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+				if (_rigidbody2D != null)
+				{
+					_rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+				}
 				Destroy(gameObject);
 			}
 		}
@@ -81,9 +94,14 @@ public class BurnObject : MonoBehaviour
 	#endregion
 
 	#region Helper
-	public void SetIsHit()
+	public void SetIsHit(bool boo)
 	{
-		_isHit = true;
+		_isHit = boo;
+	}
+
+	public void SetIsBurn()
+	{
+		_isBurn = true;
 	}
 	#endregion
 

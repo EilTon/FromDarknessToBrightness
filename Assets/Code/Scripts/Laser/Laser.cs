@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 [ExecuteInEditMode]
 [RequireComponent(typeof(LineRenderer))]
-[RequireComponent(typeof(ParticleSystem))]
 public class Laser : MonoBehaviour
 {
 	#region Declarations public
@@ -22,6 +21,7 @@ public class Laser : MonoBehaviour
 	private RaycastHit2D _hit;
 	private Vector3[] _positions;
 	private ActionEnable _holding;
+	private BurnObject _burn;
 	private float _timerHold = 0f;
 
 	#endregion
@@ -52,8 +52,8 @@ public class Laser : MonoBehaviour
 		_storeCast = _timeTocast;
 		#endregion
 	}
-	
-	
+
+
 	private void Update()
 	{
 		#region Movement
@@ -91,7 +91,7 @@ public class Laser : MonoBehaviour
 			{
 				_timer = 0;
 				_timeTocast = _storeCast;
-			}	
+			}
 		}
 
 
@@ -130,7 +130,7 @@ public class Laser : MonoBehaviour
 		while (positions.Count < 100)
 		{
 			_hit = Physics2D.Raycast(lastPosition, lastDirection, Mathf.Clamp(distance - laserLength, 0, distance), _layer);
-			
+			HoldCast(_hit);
 			if (_hit)
 			{
 				positions.Add(_hit.point);
@@ -162,26 +162,39 @@ public class Laser : MonoBehaviour
 
 					case "ActionEnable":
 						HoldCast(_hit);
-						if (_timerHold>_timeToHold)
+						if (_timerHold > _timeToHold)
 						{
 							_holding = _hit.collider.GetComponent<ActionEnable>();
 							_holding._Action.Invoke();
-							_holding._isStreching = true;
+							_holding.SetIsStreching(true);
 						}
 						break;
 
 					case "Burn":
 						HoldCast(_hit);
-						if (_timerHold>_timeToHold)
+						_burn = _hit.collider.GetComponent<BurnObject>();
+						if (_timerHold < _timeToHold)
 						{
-							_hit.collider.GetComponent<BurnObject>().SetIsHit();
+							_burn.SetIsHit(true);
+						}
+						else if (_timerHold > _timeToHold)
+						{
+							_burn.SetIsBurn();
+						}
+						else
+						{
+							_burn.SetIsHit(false);
 						}
 						break;
 
 					default:
-						if(_holding != null)
+						if (_holding != null)
 						{
-							_holding._isStreching = false;
+							_holding.SetIsStreching(false);
+						}
+						else if (_burn != null)
+						{
+							_burn.SetIsHit(false);
 						}
 						break;
 				}
@@ -197,18 +210,15 @@ public class Laser : MonoBehaviour
 
 	void HoldCast(RaycastHit2D hit)
 	{
-		if(hit.collider.tag == "ActionEnable" || hit.collider.tag == "Burn")
+		if (hit.collider.tag == "ActionEnable" || hit.collider.tag == "Burn")
 		{
-			if (_timerHold < _timeToHold)
-			{
-				_timerHold += Time.deltaTime;
-			}
+			_timerHold += Time.deltaTime;
 		}
 		else
 		{
 			_timerHold = 0f;
 		}
-		
+
 	}
 	#endregion
 
