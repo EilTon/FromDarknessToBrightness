@@ -23,11 +23,11 @@ public class ParallaxBackground : MonoBehaviour
 		float distance = (_camera.transform.position.x * _parallaxEffect);
 		transform.position = new Vector3(_startPos + distance, transform.position.y, transform.position.z);
 
-		if (temp>_startPos + _lenght)
+		if (temp > _startPos + _lenght)
 		{
 			_startPos += _lenght;
 		}
-		else if(temp<_startPos - _lenght)
+		else if (temp < _startPos - _lenght)
 		{
 			_startPos -= _lenght;
 		}
