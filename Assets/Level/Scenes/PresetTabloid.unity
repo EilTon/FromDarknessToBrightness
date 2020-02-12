@@ -233,7 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Active: 1
   UpdateMethod: 1
-  StartOnRail: {fileID: 796699641}
+  StartOnRail: {fileID: 0}
   Target: {fileID: 913996935}
   FollowX: 1
   FollowY: 1
@@ -581,6 +581,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2068458993386928586, guid: 953502067b5ec8d4ead6e265a25c5946,
+        type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 913996928}
     - target: {fileID: 3787106413701422924, guid: 953502067b5ec8d4ead6e265a25c5946,
         type: 3}
       propertyPath: _player
