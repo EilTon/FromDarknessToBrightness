@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[ExecuteInEditMode]
 [RequireComponent(typeof(LineRenderer))]
 public class Laser : MonoBehaviour
 {
@@ -23,7 +23,7 @@ public class Laser : MonoBehaviour
 	private ActionEnable _holding;
 	private BurnObject _burn;
 	private float _timerHold = 0f;
-
+	private MirrorParticle _mirror;
 	#endregion
 
 	#region Declarations Event Args
@@ -141,6 +141,11 @@ public class Laser : MonoBehaviour
 						break;
 
 					case "Reflect":
+						_mirror = _hit.collider.GetComponent<MirrorParticle>();
+						if(_mirror!= null)
+						{
+							_mirror.MaxIntensity();
+						}
 						laserLength += _hit.distance;
 						lastPosition = _hit.point + _hit.normal * 0.01f;
 						lastDirection = Vector2.Reflect(lastDirection, _hit.normal);
@@ -196,6 +201,10 @@ public class Laser : MonoBehaviour
 						{
 							_burn.SetIsHit(false);
 						}
+						else if (_mirror != null)
+						{
+							_mirror._isHit = false;
+						}
 						break;
 				}
 			}
@@ -210,14 +219,23 @@ public class Laser : MonoBehaviour
 
 	void HoldCast(RaycastHit2D hit)
 	{
-		if (hit.collider.tag == "ActionEnable" || hit.collider.tag == "Burn")
+		try
 		{
-			_timerHold += Time.deltaTime;
+			if (hit.collider.tag == "ActionEnable" || hit.collider.tag == "Burn")
+			{
+				_timerHold += Time.deltaTime;
+			}
+			else
+			{
+				_timerHold = 0f;
+			}
 		}
-		else
+
+		catch(Exception ex)
 		{
-			_timerHold = 0f;
+
 		}
+		
 
 	}
 	#endregion

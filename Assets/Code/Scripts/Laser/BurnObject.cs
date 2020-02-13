@@ -6,12 +6,16 @@ public class BurnObject : MonoBehaviour
 	#region Declarations public
 	public float _timeToBurn;
 	public Rigidbody2D _rigidbody2D;
+	public Sprite _rendererParticlesFire;
+	//public Material _rendererParticlesSmoke;
+	//public ParticleSystem _fire;
 	#endregion
 
 	#region Declarations private
 	private float _timerBurn;
 	private bool _isHit = false;
 	private bool _isBurn = false;
+	private ParticleSystem _particles;
 	#endregion
 
 	#region Declarations Event Args
@@ -37,8 +41,8 @@ public class BurnObject : MonoBehaviour
 	private void Start()
 	{
 		#region Initialize
-		GetComponent<ParticleSystem>().enableEmission = false;
-		GetComponent<ParticleSystem>().startRotation = transform.rotation.eulerAngles.y * Mathf.Deg2Rad;
+		_particles = GetComponent<ParticleSystem>();
+		_particles.enableEmission = false;
 		#endregion
 	}
 
@@ -51,15 +55,18 @@ public class BurnObject : MonoBehaviour
 		#region Actions
 		if (_isHit)
 		{
-			GetComponent<ParticleSystem>().enableEmission = true;
-
+			_particles.enableEmission = true;
 		}
 		else
 		{
-			GetComponent<ParticleSystem>().enableEmission = false;
+			_particles.enableEmission = false;
 		}
+
 		if (_isBurn)
 		{
+			//_fire.Play();
+			//_fire.enableEmission = true;
+			_particles.textureSheetAnimation.SetSprite(0, _rendererParticlesFire);
 			_timerBurn += Time.deltaTime;
 			if (_timerBurn > _timeToBurn)
 			{

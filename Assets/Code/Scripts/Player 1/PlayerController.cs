@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
 	{
 		#region Movement
 		Move();
-		Parallax();
+		
 		#endregion
 
 		#region Actions
@@ -145,6 +145,7 @@ public class PlayerController : MonoBehaviour
 			_isJumping = false;
 			_animationManager.SetDuoLanding();
 		}
+		Parallax();
 		#endregion
 
 		#region Actions
@@ -212,7 +213,7 @@ public class PlayerController : MonoBehaviour
 
 			}
 
-			if (Mathf.Abs(_horizontal) > 0.1f && _isTrigger == false) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
+			if (Mathf.Abs(_horizontal) > 0.35f && _isTrigger == false) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
 
 		}
 	}
@@ -240,7 +241,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("DetachAttach") && (_rigidbodyPlayer2.transform.position.x >= _rigidbodyPlayer.transform.position.x - _limitAttach && _rigidbodyPlayer2.transform.position.x <= _rigidbodyPlayer.transform.position.x + _limitAttach))
 		{
-			if (_detach == false && _switch == false)
+			if (_detach == false)
 			{
 				_rigidbodyPlayer2.transform.parent = null;
 				_colliderPlayer2Capsule.enabled = true;
@@ -250,7 +251,7 @@ public class PlayerController : MonoBehaviour
 				_detach = !_detach;
 			}
 
-			else if (_detach == true && _switch == false)
+			else if (_detach == true )
 			{
 				_colliderPlayer2Capsule.enabled = false;
 				_Shield.enabled = true;
@@ -261,6 +262,14 @@ public class PlayerController : MonoBehaviour
 				}
 				_rigidbodyPlayer2.transform.SetParent(transform);
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
+				_rigidbodyPlayer = _rigidbodyPlayer1;
+				_jumpImpulse = _jumpImpulsePlayer1;
+				_jumpForce = _jumpForcePlayer1;
+				_jumpTimeDelay = _jumpTimeDelayPlayer1;
+				_speed = _speedPlayer1;
+				_airControlForce = _airControlForcePlayer1;
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
+				_camera.Target = _rigidbodyPlayer1.transform;
 				_detach = !_detach;
 			}
 		}
@@ -391,11 +400,11 @@ public class PlayerController : MonoBehaviour
 	{
 		if (_parallax != null)
 		{
-			if (_horizontal<-0.1)
+			if (_rigidbodyPlayer.velocity.x<-0.001f)
 			{
 				_parallax.Speed = _speedParallax;
 			}
-			else if (_horizontal > 0.1)
+			else if (_rigidbodyPlayer.velocity.x > 0.001f)
 			{
 				_parallax.Speed = -_speedParallax;
 			}

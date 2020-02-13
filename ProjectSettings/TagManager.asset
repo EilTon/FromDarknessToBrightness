@@ -17,6 +17,7 @@ TagManager:
   - Resume
   - QuitMainMenu
   - ReflectPlayer
+  - Laser
   layers:
   - Default
   - TransparentFX
