@@ -42,5 +42,25 @@ public class MirrorParticle : MonoBehaviour
 		_isHit = isHit;
 	}
 
+	private void OnTriggerStay2D(Collider2D collision)
+	{
+		MaxIntensity();
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		MaxIntensity();
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		Debug.Log("test");
+	}
+
+	private void OnCollisionStay2D(Collision2D collision)
+	{
+		Debug.Log("test");
+	}
+
 
 }

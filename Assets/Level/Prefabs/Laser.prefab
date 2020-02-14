@@ -243,10 +243,10 @@ MonoBehaviour:
   _rayDistance: 100
   _layer:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 16641
   _isContinue: 1
   _timeTocast: 2
-  _timeToHold: 500
+  _timeToHold: 200
 --- !u!114 &533082081
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb7e9eb3207d91b43bffd411dcc1c221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToBurn: 10
+  _timeToBurn: 2
   _rigidbody2D: {fileID: 0}
   _rendererParticlesFire: {fileID: 5427998328017111464, guid: 9c0287b7886108b47ac7f4122e45c73d,
     type: 3}

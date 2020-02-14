@@ -8,7 +8,7 @@ public class Checkpoint : MonoBehaviour
 	{
 		if(collision.tag == "Player")
 		{
-			FindObjectOfType<ParticlesCrystal>().transform.position = transform.position;
+			FindObjectOfType<ParticlesCrystal>().transform.position = new Vector2(transform.position.x,transform.position.y - 0.5f);
 			FindObjectOfType<ParticlesCrystal>().SetEmissionCrystal();
 			FindObjectOfType<PlayerController>().SetResetPosition(transform.position);
 		}

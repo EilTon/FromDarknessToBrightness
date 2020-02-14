@@ -24,6 +24,7 @@ public class Laser : MonoBehaviour
 	private BurnObject _burn;
 	private float _timerHold = 0f;
 	private MirrorParticle _mirror;
+	private List<MirrorParticle> _mirrors;
 	#endregion
 
 	#region Declarations Event Args
@@ -50,6 +51,7 @@ public class Laser : MonoBehaviour
 	{
 		#region Initialize
 		_storeCast = _timeTocast;
+		_mirrors = new List<MirrorParticle>();
 		#endregion
 	}
 
@@ -93,6 +95,19 @@ public class Laser : MonoBehaviour
 				_timeTocast = _storeCast;
 			}
 		}
+;
+		if(_hit)
+		{
+			
+			if (_mirrors.Count > 0)
+			{
+				foreach (var mirror in _mirrors)
+				{
+					mirror.SetIsHit(false);
+				}
+			}
+		}
+		
 
 
 		#endregion
@@ -142,9 +157,14 @@ public class Laser : MonoBehaviour
 
 					case "Reflect":
 						_mirror = _hit.collider.GetComponent<MirrorParticle>();
-						if(_mirror!= null)
+						if (_mirror != null)
 						{
+							_mirror.SetIsHit(true);
 							_mirror.MaxIntensity();
+							if(!_mirrors.Contains(_mirror))
+							{
+								_mirrors.Add(_mirror);
+							}
 						}
 						laserLength += _hit.distance;
 						lastPosition = _hit.point + _hit.normal * 0.01f;
@@ -152,7 +172,7 @@ public class Laser : MonoBehaviour
 						break;
 
 					case "ReflectPlayer":
-						FindObjectOfType<ShieldParticle>().SetEmissionParticle(true);
+						//FindObjectOfType<ShieldParticle>().SetEmissionParticle(true);
 						laserLength += _hit.distance;
 						lastPosition = _hit.point + _hit.normal * 0.01f;
 						lastDirection = Vector2.Reflect(lastDirection, _hit.normal);
@@ -202,10 +222,6 @@ public class Laser : MonoBehaviour
 						else if (_burn != null)
 						{
 							_burn.SetIsHit(false);
-						}
-						else if (_mirror != null)
-						{
-							_mirror.SetIsHit(false);
 						}
 						//FindObjectOfType<ShieldParticle>().SetIsHit(false);
 						break;
