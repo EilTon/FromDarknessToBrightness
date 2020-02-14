@@ -130,7 +130,7 @@ public class Laser : MonoBehaviour
 		while (positions.Count < 100)
 		{
 			_hit = Physics2D.Raycast(lastPosition, lastDirection, Mathf.Clamp(distance - laserLength, 0, distance), _layer);
-			HoldCast(_hit);
+			
 			if (_hit)
 			{
 				positions.Add(_hit.point);
@@ -152,6 +152,7 @@ public class Laser : MonoBehaviour
 						break;
 
 					case "ReflectPlayer":
+						FindObjectOfType<ShieldParticle>().SetEmissionParticle(true);
 						laserLength += _hit.distance;
 						lastPosition = _hit.point + _hit.normal * 0.01f;
 						lastDirection = Vector2.Reflect(lastDirection, _hit.normal);
@@ -193,6 +194,7 @@ public class Laser : MonoBehaviour
 						break;
 
 					default:
+						HoldCast(_hit);
 						if (_holding != null)
 						{
 							_holding.SetIsStreching(false);
@@ -203,8 +205,9 @@ public class Laser : MonoBehaviour
 						}
 						else if (_mirror != null)
 						{
-							_mirror._isHit = false;
+							_mirror.SetIsHit(false);
 						}
+						//FindObjectOfType<ShieldParticle>().SetIsHit(false);
 						break;
 				}
 			}

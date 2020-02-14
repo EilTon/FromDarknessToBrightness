@@ -6,8 +6,8 @@ public class MirrorParticle : MonoBehaviour
 {
 	public float _maxIntensity;
 	public float _minIntensity;
-	[HideInInspector]
-	public bool _isHit = false;
+
+	private bool _isHit = false;
 	private ParticleSystem _reflect;
 
 	void Start()
@@ -35,6 +35,11 @@ public class MirrorParticle : MonoBehaviour
 	public void MinIntensity()
 	{
 		SetMirrorIntense(_minIntensity);
+	}
+
+	public void SetIsHit(bool isHit)
+	{
+		_isHit = isHit;
 	}
 
 

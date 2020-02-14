@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
 
 	#region Declarations private
 	private AnimationManager _animationManager;
+	private Vector3 _lastUpdatePos = Vector3.zero;
+	private Vector3 _dist;
+	private float _currentSpeed;
 	private bool _isJumping = false;
 	private bool _isFreeze = false;
 	private bool _isGrounded;
@@ -103,7 +106,7 @@ public class PlayerController : MonoBehaviour
 	{
 		#region Movement
 		Move();
-		
+		Parallax();
 		#endregion
 
 		#region Actions
@@ -145,7 +148,7 @@ public class PlayerController : MonoBehaviour
 			_isJumping = false;
 			_animationManager.SetDuoLanding();
 		}
-		Parallax();
+
 		#endregion
 
 		#region Actions
@@ -190,7 +193,7 @@ public class PlayerController : MonoBehaviour
 		if (_isFreeze == false)
 		{
 			_horizontal = Input.GetAxis("Horizontal");
-			if(_horizontal>0.01f|| _horizontal < -0.01f)
+			if (_horizontal > 0.01f || _horizontal < -0.01f)
 			{
 				_animationManager.SetIdle();
 			}
@@ -251,7 +254,7 @@ public class PlayerController : MonoBehaviour
 				_detach = !_detach;
 			}
 
-			else if (_detach == true )
+			else if (_detach == true)
 			{
 				_colliderPlayer2Capsule.enabled = false;
 				_Shield.enabled = true;
@@ -381,7 +384,7 @@ public class PlayerController : MonoBehaviour
 		_jumpTimeDelay = _jumpTimeDelayPlayer1;
 		_speed = _speedPlayer1;
 		_airControlForce = _airControlForcePlayer1;
-		_rigidbodyPlayer.transform.eulerAngles = new Vector2(0,0);
+		_rigidbodyPlayer.transform.eulerAngles = new Vector2(0, 0);
 		_camera.Target = _rigidbodyPlayer.transform;
 		_rigidbodyPlayer2.transform.parent = _rigidbodyPlayer.transform;
 		_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
@@ -396,17 +399,22 @@ public class PlayerController : MonoBehaviour
 	{
 		_isFreeze = freeze;
 	}
+
+
 	void Parallax()
 	{
+		_dist = transform.position - _lastUpdatePos;
+		_currentSpeed = _dist.magnitude / Time.deltaTime;
+		_lastUpdatePos = transform.position;
 		if (_parallax != null)
 		{
-			if (_rigidbodyPlayer.velocity.x<-0.001f)
+			if (_horizontal < -0.01f && _currentSpeed > 1.15f)
 			{
-				_parallax.Speed = _speedParallax;
+				_parallax.Speed = _speedParallax * Mathf.Abs(_horizontal);
 			}
-			else if (_rigidbodyPlayer.velocity.x > 0.001f)
+			else if (_horizontal > 0.01f && _currentSpeed > 1.15f)
 			{
-				_parallax.Speed = -_speedParallax;
+				_parallax.Speed = -_speedParallax * Mathf.Abs(_horizontal);
 			}
 			else
 			{
