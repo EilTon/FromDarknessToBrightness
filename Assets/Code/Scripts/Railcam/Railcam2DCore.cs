@@ -341,7 +341,7 @@ namespace Railcam2D
 							{
 								InCoroutine = true;
 								FlagCoroutine = true;
-								StartCoroutine(ChangeSizeCamera(_currentTrigger.TimeToSize, _currentTrigger.SizeCamera, oldSize));
+								//StartCoroutine(ChangeSizeCamera(_currentTrigger.TimeToSize, _currentTrigger.SizeCamera, oldSize));
 							}
 
 							else if (InCoroutine == false)
@@ -515,30 +515,30 @@ namespace Railcam2D
 			}
 		}
 
-		private IEnumerator ChangeSizeCamera(float time, float newSize, float oldSize)
-		{
-			if (oldSize.Equals(newSize))
-			{
-				InCoroutine = true;
-				FlagCoroutine = false;
-				yield break;
-			}
+		//private IEnumerator ChangeSizeCamera(float time, float newSize, float oldSize)
+		//{
+		//	if (oldSize.Equals(newSize))
+		//	{
+		//		InCoroutine = true;
+		//		FlagCoroutine = false;
+		//		yield break;
+		//	}
 
-			else
-			{
-				float elapsed = 0;
-				while (elapsed <= time)
-				{
-					elapsed += Time.deltaTime;
-					float t = Mathf.Clamp01(elapsed / time);
-					_camera.orthographicSize = Mathf.Lerp(oldSize, newSize, t);
-					InCoroutine = true;
-					yield return null;
-				}
-				InCoroutine = false;
+		//	else
+		//	{
+		//		float elapsed = 0;
+		//		while (elapsed <= time)
+		//		{
+		//			elapsed += Time.deltaTime;
+		//			float t = Mathf.Clamp01(elapsed / time);
+		//			_camera.orthographicSize = Mathf.Lerp(oldSize, newSize, t);
+		//			InCoroutine = true;
+		//			yield return null;
+		//		}
+		//		InCoroutine = false;
 				
-			}
-		}
+		//	}
+		//}
 
 		//private void ChangeSizeCameraNoCouroutine(float time, float newSize)
 		//{
