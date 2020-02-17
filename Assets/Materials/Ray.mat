@@ -29,7 +29,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
-    - _FallofPower: 1.47
+    - _FallofPower: 6.95
     - _GodRayFallofPower: 0.9
     - _GodRayIntensity: 0.4
     - _GodRayLenght: 100
@@ -38,7 +38,7 @@ Material:
     - _HeightPanSpeed: 12.48
     - _SpecFallofPower: 1.18
     - _SpecNoiseScale: 5.42
-    - _SpecSize: 0.001
+    - _SpecSize: 0.01
     - _SpecSpeed: 3.1
     - _WidthPanSpeed: 0.2
     m_Colors:

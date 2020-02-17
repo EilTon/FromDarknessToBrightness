@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
 	private bool _isTrigger = false;
 	private bool _switch = false;
 	private bool _detach = false;
+	private bool _isPlay= false;
 	private Player2Controller _controllerPlayer2;
 	private Rigidbody2D _rigidbodyPlayer1;
 	private Rigidbody2D _rigidbodyPlayer2;
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour
 	private CapsuleCollider2D _colliderPlayer2Capsule;
 	private Vector3 _movement;
 	private float _resetJump;
+	private AudioManager _audio;
 	#endregion
 
 	#region Declarations Event Args
@@ -99,6 +101,7 @@ public class PlayerController : MonoBehaviour
 		StartCoroutine(Jumping());
 		StartCoroutine(isGroundedBuffering());
 		_animationManager = GetComponent<AnimationManager>();
+		_audio = GetComponent<AudioManager>();
 		#endregion
 	}
 
@@ -146,6 +149,11 @@ public class PlayerController : MonoBehaviour
 		if ((_rigidbodyPlayer.velocity.y < -0.1f && _isGrounded))
 		{
 			GetComponent<AudioSource>().enabled = true;
+			if(_isPlay==false)
+			{
+				_audio.Landing();
+				_isPlay = true;
+			}
 			_isJumping = false;
 			_animationManager.SetDuoLanding();
 		}
@@ -227,7 +235,17 @@ public class PlayerController : MonoBehaviour
 		if (_isGrounded)
 		{
 			_animationManager.StopDuoLanding();
-			_rigidbodyPlayer.velocity = (Vector3.right * _horizontal * _speed) + Vector3.up * _rigidbodyPlayer.velocity.y;
+			Vector2 velocity = (Vector3.right * _horizontal * _speed) + Vector3.up * _rigidbodyPlayer.velocity.y;
+			if( Mathf.Abs(velocity.x)>0.1f)
+			{
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
+				_rigidbodyPlayer.velocity = velocity;
+			}
+			else
+			{
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+			}
+			
 		}
 		else
 		{
@@ -445,7 +463,8 @@ public class PlayerController : MonoBehaviour
 
 			if (Input.GetButtonDown("Jump") && _isGrounded && delayJump <= 0 && _isJumping == false)
 			{
-				GetComponent<AudioSource>().enabled = false;
+				_audio.Jump();
+				_isPlay = false;
 				_isJumping = true;
 				if (_detach == false)
 				{

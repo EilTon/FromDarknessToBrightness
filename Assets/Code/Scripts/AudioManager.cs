@@ -5,6 +5,8 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
 	public AudioClip[] _steps;
+	public AudioClip[] _jump;
+	public AudioClip[] _landing;
 	public AudioClip _burning;
 	public AudioClip _chimeLight;
 	public AudioClip _cristalActive;
@@ -21,9 +23,23 @@ public class AudioManager : MonoBehaviour
 
 	public void Step()
 	{
-		int random = Random.Range(0, _steps.Length - 1);
+		int random = Random.Range(0, _steps.Length);
 		//_playerAudio.clip = _lichenSteps[random];
 		_playerAudio.PlayOneShot(_steps[random]);
+	}
+
+	public void Jump()
+	{
+		int random = Random.Range(0, _jump.Length);
+		//_playerAudio.clip = _lichenSteps[random];
+		_playerAudio.PlayOneShot(_jump[random]);
+	}
+
+	public void Landing()
+	{
+		int random = Random.Range(0, _landing.Length);
+		//_playerAudio.clip = _lichenSteps[random];
+		_playerAudio.PlayOneShot(_landing[random]);
 	}
 
 	public void PlayBurning()
