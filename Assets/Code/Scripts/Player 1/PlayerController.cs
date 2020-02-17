@@ -145,6 +145,7 @@ public class PlayerController : MonoBehaviour
 		MovePlayer();
 		if ((_rigidbodyPlayer.velocity.y < -0.1f && _isGrounded))
 		{
+			GetComponent<AudioSource>().enabled = true;
 			_isJumping = false;
 			_animationManager.SetDuoLanding();
 		}
@@ -274,6 +275,7 @@ public class PlayerController : MonoBehaviour
 				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
 				_camera.Target = _rigidbodyPlayer1.transform;
 				_detach = !_detach;
+				_switch = false;
 			}
 		}
 	}
@@ -443,6 +445,7 @@ public class PlayerController : MonoBehaviour
 
 			if (Input.GetButtonDown("Jump") && _isGrounded && delayJump <= 0 && _isJumping == false)
 			{
+				GetComponent<AudioSource>().enabled = false;
 				_isJumping = true;
 				if (_detach == false)
 				{
