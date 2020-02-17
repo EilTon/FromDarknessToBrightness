@@ -1,9 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[ExecuteInEditMode]
 [RequireComponent(typeof(LineRenderer))]
-[RequireComponent(typeof(ParticleSystem))]
 public class Laser : MonoBehaviour
 {
 	#region Declarations public
@@ -22,8 +21,10 @@ public class Laser : MonoBehaviour
 	private RaycastHit2D _hit;
 	private Vector3[] _positions;
 	private ActionEnable _holding;
+	private BurnObject _burn;
 	private float _timerHold = 0f;
-
+	private MirrorParticle _mirror;
+	private List<MirrorParticle> _mirrors;
 	#endregion
 
 	#region Declarations Event Args
@@ -50,10 +51,11 @@ public class Laser : MonoBehaviour
 	{
 		#region Initialize
 		_storeCast = _timeTocast;
+		_mirrors = new List<MirrorParticle>();
 		#endregion
 	}
-	
-	
+
+
 	private void Update()
 	{
 		#region Movement
@@ -91,8 +93,21 @@ public class Laser : MonoBehaviour
 			{
 				_timer = 0;
 				_timeTocast = _storeCast;
-			}	
+			}
 		}
+;
+		if(_hit)
+		{
+			
+			if (_mirrors.Count > 0)
+			{
+				foreach (var mirror in _mirrors)
+				{
+					mirror.SetIsHit(false);
+				}
+			}
+		}
+		
 
 
 		#endregion
@@ -141,12 +156,23 @@ public class Laser : MonoBehaviour
 						break;
 
 					case "Reflect":
+						_mirror = _hit.collider.GetComponent<MirrorParticle>();
+						if (_mirror != null)
+						{
+							_mirror.SetIsHit(true);
+							_mirror.MaxIntensity();
+							if(!_mirrors.Contains(_mirror))
+							{
+								_mirrors.Add(_mirror);
+							}
+						}
 						laserLength += _hit.distance;
 						lastPosition = _hit.point + _hit.normal * 0.01f;
 						lastDirection = Vector2.Reflect(lastDirection, _hit.normal);
 						break;
 
 					case "ReflectPlayer":
+						//FindObjectOfType<ShieldParticle>().SetEmissionParticle(true);
 						laserLength += _hit.distance;
 						lastPosition = _hit.point + _hit.normal * 0.01f;
 						lastDirection = Vector2.Reflect(lastDirection, _hit.normal);
@@ -162,27 +188,42 @@ public class Laser : MonoBehaviour
 
 					case "ActionEnable":
 						HoldCast(_hit);
-						if (_timerHold>_timeToHold)
+						if (_timerHold > _timeToHold)
 						{
 							_holding = _hit.collider.GetComponent<ActionEnable>();
 							_holding._Action.Invoke();
-							_holding._isStreching = true;
+							_holding.SetIsStreching(true);
 						}
 						break;
 
 					case "Burn":
 						HoldCast(_hit);
-						if (_timerHold>_timeToHold)
+						_burn = _hit.collider.GetComponent<BurnObject>();
+						if (_timerHold < _timeToHold)
 						{
-							_hit.collider.GetComponent<BurnObject>().SetIsHit();
+							_burn.SetIsHit(true);
+						}
+						else if (_timerHold > _timeToHold)
+						{
+							_burn.SetIsBurn();
+						}
+						else
+						{
+							_burn.SetIsHit(false);
 						}
 						break;
 
 					default:
-						if(_holding != null)
+						HoldCast(_hit);
+						if (_holding != null)
 						{
-							_holding._isStreching = false;
+							_holding.SetIsStreching(false);
 						}
+						else if (_burn != null)
+						{
+							_burn.SetIsHit(false);
+						}
+						//FindObjectOfType<ShieldParticle>().SetIsHit(false);
 						break;
 				}
 			}
@@ -197,18 +238,24 @@ public class Laser : MonoBehaviour
 
 	void HoldCast(RaycastHit2D hit)
 	{
-		if(hit.collider.tag == "ActionEnable" || hit.collider.tag == "Burn")
+		try
 		{
-			if (_timerHold < _timeToHold)
+			if (hit.collider.tag == "ActionEnable" || hit.collider.tag == "Burn")
 			{
 				_timerHold += Time.deltaTime;
 			}
+			else
+			{
+				_timerHold = 0f;
+			}
 		}
-		else
+
+		catch(Exception ex)
 		{
-			_timerHold = 0f;
+
 		}
 		
+
 	}
 	#endregion
 

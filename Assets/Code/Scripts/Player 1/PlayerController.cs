@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
 
 	#region Declarations private
 	private AnimationManager _animationManager;
+	private Vector3 _lastUpdatePos = Vector3.zero;
+	private Vector3 _dist;
+	private float _currentSpeed;
 	private bool _isJumping = false;
 	private bool _isFreeze = false;
 	private bool _isGrounded;
@@ -142,9 +145,11 @@ public class PlayerController : MonoBehaviour
 		MovePlayer();
 		if ((_rigidbodyPlayer.velocity.y < -0.1f && _isGrounded))
 		{
+			GetComponent<AudioSource>().enabled = true;
 			_isJumping = false;
 			_animationManager.SetDuoLanding();
 		}
+
 		#endregion
 
 		#region Actions
@@ -189,7 +194,7 @@ public class PlayerController : MonoBehaviour
 		if (_isFreeze == false)
 		{
 			_horizontal = Input.GetAxis("Horizontal");
-			if(_horizontal>0.01f|| _horizontal < -0.01f)
+			if (_horizontal > 0.01f || _horizontal < -0.01f)
 			{
 				_animationManager.SetIdle();
 			}
@@ -212,7 +217,7 @@ public class PlayerController : MonoBehaviour
 
 			}
 
-			if (Mathf.Abs(_horizontal) > 0.1f && _isTrigger == false) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
+			if (Mathf.Abs(_horizontal) > 0.35f && _isTrigger == false) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
 
 		}
 	}
@@ -240,7 +245,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("DetachAttach") && (_rigidbodyPlayer2.transform.position.x >= _rigidbodyPlayer.transform.position.x - _limitAttach && _rigidbodyPlayer2.transform.position.x <= _rigidbodyPlayer.transform.position.x + _limitAttach))
 		{
-			if (_detach == false && _switch == false)
+			if (_detach == false)
 			{
 				_rigidbodyPlayer2.transform.parent = null;
 				_colliderPlayer2Capsule.enabled = true;
@@ -250,7 +255,7 @@ public class PlayerController : MonoBehaviour
 				_detach = !_detach;
 			}
 
-			else if (_detach == true && _switch == false)
+			else if (_detach == true)
 			{
 				_colliderPlayer2Capsule.enabled = false;
 				_Shield.enabled = true;
@@ -261,7 +266,16 @@ public class PlayerController : MonoBehaviour
 				}
 				_rigidbodyPlayer2.transform.SetParent(transform);
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
+				_rigidbodyPlayer = _rigidbodyPlayer1;
+				_jumpImpulse = _jumpImpulsePlayer1;
+				_jumpForce = _jumpForcePlayer1;
+				_jumpTimeDelay = _jumpTimeDelayPlayer1;
+				_speed = _speedPlayer1;
+				_airControlForce = _airControlForcePlayer1;
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
+				_camera.Target = _rigidbodyPlayer1.transform;
 				_detach = !_detach;
+				_switch = false;
 			}
 		}
 	}
@@ -372,7 +386,7 @@ public class PlayerController : MonoBehaviour
 		_jumpTimeDelay = _jumpTimeDelayPlayer1;
 		_speed = _speedPlayer1;
 		_airControlForce = _airControlForcePlayer1;
-		_rigidbodyPlayer.transform.eulerAngles = new Vector2(0,0);
+		_rigidbodyPlayer.transform.eulerAngles = new Vector2(0, 0);
 		_camera.Target = _rigidbodyPlayer.transform;
 		_rigidbodyPlayer2.transform.parent = _rigidbodyPlayer.transform;
 		_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
@@ -387,17 +401,22 @@ public class PlayerController : MonoBehaviour
 	{
 		_isFreeze = freeze;
 	}
+
+
 	void Parallax()
 	{
+		_dist = transform.position - _lastUpdatePos;
+		_currentSpeed = _dist.magnitude / Time.deltaTime;
+		_lastUpdatePos = transform.position;
 		if (_parallax != null)
 		{
-			if (_horizontal<-0.1)
+			if (_horizontal < -0.01f && _currentSpeed > 1.15f)
 			{
-				_parallax.Speed = _speedParallax;
+				_parallax.Speed = _speedParallax * Mathf.Abs(_horizontal);
 			}
-			else if (_horizontal > 0.1)
+			else if (_horizontal > 0.01f && _currentSpeed > 1.15f)
 			{
-				_parallax.Speed = -_speedParallax;
+				_parallax.Speed = -_speedParallax * Mathf.Abs(_horizontal);
 			}
 			else
 			{
@@ -426,6 +445,7 @@ public class PlayerController : MonoBehaviour
 
 			if (Input.GetButtonDown("Jump") && _isGrounded && delayJump <= 0 && _isJumping == false)
 			{
+				GetComponent<AudioSource>().enabled = false;
 				_isJumping = true;
 				if (_detach == false)
 				{

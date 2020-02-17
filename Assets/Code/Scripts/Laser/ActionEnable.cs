@@ -34,19 +34,21 @@ public class ActionEnable : MonoBehaviour
 	public float _timeToStreching;
 	public float _timeToGrowing;
 	[HideInInspector]
-	public bool _isStreching;
+	public static bool _isStreching;
 	public UnityEvent _Action;
 	public GameObject _platformToHold;
 	public float _timeToDecreaze;
+	public AudioManager _audioManager;
 	#endregion
 
 	#region Declarations private
 	private float _direction = 1;
 	private Action _action;
-	private float _timerStrech;
+	private static float _timerStrech;
 	private float _timerGrowth;
 	private float _timerDecreaze;
 	private Vector2 _originTransform;
+	private bool _isPlay = false;
 	#endregion
 
 	#region Declarations Event Args
@@ -72,7 +74,7 @@ public class ActionEnable : MonoBehaviour
 	private void Start()
 	{
 		#region Initialize
-		_originTransform = new Vector2(transform.position.x,transform.position.y);
+		_originTransform = new Vector2(transform.position.x, transform.position.y);
 		float x = transform.position.x;
 		float y = transform.position.y;
 		//_resetStrech.position = transform.position;
@@ -238,15 +240,15 @@ public class ActionEnable : MonoBehaviour
 
 		if (_timerStrech < _timeToStreching && _isStreching == true)
 		{
-			transform.Translate(new Vector2(0, 1 * _speedPositionY * Time.deltaTime));
-			transform.localScale += new Vector3(0, 1 * _speedScaleY * Time.deltaTime);
+			transform.Translate(new Vector2(0, 1 * -_speedPositionY * Time.deltaTime));
+			transform.localScale += new Vector3(1 * _speedScaleX * Time.deltaTime, 1 * _speedScaleY * Time.deltaTime);
 			_platformToHold.transform.Translate(new Vector2(0, 1 * -_speedPositionY * Time.deltaTime));
 			_timerStrech += Time.deltaTime;
 		}
 		else if (_isStreching == false && _timerStrech > 0)
 		{
-			transform.Translate(new Vector2(0, 1 * -_speedPositionY * Time.deltaTime));
-			transform.localScale += new Vector3(0, 1 * -_speedScaleY * Time.deltaTime);
+			transform.Translate(new Vector2(0, 1 * _speedPositionY * Time.deltaTime));
+			transform.localScale += new Vector3(1 * -_speedScaleX * Time.deltaTime, 1 * -_speedScaleY * Time.deltaTime);
 			_platformToHold.transform.Translate(new Vector2(0, 1 * _speedPositionY * Time.deltaTime));
 			_timerStrech -= Time.deltaTime;
 		}
@@ -269,11 +271,22 @@ public class ActionEnable : MonoBehaviour
 
 		if (_timerGrowth < _timeToGrowing)
 		{
+			if (_isPlay == false)
+			{
+				_audioManager.PlayFungi();
+				_isPlay = true;
+			}
+
 			transform.Translate(new Vector2(1 * _speedPositionX * Time.deltaTime, 1 * _speedPositionY * Time.deltaTime));
 			transform.localScale += new Vector3(1 * _speedScaleX * Time.deltaTime, 1 * _speedScaleY * Time.deltaTime);
 		}
 
 		_timerGrowth += Time.deltaTime;
+	}
+
+	public void SetIsStreching(bool boo)
+	{
+		_isStreching = boo;
 	}
 	#endregion
 
