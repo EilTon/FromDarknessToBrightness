@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2635817731659547985}
   - component: {fileID: 2635817731659547984}
   m_Layer: 0
-  m_Name: Skull (1)
+  m_Name: death by light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4634,8 +4634,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 219882489a1df4042823f03b5b903103, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 27459c3311bbf3a42994a00e6c7bb1a2, type: 2}
+  - {fileID: 2100000, guid: 27459c3311bbf3a42994a00e6c7bb1a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9388,8 +9388,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8bcca63669fffd446892c5f6144ebcab, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 2b9617a090f294045a9948e2f82881b0, type: 2}
+  - {fileID: 2100000, guid: 2b9617a090f294045a9948e2f82881b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14092,8 +14092,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2971af36b69b5924fb0f74d572a91646, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 6b1788b66aca3d240a46c6113d2ad481, type: 2}
+  - {fileID: 2100000, guid: 6b1788b66aca3d240a46c6113d2ad481, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

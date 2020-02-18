@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6425820378688680271}
   - component: {fileID: 6425820378688680270}
   m_Layer: 0
-  m_Name: particules OBJ destruct
+  m_Name: OBJ desctructible
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4709,8 +4709,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 012b0195e7df6c14d8e0eec9c7b82ae1, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 3307fdf0b77b3ed4e91d6e4e27efac74, type: 2}
+  - {fileID: 2100000, guid: 3307fdf0b77b3ed4e91d6e4e27efac74, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -119,7 +119,7 @@ public class MenuPause : MenuController
 
 				case "ResetCheckpoint":
 					Resume();
-					_playerController.ResetPlayer();
+					_playerController.ResetPlayer("");
 					break;
 
 				case "QuitMainMenu":

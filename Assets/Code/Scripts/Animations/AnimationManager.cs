@@ -93,4 +93,16 @@ public class AnimationManager : MonoBehaviour
 		_trilo.speed = 1;
 	}
 
+	public void ResetLichen()
+	{
+		_lichen.SetFloat("Speed_Solo_Lichen", 0f);
+		_lichen.Play("Idle_L_Solo", 0);
+	}
+
+	IEnumerator Stop()
+	{
+		_lichen.SetFloat("Speed_Solo_Lichen", 0f);
+		_lichen.Play("Idle_L_Solo", 0);
+		yield return null;
+	}
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7687130260051618116}
   - component: {fileID: 7687130260051618119}
   m_Layer: 0
-  m_Name: Skull (1)
+  m_Name: death basic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,9 +25,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7687130260051618113}
-  m_LocalRotation: {x: -0, y: -0, z: 1.7763566e-15, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -4632,8 +4632,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 219882489a1df4042823f03b5b903103, type: 2}
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 27459c3311bbf3a42994a00e6c7bb1a2, type: 2}
+  - {fileID: 2100000, guid: 27459c3311bbf3a42994a00e6c7bb1a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

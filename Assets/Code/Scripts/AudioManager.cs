@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
 	public AudioClip[] _steps;
@@ -15,7 +16,7 @@ public class AudioManager : MonoBehaviour
 	public AudioClip _wobblingWall;
 
 	private AudioSource _playerAudio;
-
+	
 	private void Start()
 	{
 		_playerAudio = GetComponent<AudioSource>();
@@ -24,21 +25,24 @@ public class AudioManager : MonoBehaviour
 	public void Step()
 	{
 		int random = Random.Range(0, _steps.Length);
-		//_playerAudio.clip = _lichenSteps[random];
+		_playerAudio.PlayOneShot(_steps[random]);
+	}
+
+	public void StepLichen()
+	{
+		int random = Random.Range(0, _steps.Length);
 		_playerAudio.PlayOneShot(_steps[random]);
 	}
 
 	public void Jump()
 	{
 		int random = Random.Range(0, _jump.Length);
-		//_playerAudio.clip = _lichenSteps[random];
 		_playerAudio.PlayOneShot(_jump[random]);
 	}
 
 	public void Landing()
 	{
 		int random = Random.Range(0, _landing.Length);
-		//_playerAudio.clip = _lichenSteps[random];
 		_playerAudio.PlayOneShot(_landing[random]);
 	}
 
@@ -70,5 +74,20 @@ public class AudioManager : MonoBehaviour
 	public void PlayWobblingFall()
 	{
 		_playerAudio.PlayOneShot(_wobblingWall);
+	}
+
+	public void ResetAudio()
+	{
+		StartCoroutine(StopAudio());
+	}
+
+	IEnumerator StopAudio()
+	{
+		_playerAudio.Stop();
+		_playerAudio.clip = null;
+		_playerAudio.enabled = false;
+		_playerAudio.PlayOneShot(null);
+		_playerAudio.enabled = true;
+		yield return null;
 	}
 }

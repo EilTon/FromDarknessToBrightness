@@ -8,7 +8,7 @@ public class Spike : MonoBehaviour
 	{
 		if(collision.tag == "Player" || collision.tag == "ReflectPlayer")
 		{
-			FindObjectOfType<PlayerController>().ResetPlayer();
+			FindObjectOfType<PlayerController>().ResetPlayer("spike");
 		}
 	}
 }
