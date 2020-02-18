@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	#region Declarations public
+	public FreeParallax _parallax;
 	public float _speedPlayer1;
 	public float _jumpImpulsePlayer1;
 	public float _jumpForcePlayer1;
@@ -23,9 +24,18 @@ public class PlayerController : MonoBehaviour
 	public float _delayShield;
 	public float _limitAttach;
 	public float _bufferDelay;
+	public CircleCollider2D _Shield;
+	public float _speedParallax;
+	public ParticleSystem _deathLight;
+	public ParticleSystem _deathBasic;
 	#endregion
 
 	#region Declarations private
+	private AnimationManager _animationManager;
+	private Vector3 _lastUpdatePos = Vector3.zero;
+	private Vector3 _dist;
+	private float _currentSpeed;
+	private bool _isJumping = false;
 	private bool _isFreeze = false;
 	private bool _isGrounded;
 	private bool _isBuffering = false;
@@ -33,6 +43,8 @@ public class PlayerController : MonoBehaviour
 	private bool _isTrigger = false;
 	private bool _switch = false;
 	private bool _detach = false;
+	private bool _isPlay= false;
+	private bool _isDeath = false;
 	private Player2Controller _controllerPlayer2;
 	private Rigidbody2D _rigidbodyPlayer1;
 	private Rigidbody2D _rigidbodyPlayer2;
@@ -51,8 +63,10 @@ public class PlayerController : MonoBehaviour
 	private Railcam2DCore _camera;
 	private Vector2 _resetPosition;
 	private Vector2 _positionOrigin;
-	private Vector2 _originPlayer2;
+	private CapsuleCollider2D _colliderPlayer2Capsule;
 	private Vector3 _movement;
+	private float _resetJump;
+	private AudioManager _audio;
 	#endregion
 
 	#region Declarations Event Args
@@ -86,9 +100,11 @@ public class PlayerController : MonoBehaviour
 		_rigidbodyPlayer = _rigidbodyPlayer1;
 		_distToGround = GetComponent<Collider2D>().bounds.extents.y;
 		_controllerPlayer2 = FindObjectOfType<Player2Controller>();
-		_originPlayer2 = _player2.transform.position;
+		_colliderPlayer2Capsule = _player2.GetComponent<CapsuleCollider2D>();
 		StartCoroutine(Jumping());
 		StartCoroutine(isGroundedBuffering());
+		_animationManager = GetComponent<AnimationManager>();
+		_audio = GetComponent<AudioManager>();
 		#endregion
 	}
 
@@ -96,12 +112,15 @@ public class PlayerController : MonoBehaviour
 	{
 		#region Movement
 		Move();
+		Parallax();
+		//_animationManager.ResetLichen();
 		#endregion
 
 		#region Actions
 		//_controllerPlayer2.SetPlayerAngle(transform.eulerAngles.y);
 		DetachAttach();
 		SwitchPlayer();
+		MoveShieldTrigger();
 		//ShieldMode();
 
 		#endregion
@@ -119,6 +138,11 @@ public class PlayerController : MonoBehaviour
 		{
 			_delayShield += Time.deltaTime;
 		}
+		if (Time.time > _resetJump + 1.5f)
+		{
+			_isJumping = false;
+			_resetJump = Time.time;
+		}
 		#endregion
 	}
 
@@ -126,6 +150,21 @@ public class PlayerController : MonoBehaviour
 	{
 		#region Movement
 		MovePlayer();
+		if ((_rigidbodyPlayer.velocity.y < -0.1f && _isGrounded))
+		{
+<<<<<<< HEAD
+=======
+			GetComponent<AudioSource>().enabled = true;
+			if(_isPlay==false)
+			{
+				_audio.Landing();
+				_isPlay = true;
+			}
+>>>>>>> 4c12cd62328dbd027b8da60895fd9d11d2bdb83b
+			_isJumping = false;
+			_animationManager.SetDuoLanding();
+		}
+
 		#endregion
 
 		#region Actions
@@ -167,10 +206,34 @@ public class PlayerController : MonoBehaviour
 
 	void Move()
 	{
-		if(_isFreeze == false)
+		if (_isFreeze == false)
 		{
 			_horizontal = Input.GetAxis("Horizontal");
-			if (Mathf.Abs(_horizontal) > 0.1f && _isTrigger == false) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
+			if (_horizontal > 0.01f || _horizontal < -0.01f)
+			{
+				_animationManager.SetIdle();
+			}
+			if (_detach == false)
+			{
+				_animationManager.StartSpeedDuo();
+				_animationManager.SetSpeedDuo(_horizontal);
+			}
+			else
+			{
+				_animationManager.StopSpeedDuo();
+				if (_switch == false)
+				{
+					_animationManager.SetSpeedLichen(_horizontal);
+				}
+				else
+				{
+					_animationManager.SetSpeedTrilo(_horizontal);
+				}
+
+			}
+
+			if (Mathf.Abs(_horizontal) > 0.35f && _isTrigger == false) _rigidbodyPlayer.transform.eulerAngles = new Vector2(0, (Mathf.Sign(-_horizontal) + 1) * 90);
+
 		}
 	}
 
@@ -178,7 +241,18 @@ public class PlayerController : MonoBehaviour
 	{
 		if (_isGrounded)
 		{
-			_rigidbodyPlayer.velocity = (Vector3.right * _horizontal * _speed) + Vector3.up * _rigidbodyPlayer.velocity.y;
+			_animationManager.StopDuoLanding();
+			Vector2 velocity = (Vector3.right * _horizontal * _speed) + Vector3.up * _rigidbodyPlayer.velocity.y;
+			if( Mathf.Abs(velocity.x)>0.1f)
+			{
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
+				_rigidbodyPlayer.velocity = velocity;
+			}
+			else
+			{
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+			}
+			
 		}
 		else
 		{
@@ -196,22 +270,41 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("DetachAttach") && (_rigidbodyPlayer2.transform.position.x >= _rigidbodyPlayer.transform.position.x - _limitAttach && _rigidbodyPlayer2.transform.position.x <= _rigidbodyPlayer.transform.position.x + _limitAttach))
 		{
-			if (_detach == false && _switch == false)
+			if (_detach == false)
 			{
 				_rigidbodyPlayer2.transform.parent = null;
+				_colliderPlayer2Capsule.enabled = true;
+				_Shield.enabled = false;
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Dynamic;
+				_rigidbodyPlayer2.velocity = Vector2.zero;
+				_audio.ResetAudio();
 				_detach = !_detach;
 			}
 
-			else if (_detach == true && _switch == false)
+			else if (_detach == true)
 			{
-				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.None;
-				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
-				_rigidbodyPlayer2.transform.position = transform.position + -transform.right + transform.up * 0.75f;
+				_colliderPlayer2Capsule.enabled = false;
+				_Shield.enabled = true;
+				_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x - 0.1300149f, transform.position.y - 0.03745449f);
+				if (_rigidbodyPlayer2.transform.eulerAngles.y != _rigidbodyPlayer1.transform.eulerAngles.y)
+				{
+					_rigidbodyPlayer2.transform.eulerAngles = new Vector2(_rigidbodyPlayer2.transform.eulerAngles.x, _rigidbodyPlayer1.transform.eulerAngles.y);
+				}
 				_rigidbodyPlayer2.transform.SetParent(transform);
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
+				_rigidbodyPlayer = _rigidbodyPlayer1;
+				_jumpImpulse = _jumpImpulsePlayer1;
+				_jumpForce = _jumpForcePlayer1;
+				_jumpTimeDelay = _jumpTimeDelayPlayer1;
+				_speed = _speedPlayer1;
+				_rigidbodyPlayer.velocity = Vector2.zero;
+				_airControlForce = _airControlForcePlayer1;
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
+				_camera.Target = _rigidbodyPlayer1.transform;
+				_audio.ResetAudio();
 				_detach = !_detach;
 			}
+			_animationManager.ResetLichen();
 		}
 	}
 
@@ -220,32 +313,63 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetButtonDown("Switch") && _delaySwitch >= _storeDelaySwitch && _detach == true)
 		{
+			_animationManager.SetSpeedLichen(0);
+			_animationManager.SetSpeedTrilo(0);
+			_animationManager.ResetLichen();
 			_delaySwitch = 0;
 			if (_switch == false)
 			{
-<<<<<<< HEAD
-				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
-=======
-				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
->>>>>>> 27a94b94794f8a4af69c9d27ef2c89be51cf83ec
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
 				_rigidbodyPlayer.velocity = Vector2.zero;
 				_camera.Target = _rigidbodyPlayer2.transform;
 				_rigidbodyPlayer = _rigidbodyPlayer2;
+				_audio.ResetAudio();
 				_switch = !_switch;
 				SetPlayer();
 			}
 			else if (_switch == true)
 			{
-				
-				_rigidbodyPlayer.velocity = Vector2.zero;
+				_rigidbodyPlayer.velocity = Vector2.down;
 				_camera.Target = _rigidbodyPlayer1.transform;
 				_rigidbodyPlayer = _rigidbodyPlayer1;
-				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.None;
+				_audio.ResetAudio();
 				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
 				_switch = !_switch;
 				SetPlayer();
 			}
+			_animationManager.ResetLichen();
 		}
+	}
+
+	void MoveShieldTrigger()
+	{
+
+		//if(_detach == false)
+		//{
+		//	float trigger = Input.GetAxis("LTRT");
+		//	Vector3 test = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + trigger * Time.deltaTime * _shieldSpeed);
+		//	Debug.Log(test);
+		//	transform.eulerAngles = test;
+
+		//}
+		//List<Vector2> positions = _shield._positions;
+		//positions.Reverse();
+		//if (trigger > 0 && _cursor < positions.Count)
+		//{
+		//	_cursor++;
+		//}
+		//if (trigger < 0 && _cursor > -1)
+		//{
+		//	_cursor--;
+		//}
+		//if (_player1.GetComponent<PlayerController>().GetDetach() == false)
+		//{
+		//	float trigger = Input.GetAxis("LTRT");
+		//	_currentShieldAngle = Mathf.Clamp(_currentShieldAngle + trigger * _shieldSpeed * _player1.transform.right.x * Time.deltaTime, _minMaxShieldAngle.x, _minMaxShieldAngle.y);
+		//	Vector2 p1Top2 = new Vector2(Mathf.Sin(_currentShieldAngle * Mathf.Deg2Rad * _player1.transform.right.x), Mathf.Cos(_currentShieldAngle * Mathf.Deg2Rad * _player1.transform.right.x));
+		//	transform.position = _player1.transform.position + (Vector3)p1Top2 * _shieldDistance;
+		//	transform.rotation = Quaternion.AngleAxis(Mathf.Atan2(-p1Top2.x, p1Top2.y) * Mathf.Rad2Deg + 90, Vector3.forward);
+		//}
 	}
 
 	void SetPlayer()
@@ -278,21 +402,47 @@ public class PlayerController : MonoBehaviour
 		return _detach;
 	}
 
-	public void ResetPlayer()
+	public bool GetSwitch()
 	{
-		_rigidbodyPlayer = _rigidbodyPlayer1;
-		_camera.Target = _rigidbodyPlayer.transform;
-		_rigidbodyPlayer2.transform.parent = _rigidbodyPlayer.transform;
-		_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
-		_rigidbodyPlayer2.transform.position = new Vector3(_rigidbodyPlayer.transform.position.x - 1.25f, _rigidbodyPlayer.transform.position.y + 0.25f);
-		_switch = false;
-		_detach = false;
-		_rigidbodyPlayer.position = _resetPosition;
+		return _switch;
+	}
+
+	public void ResetPlayer(string death)
+	{
+		if(_isDeath == false)
+		{
+			_isDeath = true;
+			StartCoroutine(ResetPlayerCoroutine(death));
+		}
+		
 	}
 
 	public void SetFreeze(bool freeze)
 	{
 		_isFreeze = freeze;
+	}
+
+
+	void Parallax()
+	{
+		_dist = transform.position - _lastUpdatePos;
+		_currentSpeed = _dist.magnitude / Time.deltaTime;
+		_lastUpdatePos = transform.position;
+		if (_parallax != null)
+		{
+			if (_horizontal < -0.01f && _currentSpeed > 1.15f)
+			{
+				_parallax.Speed = _speedParallax * Mathf.Abs(_horizontal);
+			}
+			else if (_horizontal > 0.01f && _currentSpeed > 1.15f)
+			{
+				_parallax.Speed = -_speedParallax * Mathf.Abs(_horizontal);
+			}
+			else
+			{
+				_parallax.Speed = 0.0f;
+			}
+		}
 	}
 
 	#endregion
@@ -303,19 +453,32 @@ public class PlayerController : MonoBehaviour
 	{
 		while (true)
 		{
-			
+
 			if (_isFreeze == true)
 			{
 				delayJump = 0.2f;
 			}
-			else if(delayJump>0)
+			else if (delayJump > 0)
 			{
 				delayJump -= 0.01f;
 			}
-			if (Input.GetButtonDown("Jump") && _isGrounded && delayJump <= 0)
+
+			if (Input.GetButtonDown("Jump") && _isGrounded && delayJump <= 0 && _isJumping == false)
 			{
+<<<<<<< HEAD
+=======
+				_audio.Jump();
+				_isPlay = false;
+>>>>>>> 4c12cd62328dbd027b8da60895fd9d11d2bdb83b
+				_isJumping = true;
+				if (_detach == false)
+				{
+					_animationManager.SetDuoJump();
+				}
+
 				_jumpTime = Time.time;
 				_rigidbodyPlayer.AddForce(Vector2.up * _jumpImpulse, ForceMode2D.Impulse);
+
 				while (Input.GetButton("Jump") && Time.time < _jumpTime + _jumpTimeDelay)
 				{
 					_rigidbodyPlayer.AddForce(Vector2.up * _jumpForce, ForceMode2D.Force);
@@ -336,11 +499,50 @@ public class PlayerController : MonoBehaviour
 			{
 				lastHitTime = Time.time;
 			}
-
 			_isGrounded = (lastHitTime > Time.time - _bufferDelay);
 
 			yield return null;
 		}
+	}
+
+	IEnumerator ResetPlayerCoroutine(string death)
+	{
+
+		_Shield.enabled = true;
+		_rigidbodyPlayer.velocity = Vector2.zero;
+		_rigidbodyPlayer = _rigidbodyPlayer1;
+		_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeAll;
+		if(death == "spike")
+		{
+			_deathBasic.gameObject.SetActive(true);
+			yield return new WaitForSeconds(2);
+			_deathBasic.gameObject.SetActive(false);
+		}
+		else if(death == "ray")
+		{
+			_deathLight.gameObject.SetActive(true);
+			yield return new WaitForSeconds(2);
+			_deathLight.gameObject.SetActive(false);
+		}
+		_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
+		_jumpImpulse = _jumpImpulsePlayer1;
+		_jumpForce = _jumpForcePlayer1;
+		_jumpTimeDelay = _jumpTimeDelayPlayer1;
+		_speed = _speedPlayer1;
+		_airControlForce = _airControlForcePlayer1;
+		_rigidbodyPlayer.transform.eulerAngles = new Vector2(0, 0);
+		_camera.Target = _rigidbodyPlayer.transform;
+		_rigidbodyPlayer2.transform.parent = _rigidbodyPlayer.transform;
+		_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
+		_rigidbodyPlayer2.transform.eulerAngles = new Vector2(0, 0);
+		_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x - 0.1300149f, transform.position.y - 0.03745449f);
+		_switch = false;
+		_detach = false;
+		_rigidbodyPlayer.position = _resetPosition;
+		_audio.ResetAudio();
+		_animationManager.ResetLichen();
+		_isDeath = false;
+		yield return null;
 	}
 
 	#endregion
