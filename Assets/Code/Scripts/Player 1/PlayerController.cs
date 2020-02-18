@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
 	public float _bufferDelay;
 	public CircleCollider2D _Shield;
 	public float _speedParallax;
+	public ParticleSystem _deathLight;
+	public ParticleSystem _deathBasic;
 	#endregion
 
 	#region Declarations private
@@ -41,6 +43,8 @@ public class PlayerController : MonoBehaviour
 	private bool _isTrigger = false;
 	private bool _switch = false;
 	private bool _detach = false;
+	private bool _isPlay= false;
+	private bool _isDeath = false;
 	private Player2Controller _controllerPlayer2;
 	private Rigidbody2D _rigidbodyPlayer1;
 	private Rigidbody2D _rigidbodyPlayer2;
@@ -62,6 +66,7 @@ public class PlayerController : MonoBehaviour
 	private CapsuleCollider2D _colliderPlayer2Capsule;
 	private Vector3 _movement;
 	private float _resetJump;
+	private AudioManager _audio;
 	#endregion
 
 	#region Declarations Event Args
@@ -99,6 +104,7 @@ public class PlayerController : MonoBehaviour
 		StartCoroutine(Jumping());
 		StartCoroutine(isGroundedBuffering());
 		_animationManager = GetComponent<AnimationManager>();
+		_audio = GetComponent<AudioManager>();
 		#endregion
 	}
 
@@ -107,6 +113,7 @@ public class PlayerController : MonoBehaviour
 		#region Movement
 		Move();
 		Parallax();
+		//_animationManager.ResetLichen();
 		#endregion
 
 		#region Actions
@@ -145,6 +152,11 @@ public class PlayerController : MonoBehaviour
 		MovePlayer();
 		if ((_rigidbodyPlayer.velocity.y < -0.1f && _isGrounded))
 		{
+			if(_isPlay==false)
+			{
+				_audio.Landing();
+				_isPlay = true;
+			}
 			_isJumping = false;
 			_animationManager.SetDuoLanding();
 		}
@@ -226,7 +238,17 @@ public class PlayerController : MonoBehaviour
 		if (_isGrounded)
 		{
 			_animationManager.StopDuoLanding();
-			_rigidbodyPlayer.velocity = (Vector3.right * _horizontal * _speed) + Vector3.up * _rigidbodyPlayer.velocity.y;
+			Vector2 velocity = (Vector3.right * _horizontal * _speed) + Vector3.up * _rigidbodyPlayer.velocity.y;
+			if( Mathf.Abs(velocity.x)>0.1f)
+			{
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
+				_rigidbodyPlayer.velocity = velocity;
+			}
+			else
+			{
+				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+			}
+			
 		}
 		else
 		{
@@ -251,6 +273,7 @@ public class PlayerController : MonoBehaviour
 				_Shield.enabled = false;
 				_rigidbodyPlayer2.bodyType = RigidbodyType2D.Dynamic;
 				_rigidbodyPlayer2.velocity = Vector2.zero;
+				_audio.ResetAudio();
 				_detach = !_detach;
 			}
 
@@ -270,11 +293,14 @@ public class PlayerController : MonoBehaviour
 				_jumpForce = _jumpForcePlayer1;
 				_jumpTimeDelay = _jumpTimeDelayPlayer1;
 				_speed = _speedPlayer1;
+				_rigidbodyPlayer.velocity = Vector2.zero;
 				_airControlForce = _airControlForcePlayer1;
 				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
 				_camera.Target = _rigidbodyPlayer1.transform;
+				_audio.ResetAudio();
 				_detach = !_detach;
 			}
+			_animationManager.ResetLichen();
 		}
 	}
 
@@ -285,6 +311,7 @@ public class PlayerController : MonoBehaviour
 		{
 			_animationManager.SetSpeedLichen(0);
 			_animationManager.SetSpeedTrilo(0);
+			_animationManager.ResetLichen();
 			_delaySwitch = 0;
 			if (_switch == false)
 			{
@@ -292,6 +319,7 @@ public class PlayerController : MonoBehaviour
 				_rigidbodyPlayer.velocity = Vector2.zero;
 				_camera.Target = _rigidbodyPlayer2.transform;
 				_rigidbodyPlayer = _rigidbodyPlayer2;
+				_audio.ResetAudio();
 				_switch = !_switch;
 				SetPlayer();
 			}
@@ -300,10 +328,12 @@ public class PlayerController : MonoBehaviour
 				_rigidbodyPlayer.velocity = Vector2.down;
 				_camera.Target = _rigidbodyPlayer1.transform;
 				_rigidbodyPlayer = _rigidbodyPlayer1;
+				_audio.ResetAudio();
 				_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
 				_switch = !_switch;
 				SetPlayer();
 			}
+			_animationManager.ResetLichen();
 		}
 	}
 
@@ -373,26 +403,14 @@ public class PlayerController : MonoBehaviour
 		return _switch;
 	}
 
-	public void ResetPlayer()
+	public void ResetPlayer(string death)
 	{
-		_Shield.enabled = true;
-		_rigidbodyPlayer.velocity = Vector2.zero;
-		_rigidbodyPlayer = _rigidbodyPlayer1;
-		_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
-		_jumpImpulse = _jumpImpulsePlayer1;
-		_jumpForce = _jumpForcePlayer1;
-		_jumpTimeDelay = _jumpTimeDelayPlayer1;
-		_speed = _speedPlayer1;
-		_airControlForce = _airControlForcePlayer1;
-		_rigidbodyPlayer.transform.eulerAngles = new Vector2(0, 0);
-		_camera.Target = _rigidbodyPlayer.transform;
-		_rigidbodyPlayer2.transform.parent = _rigidbodyPlayer.transform;
-		_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
-		_rigidbodyPlayer2.transform.eulerAngles = new Vector2(0, 0);
-		_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x - 0.1300149f, transform.position.y - 0.03745449f);
-		_switch = false;
-		_detach = false;
-		_rigidbodyPlayer.position = _resetPosition;
+		if(_isDeath == false)
+		{
+			_isDeath = true;
+			StartCoroutine(ResetPlayerCoroutine(death));
+		}
+		
 	}
 
 	public void SetFreeze(bool freeze)
@@ -443,6 +461,8 @@ public class PlayerController : MonoBehaviour
 
 			if (Input.GetButtonDown("Jump") && _isGrounded && delayJump <= 0 && _isJumping == false)
 			{
+				_audio.Jump();
+				_isPlay = false;
 				_isJumping = true;
 				if (_detach == false)
 				{
@@ -476,6 +496,46 @@ public class PlayerController : MonoBehaviour
 
 			yield return null;
 		}
+	}
+
+	IEnumerator ResetPlayerCoroutine(string death)
+	{
+
+		_Shield.enabled = true;
+		_rigidbodyPlayer.velocity = Vector2.zero;
+		_rigidbodyPlayer = _rigidbodyPlayer1;
+		_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeAll;
+		if(death == "spike")
+		{
+			_deathBasic.gameObject.SetActive(true);
+			yield return new WaitForSeconds(2);
+			_deathBasic.gameObject.SetActive(false);
+		}
+		else if(death == "ray")
+		{
+			_deathLight.gameObject.SetActive(true);
+			yield return new WaitForSeconds(2);
+			_deathLight.gameObject.SetActive(false);
+		}
+		_rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeRotation;
+		_jumpImpulse = _jumpImpulsePlayer1;
+		_jumpForce = _jumpForcePlayer1;
+		_jumpTimeDelay = _jumpTimeDelayPlayer1;
+		_speed = _speedPlayer1;
+		_airControlForce = _airControlForcePlayer1;
+		_rigidbodyPlayer.transform.eulerAngles = new Vector2(0, 0);
+		_camera.Target = _rigidbodyPlayer.transform;
+		_rigidbodyPlayer2.transform.parent = _rigidbodyPlayer.transform;
+		_rigidbodyPlayer2.bodyType = RigidbodyType2D.Kinematic;
+		_rigidbodyPlayer2.transform.eulerAngles = new Vector2(0, 0);
+		_rigidbodyPlayer2.transform.position = new Vector2(transform.position.x - 0.1300149f, transform.position.y - 0.03745449f);
+		_switch = false;
+		_detach = false;
+		_rigidbodyPlayer.position = _resetPosition;
+		_audio.ResetAudio();
+		_animationManager.ResetLichen();
+		_isDeath = false;
+		yield return null;
 	}
 
 	#endregion
