@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 public class MenuPause : MenuController
 {
 	#region Declarations public
-	public GameObject _pauseGUI;
+
 	#endregion
 
 	#region Declarations private
 	private bool _isPause = false;
 	private PlayerController _playerController;
+	public GameObject _pauseGUI;
 	#endregion
 
 	#region Declarations Event Args

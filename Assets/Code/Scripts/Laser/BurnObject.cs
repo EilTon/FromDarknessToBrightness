@@ -7,7 +7,6 @@ public class BurnObject : MonoBehaviour
 	public float _timeToBurn;
 	public Rigidbody2D _rigidbody2D;
 	public Sprite _rendererParticlesFire;
-	public AudioManager _audioManager;
 	//public Material _rendererParticlesSmoke;
 	//public ParticleSystem _fire;
 	#endregion
@@ -17,7 +16,6 @@ public class BurnObject : MonoBehaviour
 	private bool _isHit = false;
 	private bool _isBurn = false;
 	private ParticleSystem _particles;
-	private bool _isPlay = false;
 	#endregion
 
 	#region Declarations Event Args
@@ -68,18 +66,12 @@ public class BurnObject : MonoBehaviour
 		{
 			//_fire.Play();
 			//_fire.enableEmission = true;
-			if(_isPlay == false)
-			{
-				_isPlay = true;
-				_audioManager.PlayBurning();
-			}
 			_particles.textureSheetAnimation.SetSprite(0, _rendererParticlesFire);
 			_timerBurn += Time.deltaTime;
 			if (_timerBurn > _timeToBurn)
 			{
 				if (_rigidbody2D != null)
 				{
-					_audioManager.PlayRockFall();
 					_rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
 				}
 				Destroy(gameObject);
